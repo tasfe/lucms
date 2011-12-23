@@ -1,5 +1,6 @@
 <?php
 
+
 // +----------------------------------------------------------------------
 // | LULUUI [ Lulu COMPANY WEB SHOW]
 // +----------------------------------------------------------------------
@@ -10,22 +11,29 @@
 // | Author: uuleaf <uuleaf@163.com>
 // +----------------------------------------------------------------------
 class IbaseModel extends Model {
+	//相关分类模型
+	public $cate_set = array (
+		//'Ibase_cate' => 'cate_id';
+	);
+	//用于查看时新增clicked
+	public $fields_inc = array ();
+
 	//+++++++---------------------------SHARE START------------------------------------+++++++
 	//过滤设置
 	public $qmap = array (
 		//查询数组
 		'q' => array (),
 		//排序
-		'o' => array (
-				'oby' => '',
-				'okey' => 'desc'
-			),
-			//分页0取分部1取第一页面-1取第一条
-		'p' => 1,
-			//条数
-		'ps' => 20,
-			//关联
-		'r' => false,
+	'o' => array (
+			'oby' => '',
+			'okey' => 'desc'
+		),
+		//分页0取分部1取第一页面-1取第一条
+	'p' => 1,
+		//条数
+	'ps' => 20,
+		//关联
+	'r' => false,
 		'a' => array ()
 	);
 	/**
@@ -111,15 +119,22 @@ class IbaseModel extends Model {
 	 +----------------------------------------------------------
 	 */
 	public function initQmap($map = array ()) {
+		$DbFields = $this->getDbFields();
 		if (!empty ($map)) {
-			if(isset($map['q'])) $this->qmap['q'] = $map['q'];
-			if(isset($map['p'])) $this->qmap['p'] = $map['p'];
-			if(isset($map['ps'])) $this->qmap['ps'] = $map['ps'];
-			if(isset($map['r'])) $this->qmap['r'] = $map['r'];
-			if(isset($map['o'])) $this->qmap['o'] = $map['o'];
+			if (isset ($map['q']))
+				$this->qmap['q'] = $map['q'];
+			if (isset ($map['p']))
+				$this->qmap['p'] = $map['p'];
+			if (isset ($map['ps']))
+				$this->qmap['ps'] = $map['ps'];
+			$this->qmap['r'] = false;
+			if (isset ($map['o']))
+				$this->qmap['o'] = $map['o'];
+			if (empty ($this->qmap['o']['oby']))
+				$this->qmap['o']['oby'] = $this->getPk();
 		} else {
 			//生成查询条件
-			foreach ($this->getDbFields() as $key => $val) {
+			foreach ($DbFields as $key => $val) {
 				if (isset ($_GET[$val]) && $_GET[$val] != '') {
 					$this->qmap['q'][$val] = $_GET[$val];
 				}
@@ -154,12 +169,30 @@ class IbaseModel extends Model {
 				$this->qmap['p'] = $_GET['p'];
 			}
 		}
-		if(empty($this->qmap['o']['oby'])) $this->qmap['o']['oby'] = $this->getPk();
+		if (empty ($this->qmap['o']['oby']))
+			$this->qmap['o']['oby'] = $this->getPk();
+		//cate处理
+		if (!empty ($this->cate_set)) {
+			foreach ($this->cate_set as $ck => $cvo) {
+				if (isset ($this->qmap['q'][$cvo])) {
+					$mcate = D(ucfirst(strtolower($ck)));
+					if (method_exists($mcate, 'getPath')) {
+						$catemap = $mcate->getPath($this->qmap['q'][$cvo]);
+						unset ($this->qmap['q'][$cvo]);
+						$this->qmap['q'] = array_merge($this->qmap['q'], $catemap);
+					}
+				}
+			}
+		}
+		foreach($this->qmap['q'] as $k => $vo){
+			if(!in_array($k,$DbFields)) unset($this->qmap['q'][$k]);
+		}
 	}
+	
 	public function getQmap() {
 		return $this->qmap;
 	}
-	
+
 	/**
 	 +----------------------------------------------------------
 	 * 获得过滤表单数据
@@ -174,47 +207,51 @@ class IbaseModel extends Model {
 	 * @throws ThinkExecption
 	 +----------------------------------------------------------
 	 */
-	public function getForm($type = 1,$rela = false) {
+	public function getForm($type = 1, $rela = false) {
 		import("ORG.Util.Input");
 		$mdata = array ();
 		$pkey = $this->getPk();
 		foreach ($this->fields_set as $cname => $cset) {
 			switch ($cset['t']) {
 				case 'relation_one' :
-					if($rela == false) break;
+					if ($rela == false)
+						break;
 					$tdata = isset ($_POST[$cname]) ? $_POST[$cname] : null;
-					if(empty($tdata)) break;
-					$mdata[$cname] = array();
+					if (empty ($tdata))
+						break;
+					$mdata[$cname] = array ();
 					foreach ($cset['v'] as $crname => $crset) {
-							switch ($crset['t']) {
-								case 'function' :
-									$mdata[$cname][$crname] = isset($tdata[$crname])? $tdata[$crname]:$crset['v'] ();
-									break;
-								case 'select' :
-								case 'input' :
-								case 'text' :
-								default :
-									$mdata[$cname][$crname] = isset ($tdata[$crname]) ? Input :: getVar(trim($_POST[$cname][$crname])) : $crset['v'];
-									break;
+						switch ($crset['t']) {
+							case 'function' :
+								$mdata[$cname][$crname] = isset ($tdata[$crname]) ? $tdata[$crname] : $crset['v'] ();
+								break;
+							case 'select' :
+							case 'input' :
+							case 'text' :
+							default :
+								$mdata[$cname][$crname] = isset ($tdata[$crname]) ? Input :: getVar(trim($_POST[$cname][$crname])) : $crset['v'];
+								break;
+						}
+						if ($crname == $pkey) {
+							if ($type == 1) { //如果是新增，删除主键
+								$mdata[$cname][$crname] = '';
 							}
-							if ($crname == $pkey) {
-								if ($type == 1) { //如果是新增，删除主键
-									$mdata[$cname][$crname] = '';
-								}
-							}
+						}
 					}
-				break;
+					break;
 				case 'relation_many' :
-					if($rela == false) break;
+					if ($rela == false)
+						break;
 					$tdata = isset ($_POST[$cname]) ? $_POST[$cname] : null;
-					if(empty($tdata)) break;
-					$mdata[$cname] = array();
-					foreach($tdata as $k =>$vo){
-						$mdata[$cname][$k] = array();
+					if (empty ($tdata))
+						break;
+					$mdata[$cname] = array ();
+					foreach ($tdata as $k => $vo) {
+						$mdata[$cname][$k] = array ();
 						foreach ($cset['v'] as $crname => $crset) {
 							switch ($crset['t']) {
 								case 'function' :
-									$mdata[$cname][$k][$crname] = isset($vo[$crname])? $vo[$crname]:$crset['v'] ();
+									$mdata[$cname][$k][$crname] = isset ($vo[$crname]) ? $vo[$crname] : $crset['v'] ();
 									break;
 								case 'select' :
 								case 'input' :
@@ -226,18 +263,18 @@ class IbaseModel extends Model {
 							if ($crname == $pkey) {
 								if ($type == 1) { //如果是新增，删除主键
 									$mdata[$cname][$k][$crname] = '';
-								}	
+								}
 							}
 						}
 					}
-					
-				break;
+
+					break;
 				case 'function' :
-					$mdata[$cname] =  isset ($_POST[$cname]) ? Input :: getVar(trim($_POST[$cname])) : $cset['v'] ();
+					$mdata[$cname] = isset ($_POST[$cname]) ? Input :: getVar(trim($_POST[$cname])) : $cset['v'] ();
 					//如果更新，更新中无字段则删除
 					if ($type == 2) {
 						if (!isset ($_POST[$cname]))
-						unset ($mdata[$cname]);
+							unset ($mdata[$cname]);
 					}
 					break;
 				case 'select' :
@@ -248,9 +285,9 @@ class IbaseModel extends Model {
 					//如果更新，更新中无字段则删除
 					if ($type == 2) {
 						if (!isset ($_POST[$cname]))
-						unset ($mdata[$cname]);
+							unset ($mdata[$cname]);
 					}
-				break;
+					break;
 			}
 		}
 		if ($type == 1) {
@@ -260,23 +297,25 @@ class IbaseModel extends Model {
 		return $mdata;
 	}
 
-	public function getData($datainfo,$type = 1,$rela = true) {
-		$tdata = array();
+	public function getData($datainfo, $type = 1, $rela = true) {
+		$tdata = array ();
 		foreach ($this->fields_set as $field => $field_set) {
 			switch ($field_set['t']) {
 				case 'function' :
-					$tdata[$field] = isset($datainfo[$field])? $datainfo[$field] : $field_set['v'] ();
+					$tdata[$field] = isset ($datainfo[$field]) ? $datainfo[$field] : $field_set['v'] ();
 					break;
 				case 'select' :
 				case 'input' :
 				case 'text' :
-					$tdata[$field] = isset($datainfo[$field])? $datainfo[$field] : $field_set['v'];
+					$tdata[$field] = isset ($datainfo[$field]) ? $datainfo[$field] : $field_set['v'];
 					break;
-				default:
-					if($rela) $tdata[$field] = $datainfo[$field];
+				default :
+					if ($rela)
+						$tdata[$field] = $datainfo[$field];
 			}
-			if($type != 1){
-				if(!isset($datainfo[$field])) unset( $tdata[$field]);
+			if ($type != 1) {
+				if (!isset ($datainfo[$field]))
+					unset ($tdata[$field]);
 			}
 		}
 		return $tdata;
@@ -327,58 +366,61 @@ class IbaseModel extends Model {
 				//echo $this->getLastSql();
 				$dlist['list'] = $voList;
 				return $dlist;
-			}else if ($this->qmap['p'] == 0){
-				if (empty ($this->qmap['q'])) {
-					if ($this->qmap['r']) {
-						$voList = $this->relation($this->qmap['r'])->find();
+			} else
+				if ($this->qmap['p'] == 0) {
+					if (empty ($this->qmap['q'])) {
+						if ($this->qmap['r']) {
+							$voList = $this->relation($this->qmap['r'])->find();
+						} else {
+							$voList = $this->find();
+						}
 					} else {
-						$voList = $this->find();
-					}
-				} else {
-					if ($this->qmap['r']) {
-						$voList = $this->relation($this->qmap['r'])->where($this->qmap['q'])->find();
-					} else {
-						$voList = $this->where($this->qmap['q'])->find();
-					}
-				}
-				//echo $this->getLastSql();
-				return $voList;
-			}else{
-				$p = $this->qmap['p'];
-				$ps = $this->qmap['ps'];
-				$page = initPage($count, $p, $ps);
-				if (empty ($this->qmap['q'])) {
-					if ($this->qmap['r']) {
-						$voList = $this->relation($this->qmap['r'])->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
-					} else {
-						$voList = $this->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
-					}
-				} else {
-					if ($this->qmap['r']) {
-						$voList = $this->relation($this->qmap['r'])->where($this->qmap['q'])->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
-						
-					} else {
-						$voList = $this->where($this->qmap['q'])->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
-						
-					}
-				}
-				$page['par'] = '';
-				//echo $this->getlastsql();
-				//分页跳转的时候保证查询条件
-				foreach ($this->qmap['q'] as $key => $val) {
-					if (!is_array($val)) {
-						$page['par'] .= "$key=" . urlencode($val) . "&";
-					}
-				}
-				if($this->qmap['o']['auto'] == true){
-					foreach ($this->qmap['o'] as $key => $val) {
-						if (!is_array($val)) {
-							if($key != 'auto') $page['par'] .= "$key=" . urlencode($val) . "&";
+						if ($this->qmap['r']) {
+							$voList = $this->relation($this->qmap['r'])->where($this->qmap['q'])->find();
+						} else {
+							$voList = $this->where($this->qmap['q'])->find();
 						}
 					}
+					$this->autoInc($voList[$this->getPk()]);
+					//echo $this->getLastSql();
+					return $voList;
+				} else {
+					$p = $this->qmap['p'];
+					$ps = $this->qmap['ps'];
+					$page = initPage($count, $p, $ps);
+					if (empty ($this->qmap['q'])) {
+						if ($this->qmap['r']) {
+							$voList = $this->relation($this->qmap['r'])->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
+						} else {
+							$voList = $this->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
+						}
+					} else {
+						if ($this->qmap['r']) {
+							$voList = $this->relation($this->qmap['r'])->where($this->qmap['q'])->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
+
+						} else {
+							$voList = $this->where($this->qmap['q'])->order("`" . $this->qmap['o']['oby'] . "` " . $this->qmap['o']['okey'])->limit($ps)->page($p)->findAll();
+
+						}
+					}
+					$page['par'] = '';
+					//echo $this->getlastsql();
+					//分页跳转的时候保证查询条件
+					foreach ($this->qmap['q'] as $key => $val) {
+						if (!is_array($val)) {
+							$page['par'] .= "$key=" . urlencode($val) . "&";
+						}
+					}
+					if ($this->qmap['o']['auto'] == true) {
+						foreach ($this->qmap['o'] as $key => $val) {
+							if (!is_array($val)) {
+								if ($key != 'auto')
+									$page['par'] .= "$key=" . urlencode($val) . "&";
+							}
+						}
+					}
+
 				}
-				
-			}
 			$dlist = array (
 				'list' => $voList,
 				'page' => $page
@@ -389,33 +431,36 @@ class IbaseModel extends Model {
 			return false;
 		}
 	}
-	
+
 	public function doPost($data = null, $rela = false) {
-		if (empty ($data)){
+		if (empty ($data)) {
 			$data = $this->getForm(1);
-		}else{
-			$data = $this->getData($data,1,$rela);
+		} else {
+			$data = $this->getData($data, 1, $rela);
 		}
 		if (!$this->create($data)) {
-			if(empty($this->error)) $this->error = '数据类型错误，请检查提交字段';
+			if (empty ($this->error))
+				$this->error = '数据类型错误，请检查提交字段';
 			return false;
 		}
 		if ($rela) {
 			$rs = $this->relation($rela)->add($data);
-			if(!$rs) $this->error = $this->getLastSql();
+			if (!$rs)
+				$this->error = $this->getLastSql();
 			return $rs;
 		} else {
 			$rs = $this->add($data);
-			if(!$rs) $this->error = $this->getLastSql();
+			if (!$rs)
+				$this->error = $this->getLastSql();
 			return $rs;
 		}
 	}
 
 	public function doPut($data = null, $rela = false) {
-		if (empty ($data)){
+		if (empty ($data)) {
 			$data = $this->getForm(2);
-		}else{
-			$data = $this->getData($data,2,$rela);
+		} else {
+			$data = $this->getData($data, 2, $rela);
 		}
 		$mpk = $this->getPk();
 		if (!isset ($data[$mpk])) {
@@ -423,9 +468,9 @@ class IbaseModel extends Model {
 			return false;
 		}
 		$map[$mpk] = $data[$mpk];
-		
-		if(!$this->where($map)->find()){
-			$this->error='无数据';
+
+		if (!$this->where($map)->find()) {
+			$this->error = '无数据';
 			return false;
 		}
 		unset ($data[$mpk]);
@@ -434,13 +479,8 @@ class IbaseModel extends Model {
 		} else {
 			$rs = $this->where($map)->save($data);
 		}
-		if(!$rs){
-			if(!$rs) $this->error = $this->getLastSql();
-			return $rs;
-		}else{
-			$this->error = '修改成功';
-			return $rs ;
-		}
+		$this->error = 'Sql Run Error:' . $this->getLastSql();
+		return $rs;
 	}
 	/**
 	 +----------------------------------------------------------
@@ -457,7 +497,7 @@ class IbaseModel extends Model {
 	 +----------------------------------------------------------
 	 */
 	public function doDel($qmap = null, $rela = false) {
-		$tmap = array();
+		$tmap = array ();
 		$mpk = $this->getPk();
 		$tmap[$mpk] = isset ($_POST[$mpk]) ? $_POST[$mpk] : 0;
 		if (empty ($qmap))
@@ -466,21 +506,22 @@ class IbaseModel extends Model {
 			$this->error = L('_SELECT_NOT_EXIST_');
 			return false;
 		}
-		if(!is_array($qmap[$mpk])){
+		if (!is_array($qmap[$mpk])) {
 			$data = explode(",", $qmap[$mpk]);
-			if(count($data)>1) $qmap[$mpk] = $data;
+			if (count($data) > 1)
+				$qmap[$mpk] = $data;
 		}
-		
+
 		$this->startTrans();
 		if (is_array($qmap[$mpk])) {
-			foreach($qmap[$mpk] as $v){
+			foreach ($qmap[$mpk] as $v) {
 				$map[$mpk] = $v;
 				if ($rela != false) {
-				if (!$this->relation($rela)->delete($v)) {
-					$this->error = L('_SELECT_NOT_EXIST_');
-					$this->rollback();
-					return false;
-				}
+					if (!$this->relation($rela)->delete($v)) {
+						$this->error = L('_SELECT_NOT_EXIST_');
+						$this->rollback();
+						return false;
+					}
 				} else {
 					if (!$this->where($map)->delete()) {
 						$this->error = L('_SELECT_NOT_EXIST_');
@@ -489,7 +530,7 @@ class IbaseModel extends Model {
 					}
 				}
 			}
-			
+
 		} else {
 			$map[$mpk] = $qmap[$mpk];
 			if ($rela != false) {
@@ -509,6 +550,18 @@ class IbaseModel extends Model {
 		$this->commit();
 		return true;
 	}
+	public function autoInc($mpk_val) {
+		if (empty ($mpk_val))
+			return false;
+		$map[$this->getPk()] = $mpk_val;
+		if (!empty ($this->fields_inc)) {
+			foreach ($this->fields_inc as $k => $v) {
+				$this->setInc($k, $map, $v);
+			}
+		}
+		return true;
+	}
 	//+++++++---------------------------SHARE END------------------------------------+++++++
+
 }
 ?>
