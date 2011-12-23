@@ -38,4 +38,16 @@ alias_import(array(
     //'MbaseAction'    => THINK_PATH.'/Vendor/IAction/MbaseAction.class.php',
     )
 );
+alias_import(array(
+    'BulletinModel'    => THINK_PATH.'/Vendor/SModel/BulletinModel.class.php',
+    'InfoModel'    => THINK_PATH.'/Vendor/SModel/InfoModel.class.php',
+    'KefuModel'    => THINK_PATH.'/Vendor/SModel/KefuModel.class.php',
+    'News_cateModel'    => THINK_PATH.'/Vendor/SModel/News_cateModel.class.php',
+    'NewsModel'    => THINK_PATH.'/Vendor/SModel/NewsModel.class.php',
+    'Product_cateModel'    => THINK_PATH.'/Vendor/SModel/Product_cateModel.class.php',
+    'ProductModel'    => THINK_PATH.'/Vendor/SModel/ProductModel.class.php',
+    'SetModel'    => THINK_PATH.'/Vendor/SModel/SetModel.class.php'
+    //'Model'    => THINK_PATH.'/Vendor/SModel/Model.class.php',
+    )
+);
 ?>
