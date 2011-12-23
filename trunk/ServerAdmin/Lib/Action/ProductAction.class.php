@@ -3,10 +3,10 @@ class ProductAction extends MbaseAction {
 	public $tbname = 'Product';
 	public $obj = '';
 	public $mpk = 'product_id';
+	public $mcate = 'Product_cate';
 	public function _initialize() {
 		parent :: _initialize() ;
 		$this->assign('pcates',$this->getCateTree());
-		
 	}
 	public function getCateTree($reset = 0) {
 		$tcateher= array();
