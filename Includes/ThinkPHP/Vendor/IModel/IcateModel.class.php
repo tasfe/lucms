@@ -196,5 +196,43 @@ class IcateModel extends IbaseModel {
 			1
 		)
 	);
+	
+	public function doGet($par) {
+		return $this->getTree();
+	}
+	public function doPut($par) {
+		$rs = parent :: doPut($par);
+		$this->getTree(1);
+		$this->rs = true;
+		return true;
+	}
+	public function doDel($par) {
+		$catelist = $this->getTree();
+		if (empty ($par[$this->getPk()])) {
+			$this->error = '参数错误';
+			return false;
+		}
+		if (isset ($catelist[$par[$this->getPk()]])) {
+			if (!empty ($catelist[$par[$this->getPk()]]['childs'])) {
+				$this->error = '分类下有子分类，请移除子分类:cate_id=>' . implode(',', $catelist[$par[$this->getPk()]]['childs']);
+				return false;
+			}
+		} else {
+			$this->error = '无数据';
+			return false;
+		}
+		$cid = parent :: doDelete($par);
+		$this->getTree(1);
+		return $cid;
+	}
+	public function doTree(){
+		$datalist = $this->order('oid desc')->select();
+		$tree = list_to_tree($datalist,$this->getPk(),'parent_id','childs');
+		return $tree;
+	}
+	public function doList(){
+		$datalist = $this->order('oid desc')->select();
+		return $datalist;
+	}
 }
 ?>
