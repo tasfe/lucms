@@ -1,11 +1,13 @@
 <?php
-// 本文档自动生成，仅供测试运行
-class IndexAction extends Action
+class IndexAction extends MbaseAction
 {
     public function index()
     {
        $this->display();
     }
+	public function sitemap(){
+		
+	}
 
 }  
 ?>
