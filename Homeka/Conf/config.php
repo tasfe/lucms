@@ -2,6 +2,7 @@
 $configdir = dirname(dirname(dirname(__FILE__))).'/Config/';
 $config_global = require $configdir.'/config_global.php';
 $config_app = require $configdir.'/config.php';
+$rewrite_rule = require 'rewrite.php';
 $array=array(
 	'APP_DEBUG'				=> false, 	// 是否开启调试模式
 	'TMPL_CACHE_ON'			=> false,   //关闭模板缓存 
@@ -15,12 +16,12 @@ $array=array(
 	
 	'DATA_CACHE_TYPE'=> 'File',
 	'DATA_CACHE_TIME' => 1,
-	
+	'URL_HTML_SUFFIX' => '.html',
 	//'DEFAULT_THEME' => 'dwz',
 	//'URL_MODEL' => 0,
 	//'URL_DISPATCH_ON' => false,
-	
-	
+	'REWRITE_RULE_ON' => true,
+	'REWRITE_RULE'    => $rewrite_rule
 );
 return array_merge($config_global,$config_app,$array);
 ?>

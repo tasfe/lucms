@@ -23,6 +23,8 @@ class MbaseAction extends Action {
 		$this->assign('sets', $sets);
 		$this->getCateTree();
 		$this->getCateTree('product_cate');
+		$webinfo = $this->getConfig();
+		$this->assign('webinfo',$webinfo);
 	}
 
 	public function getMap() {
@@ -74,7 +76,7 @@ class MbaseAction extends Action {
 		$this->display();
 	}
 
-	public function show() {
+	public function view() {
 		$mpk_val = isset ($_GET[$this->mpk]) ? $_GET[$this->mpk] : 0;
 		if (!$mpk_val)
 			$this->error('无数据', 0);
@@ -91,11 +93,21 @@ class MbaseAction extends Action {
 	}
 
 	public function getConfig($name = '') {
-		if (empty ($name))
-			return 0;
-		$mset = M('Config');
-		$map['name'] = $name;
-		return $mset->where($map)->getField('val');
+		$configs = S('GConfig');
+		if(!$configs){
+			$mset = M('Config');
+			$tarr = $mset->select();
+			foreach($tarr as $vo){
+				$configs[$vo['name']] = $vo['val'];
+			}
+			S('GConfig',$configs);
+		}
+		if ($name == '') return $configs;
+		if(isset($configs[$name])){
+			return $configs[$name];
+		}else{
+			return false;
+		}
 	}
 
 	public function getCateTree($catename = '', $reset = 0) {

@@ -9,8 +9,24 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 // $Id$
-//公共函数
-function advstr($src,$w, $h, $pre, $style = '') {
+
+/**
+ +----------------------------------------------------------
+ * 图片及flash生成
+ +----------------------------------------------------------
+ * @static
+ * @access public
+ +----------------------------------------------------------
+ * @param string $src 路径
+ * @param string $w 宽度
+ * @param string $h 调试
+ * @param string $pre 前缀
+ * @param string $style 样式
+ +----------------------------------------------------------
+ * @return string
+ +----------------------------------------------------------
+ */
+function initMedia($src,$w, $h, $pre, $style = '') {
 	$extend =explode("." , $src);
 	$va=count($extend)-1;
 	$type = $extend[$va];
