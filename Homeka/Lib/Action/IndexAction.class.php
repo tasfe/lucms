@@ -25,6 +25,17 @@ class IndexAction extends MbaseAction {
 	public function sitemap() {
 
 	}
-
+	public function rw(){
+		$res = C('REWRITE_RULE');
+		foreach($res as $vo){
+			if(!empty($vo['url_out'])){
+				$url_out = str_replace('.','\\.',$vo['url_out']);
+				$pattern = str_replace('.','\\.',$vo['pattern']);
+				echo "RewriteRule $url_out $pattern [QSA,PT]".'<br/>';
+				//echo $vo['url_out'].$vo['pattern'];
+			}
+			
+		}
+	}
 }
 ?>
