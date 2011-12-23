@@ -31,12 +31,15 @@ return array (
 	),
 	array (
 		'url_out' => "",
-		'pattern' => "/Index/"
+		'pattern' => "Index"
 	),
-
 	array (
-		'url_out' => "product",
-		'pattern' => "/Product/"
+		'url_out' => "gloves",
+		'pattern' => "Product"
+	),
+	array (
+		'url_out' => "article",
+		'pattern' => "News"
 	),
 	//action
 	array (
@@ -61,28 +64,28 @@ return array (
 		'pattern' => "product_id/"
 	),
 	array (
-		'url_out' => "id-",
+		'url_out' => "/id-",
 		'pattern' => "news_id/"
 	),
 	array (
-		'url_out' => "p-",
-		'pattern' => "p/"
+		'url_out' => "-p-",
+		'pattern' => "/p/"
 	),
 	array (
-		'url_out' => "ps-",
-		'pattern' => "ps/"
+		'url_out' => "-ps-",
+		'pattern' => "/ps/"
 	),
 	array (
-		'url_out' => "o-",
-		'pattern' => "oby/"
+		'url_out' => "-o-",
+		'pattern' => "/oby/"
 	),
 	array (
 		'url_out' => "",
-		'pattern' => "okey/desc"
+		'pattern' => "/okey/desc"
 	),
 	array (
-		'url_out' => "ok-asc",
-		'pattern' => "okey/asc"
+		'url_out' => "-ok-asc",
+		'pattern' => "/okey/asc"
 	)
 	
 );
