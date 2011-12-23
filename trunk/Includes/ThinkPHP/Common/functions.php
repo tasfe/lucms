@@ -119,10 +119,23 @@ function U($url, $params=array(), $redirect=false, $suffix=true) {
         $domain = str_replace(SUB_DOMAIN, $sub_domain, $_SERVER['HTTP_HOST']);
         $url = "http://" . $domain . $url;
     }
-    if ($redirect)
+    $url = rewriteU($url);
+    if($redirect)
         redirect($url);
     else
         return $url;
+}
+
+function rewriteU($url){
+	if(!C('REWRITE_RULE_ON')) return $url;
+	$rconfig = C('REWRITE_RULE');
+	$patterns = array();
+	$replacements = array();
+	foreach($rconfig as $ro){
+		$patterns[] = "/".str_replace('/',"\\/",$ro['pattern'])."/i";
+		$replacements[] = $ro['url_out'];
+	}
+	return preg_replace($patterns, $replacements, $url);
 }
 
 /**

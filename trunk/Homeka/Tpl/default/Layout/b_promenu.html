@@ -1,0 +1,48 @@
+<div class="title">
+    Products Class
+</div>
+<ul>
+    <volist name="product_cates" id="vo">
+        <eq name="vo.parent_id" value="0">
+            <li>
+                <a href="{:U('Product/index?cate_id='.$vo['cate_id'])}"
+                    <eq name="_GET['cate_id']" value="$vo['cate_id']">
+                        class="on"
+                    </eq>><strong>{$vo.name}</strong></a>
+                <notempty name="vo.childs">
+                    <ul>
+                        <volist name="vo.childs" id="cvo">
+                            <li>
+                                <a href="{:U('Product/index?cate_id='.$cvo)}"
+                                    <eq name="_GET['cate_id']" value="$cvo">
+                                        class="on"
+                                    </eq>>{$product_cates[$cvo]['name']}
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </notempty>
+            </li>
+        </eq>
+    </volist>
+</ul>
+<div class="title1">
+    Material 
+</div>
+<ul>
+	<volist name="sets.material" id="vo">
+	    <li>
+	        <a href="{U('Product/index?attr_7='.$key)}">{$vo}</a>
+	    </li>
+	</volist>
+</ul>
+<div class="title1">
+    Usefor
+</div>
+<ul>
+	<volist name="sets.userfor" id="vo">
+	    <li>
+	        <a href="{U('Product/index?attr_8='.$key)}">{$vo}</a>
+	    </li>
+	</volist>
+</ul>

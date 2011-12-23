@@ -456,9 +456,9 @@ ul.dropdown li:hover > ul {
 .menu_l .title1 {
     font-size: 18px;
     color: #000;
-    background: url(../images/bk01.jpg) no-repeat center 38px;
+    background: url(../images/bk01.jpg) no-repeat center 33px;
     height: 27px;
-    padding: 9px 0px 10px 12px
+    padding: 3px 0px 5px 12px
 }
 
 .menu_l ul {
@@ -483,7 +483,7 @@ ul.dropdown li:hover > ul {
 }
 
 .menu_l ul li ul {
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 3px 0px;
 }
 
 .menu_l ul li ul li {

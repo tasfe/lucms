@@ -13,8 +13,10 @@ class MbaseAction extends Action {
 		$this->assign('mpk',$this->mpk);
 		if(empty($this->tbname) || empty($this->mpk)) exit('none ser or obj');
 		$this->obj = D($this->tbname);
-		$this->assign('srcpre',C('BASEURL').$this->getConfig('upload_path').'/');
-		
+		$srcpre = str_replace('//', '/', $this->getConfig('weburl') . '/' . $this->getConfig('upload_path') . '/');
+		$srcpre = str_replace(':/', '://', $srcpre);
+		$this->assign('srcpre',$srcpre);
+		//echo $this->getConfig('weburl');
 		$mset = D('Set');
 		$sets=$mset->getTree();
 		$this->assign('sets',$sets);

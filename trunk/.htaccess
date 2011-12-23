@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c> 
+RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^cocodiy.com [NC]
+#RewriteRule ^(.*)$ http://www.cocodiy.com/$1 [L,R=301]
+
+errorDocument 404 /404.html
+</IfModule>
