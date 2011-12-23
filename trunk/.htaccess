@@ -2,6 +2,29 @@
 RewriteEngine on
 #RewriteCond %{HTTP_HOST} ^cocodiy.com [NC]
 #RewriteRule ^(.*)$ http://www.cocodiy.com/$1 [L,R=301]
+#RewriteRule (.*)A(.*) $1B$2 [QSA,PT,N]
+#product/p-2ps-3.html product/p/2ps.html  product/p/2ps/3.html product/p/2/ps/3.html
+#product/p-2ps-3o-idok-asc.html product/p/2ps3o-idok-asc.html  product/p/2ps/3o-idok-asc.html product/p/2/ps/3o-idok-asc.html product/p/2/ps/3o-idok-asc.html 
+#product/p-2.html
 
+
+RewriteRule (.*)p-(.*) $1p/$2 [QSA,PT,N]
+RewriteRule (.*)ps-(.*) $1ps/$2 [QSA,PT,N]
+RewriteRule (.*)/([0-9]+)ps(.*) $1/$2/ps/$3 [QSA,PT,N]
+RewriteRule (.*)o-(.*) $1oby/$2 [QSA,PT,N]
+RewriteRule (.*)/([0-9]+)ps(.*) $1/$2/ps/$3 [QSA,PT,N]
+RewriteRule (.*)-ok-asc(.*) $1okey/asc$2 [QSA,PT,N]
+RewriteRule ^product/id-([0-9]+)\.html$ index.php/Product/view/product_id/$1\.html$ [QSA,PT,L]
+RewriteRule ^product/cate-([0-9]+)\.html$ index.php/Product/index/cate_id/$1\.html$ [QSA,PT,L]
+RewriteRule ^product(.*)\.html$ index.php/Product/(.*)\.html$ [QSA,PT,L]
+
+
+RewriteRule /cate- cate_id/ [QSA,PT,N]
+RewriteRule /id- product_id/ [QSA,PT]
+RewriteRule id- news_id/ [QSA,PT]
+RewriteRule p- p/ [QSA,PT]
+RewriteRule ps- ps/ [QSA,PT]
+RewriteRule o- oby/ [QSA,PT]
+RewriteRule ok-asc okey/asc [QSA,PT]
 errorDocument 404 /404.html
 </IfModule>

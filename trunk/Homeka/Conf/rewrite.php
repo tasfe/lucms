@@ -4,12 +4,22 @@
 //'last|L'(结尾规则)
 //'nocase|NC'(忽略大小写)
 /*replacement
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT]
+RewriteRule product /Product/ [QSA,PT]
+RewriteRule /view- view/ [QSA,PT]
+RewriteRule /cate- cate_id/ [QSA,PT]
+RewriteRule /id- product_id/ [QSA,PT]
+RewriteRule id- news_id/ [QSA,PT]
+RewriteRule p- p/ [QSA,PT]
+RewriteRule ps- ps/ [QSA,PT]
+RewriteRule o- oby/ [QSA,PT]
+RewriteRule ok-asc okey/asc [QSA,PT]
+RewriteRule ^index.html$ index\.php/Index/index\.html [QSA,PT]
 RewriteRule ^index.html$ index\.php/Index/index\.html [QSA,PT,L]
 RewriteRule ^product.html$ index\.php/Product/index\.html [QSA,PT,L]
 RewriteRule ^product-([0-9]+)\.html$ index\.php/Good/Category/path/c$1c\.html [QSA,PT,L]
  */
 return array (
-	
 	array (
 		'url_out' => "",
 		'pattern' => "index.php"
@@ -38,7 +48,7 @@ return array (
 		'pattern' => "index/"
 	),
 	array (
-		'url_out' => "/view-",
+		'url_out' => "",
 		'pattern' => "view/"
 	),
 	//参数
