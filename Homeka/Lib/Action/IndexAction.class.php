@@ -1,5 +1,5 @@
 <?php
-class IndexAction extends MbaseAction {
+class IndexAction extends FbaseAction {
 	public function index() {
 		$imap['p'] = 0;
 		$imap['q'] = array(

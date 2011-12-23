@@ -1,5 +1,5 @@
 <?php
-class MbaseAction extends Action {
+class FbaseAction extends Action {
 	public $tbname = '';
 	public $cate = '';
 	public $obj = '';
@@ -58,6 +58,7 @@ class MbaseAction extends Action {
 		}
 		$par = $map;
 		$this->map = $map;
+		//dump($maparr);
 		$this->assign('urlmap', $map);
 		$this->assign('urlpar', $par);
 		return array (
@@ -159,12 +160,11 @@ class MbaseAction extends Action {
 				$p->parameter .= "$key=" . urlencode($val) . "&";
 			}
 		}
-
 		//分页显示
-		$page = $p->mshow(2);
-		$addpage = $p->addShow();
+		$page = $p->show();
+		//$addpage = $p->addShow();
 		$this->assign('page', $page);
-		$this->assign('addpage', $addpage);
+		//$this->assign('addpage', $addpage);
 	}
 	public function setSeo($t, $k, $d) {
 		$this->seo['t'] = $t;

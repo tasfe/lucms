@@ -135,7 +135,11 @@ function rewriteU($url){
 		$patterns[] = "/".str_replace('/',"\\/",$ro['pattern'])."/i";
 		$replacements[] = $ro['url_out'];
 	}
-	return preg_replace($patterns, $replacements, $url);
+	$url =  preg_replace($patterns, $replacements, $url);
+	$url =  str_replace('//', '/', $url);
+	$url =  str_replace('/.', '.', $url);
+	$url =  str_replace('//', '/', $url);
+	return $url;
 }
 
 /**
