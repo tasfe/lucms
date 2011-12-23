@@ -1,6 +1,4 @@
 <?php
-
-
 // +----------------------------------------------------------------------
 // | LULUUI [ Lulu COMPANY WEB SHOW]
 // +----------------------------------------------------------------------
@@ -11,6 +9,9 @@
 // | Author: uuleaf <uuleaf@163.com>
 // +----------------------------------------------------------------------
 class IrelaModel extends RelationModel {
+	//相关分类模型
+	public $cate_set = array();
+	public $fields_inc = array();
 	//+++++++---------------------------SHARE START------------------------------------+++++++
 	//过滤设置
 	public $qmap = array (
@@ -113,6 +114,7 @@ class IrelaModel extends RelationModel {
 	 +----------------------------------------------------------
 	 */
 	public function initQmap($map = array ()) {
+		$DbFields = $this->getDbFields();
 		if (!empty ($map)) {
 			if (isset ($map['q']))
 				$this->qmap['q'] = $map['q'];
@@ -128,7 +130,7 @@ class IrelaModel extends RelationModel {
 				$this->qmap['o']['oby'] = $this->getPk();
 		} else {
 			//生成查询条件
-			foreach ($this->getDbFields() as $key => $val) {
+			foreach ($DbFields as $key => $val) {
 				if (isset ($_GET[$val]) && $_GET[$val] != '') {
 					$this->qmap['q'][$val] = $_GET[$val];
 				}
@@ -155,7 +157,6 @@ class IrelaModel extends RelationModel {
 					'auto' => false
 				);
 			}
-
 			if (isset ($_GET['ps']) && $_GET['ps'] != '') {
 				$this->qmap['ps'] = $_GET['ps'];
 			}
@@ -166,6 +167,22 @@ class IrelaModel extends RelationModel {
 		}
 		if (empty ($this->qmap['o']['oby']))
 			$this->qmap['o']['oby'] = $this->getPk();
+		//cate处理
+		if (!empty ($this->cate_set)) {
+			foreach ($this->cate_set as $ck => $cvo) {
+				if (isset ($this->qmap['q'][$cvo])) {
+					$mcate = D(ucfirst(strtolower($ck)));
+					if (method_exists($mcate, 'getPath')) {
+						$catemap = $mcate->getPath($this->qmap['q'][$cvo]);
+						unset ($this->qmap['q'][$cvo]);
+						$this->qmap['q'] = array_merge($this->qmap['q'], $catemap);
+					}
+				}
+			}
+		}
+		foreach($this->qmap['q'] as $k => $vo){
+			if(!in_array($k,$DbFields)) unset($this->qmap['q'][$k]);
+		}
 	}
 	public function getQmap() {
 		return $this->qmap;
@@ -362,6 +379,7 @@ class IrelaModel extends RelationModel {
 							$voList = $this->where($this->qmap['q'])->find();
 						}
 					}
+					$this->autoInc($voList[$this->getPk()]);
 					return $voList;
 				} else {
 					$p = $this->qmap['p'];
@@ -542,6 +560,16 @@ class IrelaModel extends RelationModel {
 			}
 		}
 		$this->commit();
+		return true;
+	}
+	public function autoInc($mpk_val){
+		if(empty($mpk_val)) return false;
+		$map[$this->getPk()] = $mpk_val;
+		if(!empty($this->fields_inc)){
+			foreach($this->fields_inc as $k=>$v){
+				$this->setInc($k,$map,$v);
+			}
+		}
 		return true;
 	}
 	//+++++++---------------------------SHARE END------------------------------------+++++++
@@ -749,6 +777,6 @@ class IrelaModel extends RelationModel {
 		}
 		return true;
 	}
-
+	
 }
 ?>
