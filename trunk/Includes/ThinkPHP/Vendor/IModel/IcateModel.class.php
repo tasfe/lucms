@@ -24,7 +24,7 @@ class IcateModel extends IbaseModel {
 			't' => 'input',
 			'v' => 0
 		),
-		'enname' => array (
+		'ename' => array (
 			't' => 'input',
 			'v' => 0
 		),
@@ -51,23 +51,26 @@ class IcateModel extends IbaseModel {
 	);
 	public $data = array ();
 	public $cateArray = array ();
-	public function getPath($cate_id){
-		$tarr = array(
+
+	public function getPath($cate_id) {
+		$tarr = array (
 			'cate_1' => 0,
 			'cate_2' => 0,
 			'cate_3' => 0
 		);
-		if(empty($cate_id)) return $tarr;
+		if (empty ($cate_id))
+			return $tarr;
 		$catelist = $this->getTree();
-		if(!isset($catelist[$cate_id])) return $tarr;
-		if($catelist[$cate_id]['layer'] == 0){
+		if (!isset ($catelist[$cate_id]))
+			return $tarr;
+		if ($catelist[$cate_id]['layer'] == 0) {
 			$tarr['cate_1'] = $cate_id;
 		}
-		if($catelist[$cate_id]['layer'] == 1){
+		if ($catelist[$cate_id]['layer'] == 1) {
 			$tarr['cate_1'] = $catelist[$cate_id]['parent'];
 			$tarr['cate_2'] = $cate_id;
 		}
-		if($catelist[$cate_id]['layer'] == 2){
+		if ($catelist[$cate_id]['layer'] == 2) {
 			$tarr['cate_2'] = $catelist[$cate_id]['parent'];
 			$tarr['cate_1'] = $catelist[$tarr['cate_2']]['parent'];
 			$tarr['cate_3'] = $cate_id;
@@ -75,23 +78,17 @@ class IcateModel extends IbaseModel {
 		return $tarr;
 	}
 	public function getTree($reset = 0) {
-		$mtbname = $this->getModelName();
-		$tcateher= array();
-		if (S($mtbname.'_treecache') && $reset == 0) {
-			$tcateher = S($mtbname.'_treecache');
-		} else {
-			$tcates = $this->order('cate_id asc')->findAll();
-			$tallnewinfo = array ();
-			$tcateher= array();
-			foreach ($tcates as $cateinfo) {
-				$tallnewinfo[$cateinfo['cate_id']] = $cateinfo;
-			}
-			$allcatelay = $this->getCatelay();
-			foreach ($allcatelay as $catelay) {
-				$catelay = array_merge($catelay, $tallnewinfo[$catelay['cate_id']]);
-				$tcateher[$catelay['cate_id']] = $catelay;
-			}
-			S($mtbname.'_treecache',$tcateher);
+		$tcateher = array ();
+		$tcates = $this->order('cate_id asc')->findAll();
+		$tallnewinfo = array ();
+		$tcateher = array ();
+		foreach ($tcates as $cateinfo) {
+			$tallnewinfo[$cateinfo[$this->getPk()]] = $cateinfo;
+		}
+		$allcatelay = $this->getCatelay();
+		foreach ($allcatelay as $catelay) {
+			$catelay = array_merge($catelay, $tallnewinfo[$catelay[$this->getPk()]]);
+			$tcateher[$catelay[$this->getPk()]] = $catelay;
 		}
 		return $tcateher;
 	}
@@ -151,13 +148,19 @@ class IcateModel extends IbaseModel {
 		}
 		return $childs;
 	}
-	public function getNodePath($id){
-		$parr = array(0,0,0,0,0);
+	public function getNodePath($id) {
+		$parr = array (
+			0,
+			0,
+			0,
+			0,
+			0
+		);
 		$ps = $this->getNodeLever($id);
 		$key = 0;
-		foreach($ps as $v){
+		foreach ($ps as $v) {
 			$parr[$key] = $v;
-			$key ++;
+			$key++;
 		}
 		$parr[$key] = $id;
 		return $parr;
@@ -186,17 +189,29 @@ class IcateModel extends IbaseModel {
 	public function getValue($id) {
 		return $this->data[$id];
 	}
-	protected $_validate = array (
-		array (
-			'name',
-			'',
-			'分类名称已经存在！',
-			0,
-			'unique',
-			1
-		)
-	);
-	
+//	public function doPost($par) {
+//		$data = array ();
+//		$data['parent_id'] = empty ($par['parent_id']) ? 0 : $par['parent_id'];
+//		$data['name'] = empty ($par['name']) ? '' : $par['name'];
+//		$data['oid'] = empty ($par['oid']) ? 0 : $par['oid'];
+//		$data['detail'] = empty ($par['detail']) ? '' : $par['detail'];
+//		$data['thumb'] = empty ($par['thumb']) ? '' : $par['thumb'];
+//		if (empty ($data['name'])) {
+//			$this->error = '分类名称不能为空';
+//			return false;
+//		}
+//		if (!$this->create($data)) {
+//			return false;
+//		}
+//		$newkey = $this->add($data);
+//		if (!$newkey) {
+//			return false;
+//		}
+//		$map[$this->getPk()] = $newkey;
+//
+//		$this->getTree(1);
+//		return  $data;
+//	}
 	public function doGet($par) {
 		return $this->getTree();
 	}
@@ -225,12 +240,12 @@ class IcateModel extends IbaseModel {
 		$this->getTree(1);
 		return $cid;
 	}
-	public function doTree(){
+	public function doTree() {
 		$datalist = $this->order('oid desc')->select();
-		$tree = list_to_tree($datalist,$this->getPk(),'parent_id','childs');
+		$tree = list_to_tree($datalist, $this->getPk(), 'parent_id', 'childs');
 		return $tree;
 	}
-	public function doList(){
+	public function doList() {
 		$datalist = $this->order('oid desc')->select();
 		return $datalist;
 	}
