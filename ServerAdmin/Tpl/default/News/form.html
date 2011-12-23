@@ -1,0 +1,38 @@
+<div class="pageFormContent" layoutH="56">
+    <div class="unit">
+        <label>
+            资讯标题：
+        </label>
+        <input name="name" type="text" size="50" value='{$datainfo.name}' class="required"/>
+    </div>
+    <div class="unit">
+        <label>
+            所属栏目：
+        </label>
+		<include file="Ncate:b_select"/>
+    </div>
+    <div class="unit">
+        <label>
+            资讯概述：
+        </label>
+         <textarea name="text[summary]" rows="3" cols="80" tools="mini">{$datainfo.text.summary}</textarea>
+    </div>
+    <div class="unit">
+        <label>
+            资讯内容：
+        </label>
+       <textarea name="text[detail]" rows="14" cols="80" tools="simple" class="editor"  upLinkUrl="__ROOT__/Uploads/upload.php" upLinkExt="zip,rar,txt" upImgUrl="__ROOT__/Uploads/upload.php" upImgExt="jpg,jpeg,gif,png" upFlashUrl="__ROOT__/Uploads/upload.php" upFlashExt="swf">{$datainfo.text.detail}</textarea>
+    </div>
+	 <div class="unit">
+        <label>
+           资讯来源：
+        </label>
+        <input name="from" type="text" size="60" value='{$datainfo.from}'/>
+    </div>
+	<div class="unit">
+        <label>
+           略缩图：
+        </label>
+        <include file="Layout:b_thumb"/>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<span id="{$domid}_Pcate">
+	<input rel="Pcate.parent.id" name="cate_id" value='{$datainfo.cate_id}' type="hidden">
+	<input rel="Pcate.dwz_parent.cate_1" name="cate_1" value='{$datainfo.cate_1}' type="hidden">
+	<input rel="Pcate.dwz_parent.cate_2" name="cate_2" value='{$datainfo.cate_2}' type="hidden">
+	<input rel="Pcate.dwz_parent.cate_3" name="cate_3" value='{$datainfo.cate_3}' type="hidden">
+	<input rel="Pcate.dwz_parent.path" type="text" value="{$pcates[$datainfo['cate_1']]['name']}>{$pcates[$datainfo['cate_2']]['name']}>{$pcates[$datainfo['cate_3']]['name']}" class="readonly"/>
+</span>
+	<a class="btnLook" href="{:U('Pcate/selector?todom='.$domid.'_Pcate')}" lookupGroup="Pcate" lookupName="parent">查找带回</a>

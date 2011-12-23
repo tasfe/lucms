@@ -1,0 +1,6 @@
+<input name="thumb" type="text" size="20" value="{$datainfo.thumb}" id="{$domid}_thumb"/>
+{$uploader}
+<div class="unit_thumb">
+    <img src="<empty name="datainfo.thumb">__PUBLIC__/Images/nopic.jpg<else/>{$serip}/{$datainfo.thumb}</empty>" height="120px" id="{$domid}_thumb_view" serip="{$serip}"/>
+	<a class="unit_thumb_del" href="#nogo" onclick="deload('{:U('deload')}','{$domid}_thumb')"><img src="__PUBLIC__/Images/icon/del.png"></a>
+</div>

@@ -1,0 +1,94 @@
+<div class="pageFormContent" layoutH="56">
+    <input type="hidden" name="order_count" id="{$domid}_order_count" value="{$datainfo.order_count}"/>
+    <div class="panel">
+        <h1>基本信息</h1>
+        <div>
+            <div class="unit">
+                <label>
+                    产品名称:
+                </label>
+                <input type="text" name="name" size="50" class="required" value="{$datainfo.name}">
+            </div>
+            <div class="unit">
+                <label>
+                    Name:
+                </label>
+                <input type="text" name="ename" size="50" class="required" value="{$datainfo.ename}">
+            </div>
+            <div class="unit">
+                <label>
+                    产品分类:
+                </label>
+                <include file="Pcate:b_select" />
+                <div class="clear">
+                </div>
+            </div>
+            <div class="unit">
+                <label>
+                    预览图:
+                </label>
+				<input type="text" size="30" id="{$domid}_img" name="thumb" value="{$datainfo['thumb']}"/>
+				<input type="button" value="上传" onclick="fupload('{$domid}_img','{$domid}_img_view')"/>
+            </div>
+            <div class="unit">
+                <label>
+                    预览:
+                </label>
+                {$datainfo['thumb']|advstr='200px','',$srcpre,'id:'.$domid.'_img_view'}
+            </div>
+            <div class="unit">
+                <label>
+                    属性1:
+                </label>
+                <input type="text" name="attr_1" size="50" value="{$datainfo.attr_1}">
+            </div>
+			<div class="unit">
+                <label>
+                    属性2:
+                </label>
+                <input type="text" name="attr_2" size="50" value="{$datainfo.attr_2}">
+            </div>
+			
+			<div class="unit">
+                <label>
+                    属性3:
+                </label>
+                <input type="text" name="attr_3" size="50" value="{$datainfo.attr_3}">
+            </div>
+			<div class="unit">
+                <label>
+                    属性4:
+                </label>
+                <input type="text" name="attr_4" size="50" value="{$datainfo.attr_4}">
+            </div>
+            <div class="unit">
+                <label>
+                    产品介绍:
+                </label>
+                <textarea name="detail" cols="76" rows="15" class="editor" id="{$domid}_detail"  upLinkUrl="{@wwwroot}/Uploads/upload.php" upLinkExt="zip,rar,txt" upImgUrl="{@wwwroot}/Uploads/upload.php" upImgExt="jpg,jpeg,gif,png">{$datainfo.detail}</textarea>
+            </div>
+			<div class="unit">
+                <label>
+                    产品顺序:
+                </label>
+                <input type="text" name="oid" size="30" class="required number" value="{$datainfo.oid}">
+            </div>
+        </div>
+    </div>
+	<div class="divider">
+    </div>
+    <div class="panel">
+        <h1>产品自定义属性</h1>
+        <div>
+            <include file="b_form_attr" />
+        </div>
+    </div>
+    <div class="divider">
+    </div>
+    <div class="panel">
+        <h1>产品图片</h1>
+        <div>
+            <include file="b_form_img" />
+        </div>
+    </div>
+</div>

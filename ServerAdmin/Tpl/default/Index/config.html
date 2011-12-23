@@ -1,0 +1,87 @@
+<div class="pageContent">
+    <form method="post" action="{:U('set')}" class="pageForm required-validate" onsubmit="return validateCallback(this, doAjaxDone);">
+        <div class="pageFormContent" layoutH="56" id="access_box">
+            <div class="tabs" eventType="click">
+                <div class="tabsHeader">
+                    <div class="tabsHeaderContent">
+                        <ul>
+                            <li>
+                                <a href="javascript:;"><span>公司信息</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:;"><span>联系方式</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:;"><span>网站SEO设置</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tabsContent">
+                    <div>
+                        <volist name="datalist" id="vo">
+                            <eq name="vo.type" value="1">
+                                <div class="unit">
+                                    <label>
+                                        {$vo.label}：
+                                    </label>
+                                    <input type="text" name="config[{$vo['name']}]" value="{$vo.val}" size="30"/>
+                                </div>
+                            </eq>
+                        </volist>
+                    </div>
+                    <div>
+                        <volist name="datalist" id="vo">
+                            <eq name="vo.type" value="2">
+                                <div class="unit">
+                                    <label>
+                                        {$vo.label}：
+                                    </label>
+                                    <input type="text" name="config[{$vo['name']}]" value="{$vo.val}" size="30"/>
+                                </div>
+                            </eq>
+                        </volist>
+                    </div>
+                    <div>
+                        <volist name="datalist" id="vo">
+                            <eq name="vo.type" value="3">
+                                <div class="unit">
+                                    <label>
+                                        {$vo.label}：
+                                    </label>
+                                    <input type="text" name="config[{$vo['name']}]" value="{$vo.val}" size="30"/>
+                                </div>
+                            </eq>
+                        </volist>
+                    </div>
+                </div>
+                <div class="tabsFooter">
+                    <div class="tabsFooterContent">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                保存
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent">
+                            <button type="button" class="close">
+                                取消
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

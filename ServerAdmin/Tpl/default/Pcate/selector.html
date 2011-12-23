@@ -1,0 +1,69 @@
+<div class="pageContent">
+    <table class="table"  layoutH="30"  targettype="dialog" width="100%">
+        <thead>
+            <tr>
+                <th width="60">
+                    编号
+                </th>
+                <th width="310" orderField="account">
+                    分类名称
+                </th>
+                <th width="30">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        	<tr target="sid_user" rel="0">
+                <td>
+                    0
+                </td>
+                <td>
+                   顶级
+                </td>
+                <td>
+                    <a class="btnSelect" 
+					href="javascript:$.bringBack({
+					 id:'0', 
+					 name:'顶级',
+					 cate_1:'0',
+					 cate_2:'0',
+					 cate_3:'0',
+					 path:'顶级',
+					 todom:'{$_GET['todom']}' 
+					 })" title="查找带回">选择</a>
+                </td>
+            </tr>
+            <volist name="datalist" id="vo">
+                <tr target="sid_user" rel="{$vo['id']}">
+                    <td>
+                        {$vo['cate_id']}
+                    </td>
+                    <td>
+                        {$vo.str}
+                        <empty name="vo.childs">
+                            <img src="__PUBLIC__/Images/icon/txt.png"/>
+                        </empty>
+                        <notempty name="vo.childs">
+                            <img src="__PUBLIC__/Images/icon/folder.png"/>
+                        </notempty>{$vo['name']}
+                    </td>
+                    <td>
+                        <a class="btnSelect" 
+						href="javascript:$.bringBack({
+						 id:'{$vo['cate_id']}', 
+						 name:'{$vo['name']}',
+						 cate_1:'{$vo['parr'][0]}',
+						 cate_2:'{$vo['parr'][1]}',
+						 cate_3:'{$vo['parr'][2]}',
+						 path:'{$datalist[$vo['parr'][0]]['name']}>{$datalist[$vo['parr'][1]]['name']}>{$datalist[$vo['parr'][2]]['name']}',
+						 todom:'{$_GET['todom']}' 
+						 })" title="查找带回">选择</a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+    <div class="panelBar">
+    </div>
+</div>

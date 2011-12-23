@@ -1,0 +1,12 @@
+<td class="dateRange">
+    分类：
+    <select name="cate_id">
+    	<option value="">请选择</option>
+        <volist name="acates" id="vo">
+            <option value="{$vo.cate_id}|{$vo.parent_id}" <eq name="_GET['cate_id']" value="$vo['cate_id']">selected="selected"</eq>>{$vo.str}{$vo.name}</option>
+        </volist>
+    </select>
+</td>
+<td>
+    文档名称： <input type="text" name="name" value="{$_GET['name']}"/>
+</td>

@@ -1,0 +1,77 @@
+<include file="Public:diasearchBar"/>
+<div class="panelBar">
+    <ul class="toolBar">
+        <li>
+            <a class="add" href="#nogo" onclick="set_all('{$mdomid}_{$adomid}_list')"><span>全选</span></a>
+        </li>
+        <li>
+            <a class="delete" onclick="clear_all('{$mdomid}_{$adomid}_list')"><span>清空</span></a>
+        </li>
+        <li>
+            <a class="save" onclick="$.pdialog.closeCurrent();"><span>返回</span></a>
+        </li>
+        <li class="line">
+            line
+        </li>
+    </ul>
+</div>
+<div class="pageContent" layoutH="128">
+    <div class="tableList">
+        <table class="list" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        编号
+                    </th>
+                    <th width="250px">
+                        课程名称
+                    </th>
+					<th width="130px">
+                        学习时长(分钟)
+                    </th>
+                    <th>
+                        创建时间
+                    </th>
+                    <th width="50px">
+                        操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="{$mdomid}_{$Think.ACTION_NAME}_list">
+                <volist name="datalist" id="vo">
+                    <tr id="{$mdomid}_option_tr_{$vo[$mpk]}">
+                        <td>
+                            {$vo[$mpk]}
+                        </td>
+                        <td>
+                            {$vo['name']|strip_tags|mb_substr=0,30,'utf-8'}
+                        </td>
+						 <td>
+                            {$vo['timespan']}
+                        </td>
+                        <td>
+                            {$vo.created|date="y-m-d",###}
+                        </td>
+                        <td>
+                            <input type="checkbox" name="{$mpk}[]" value="{$vo[$mpk]}" onclick="set_multi_option(this,'{$mdomid}','{.todom}',{ id: {$vo[$mpk]}, timespan: '{$vo['timespan']}', name:'{$vo['name']}' },'{.ppre}')" class="check_option"/>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+    </div>
+</div><include file="Public:diapageBar"/>
+<div class="formBar">
+    <ul>
+        <li>
+            <div class="buttonActive">
+                <div class="buttonContent">
+                    <button type="Button" onclick="$.pdialog.closeCurrent();">
+                        完成
+                    </button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+</div>

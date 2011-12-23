@@ -1,0 +1,17 @@
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Ckfinder/ckfinder.js"></script>
+<script type="text/javascript">
+    function showFileInfo(fileUrl, data){
+        var msg = 'The selected URL is: <a href="' + fileUrl + '">' + fileUrl + '</a><br /><br />';
+        if (fileUrl != data['fileUrl']) 
+            msg += '<b>File url:</b> ' + data['fileUrl'] + '<br />';
+        msg += '<b>File size:</b> ' + data['fileSize'] + 'KB<br />';
+        msg += '<b>Last modified:</b> ' + data['fileDate'];
+        this.openMsgDialog("Selected file", msg);
+    }
+    var finder = new CKFinder();
+    finder.basePath = '__PUBLIC__/Js/Ckfinder/';
+    finder.height = 600;
+    finder.selectActionFunction = showFileInfo;
+    finder.create();
+</script>
+

@@ -1,0 +1,48 @@
+<div class="panelBar">
+    <ul class="toolBar">
+        <li>
+            <a class="add" onclick="add{$mdomid}_attr('{$domid}_attr_box','{$domid}_attr_tr_')"><span>插入新属性</span></a>
+        </li>
+        <li class="line">
+            line
+        </li>
+    </ul>
+</div>
+<div class="tableList">
+    <table id="{$domid}_attr_list" class="list" width="98%">
+        <thead>
+            <tr>
+                <th width="150px">
+                  属性名
+                </th>
+                <th width="250px">
+                  属性 值
+                </th>
+		<th width="20px">
+                   顺序
+                </th>
+                <th width="80px">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody id="{$domid}_attr_box">
+            <volist name="datainfo.attr" id="vo" key="i">
+                <tr id="{$domid}_attr_tr_{$i}">
+                    <td>
+                        <input value="{$vo['label']}" name='attr[{$i}][label]' class="text "/>
+                    </td>
+                    <td>
+                        <input value="{$vo['val']}" name='attr[{$i}][val]' class="text" size="30"/>
+                    </td>
+					<td>
+                        <input value="{$vo['oid']}" name='attr[{$i}][oid]' class="text" size="3"/>
+                    </td>
+                    <td>
+                        <a href="#nogo" class="tbutton" onclick="del_option('{$domid}_attr_tr_','{$i}');">移除</a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+</div>

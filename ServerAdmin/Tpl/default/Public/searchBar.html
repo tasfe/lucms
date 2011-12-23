@@ -1,0 +1,23 @@
+<div class="pageHeader">
+    <form id="pagerForm" onsubmit="return navTabSearch(this);" action="{:U('index')}" method="get">
+        <input type="hidden" name="pageNum" value="1" />
+		<input type="hidden" name="numPerPage" value="{$page.pagesize}" />
+		<input type="hidden" name="orderField" value="" />
+        <div class="searchBar">
+            <table class="searchContent">
+                <tr>
+                    <include file="b_search"/>
+                    <td>
+                        <div class="buttonActive">
+                            <div class="buttonContent">
+                                <button type="submit">
+                                    检索
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

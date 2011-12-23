@@ -1,0 +1,63 @@
+<script language="javascript">
+    /*▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲图片上传▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲*/
+    function uploader_thumb_callback(data){
+        if (data.status + '' == '0') {
+            alertMsg.error(data.info);
+        }
+        else {
+            var rel = data.rel || '';
+            var str = new Array();
+            $.each(data.data, function(i, n){
+                str[i] = n.path;
+            });
+            //alert(n.path);
+            if (rel != '') {
+                $('#' + rel).val(str.join(","));
+                var pic = $('#' + rel + '_view');
+                if (pic.length > 0) {
+                    pic.attr('src', pic.attr('serip') + '/' + str.join(","));
+                }
+            }
+        }
+    }
+    
+    function deload(url, id){
+        var pic = $('#' + id + '_view');
+        if (pic.length > 0) {
+            if (pic.attr('src') != '__PUBLIC__/Images/nopic.jpg' && url != '') {
+                var path = pic.attr('src');
+                postData(url, {
+                    "path": path
+                }, function(jdata){
+                    if (jdata.statusCode + '' == '0') {
+                        alertMsg.error(jdata.info);
+                    }
+                    else {
+                        $('#' + id).val('');
+                        pic.attr('src', '__PUBLIC__/Images/nopic.jpg');
+                    }
+                });
+            }
+        }
+    }
+    
+    /*▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲上传▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲*/
+    if (typeof(finder) == 'undefined') {
+        var finder = new CKFinder();
+    }
+    finder.basePath = '__PUBLIC__/Js/Ckfinder/';
+    finder.selectActionFunction = SetFileField;
+    var ginputid = '';
+    var gsrcid = '';
+    function fupload(inputid, srcid){
+        ginputid = inputid;
+        gsrcid = srcid;
+        finder.popup();
+    }
+    
+    function SetFileField(fileUrl){
+        $('#' + ginputid).val(fileUrl);
+        $('#' + gsrcid).attr('src', '__ROOT__/Uploads/' + fileUrl);
+    }
+</script>
+<include file="Layout:b_js_mselector"/>
