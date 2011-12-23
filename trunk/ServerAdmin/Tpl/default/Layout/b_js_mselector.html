@@ -1,0 +1,139 @@
+<script language="javascript">
+    /*
+     * set_option(ck,box_id,tr_pre,tr_key,vars,preStr,endStr)
+     * ck是否选中，box_id容器id,tr_id行id,vars内容，
+     * preStr前文 内部@tr_pre@,@tr_key@,替换
+     * endStr后文
+     */
+    function set_option(ck, box_id, tr_pre, tr_key, vars, preStr, endStr){
+        var isext = $('#' + tr_pre + tr_key).length;
+        if (ck) {
+            if (isext == 0) {
+                var startS = '<tr id="' + tr_pre + tr_key + '">'
+                var preSa = preStr.replace(/@tr_pre@/g, tr_pre);
+                var preSb = preSa.replace(/@tr_key@/g, tr_key);
+                var endSa = endStr.replace(/@tr_pre@/g, tr_pre);
+                var endSb = endSa.replace(/@tr_key@/g, tr_key);
+                var varsS = '';
+                if (vars != '') {
+                    var vararr = vars.split("|");
+                    $.each(vararr, function(i, n){
+                        varsS = varsS + '<td>' + n + '</td>';
+                    });
+                }
+                preStr = preSb;
+                endStr = endSb + '</tr>';
+                $('#' + box_id).append(startS + preStr + varsS + endStr);
+            }
+        }
+        else {
+            if (isext) {
+                del_option(tr_pre, tr_key);
+            }
+        }
+    }
+    
+    function del_option(tr_pre, tr_key){
+        if (typeof($('#' + tr_pre + tr_key)) != 'undefined') {
+            $('#' + tr_pre + tr_key).remove();
+        }
+    }
+    
+    function clear_option(box_id){
+        $('#' + box_id).html('');
+    }
+    
+    function set_all(id){
+        $('#' + id).find('input.check_option').each(function(i){
+            $(this).attr('checked', true);
+            $(this).click();
+            $(this).attr('checked', true);
+        });
+    }
+    
+    function clear_all(id){
+        $('#' + id).find('input.check_option').each(function(i){
+            $(this).attr('checked', false);
+            $(this).click();
+            $(this).attr('checked', false);
+        });
+    }
+    /**●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●多选js●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●**/
+	
+    /*******
+     * 约定：
+     * ********************************************
+     * multiselector_index文件：
+     * 1. tr中设置<tr rel='{$vo[$_mpk]}|{$vo['name']|strip_tags|mb_substr=0,30,'utf-8'}|{$vo.created|date="y-m-d",###}' id="{$Think.MODULE_NAME}_option_tr_{$vo[$_mpk]}">
+     * 2. 复选框：<input type="checkbox" name="company_id[]" value="{$vo[$_mpk]}" onclick="check_multi_option(this,'{$Think.MODULE_NAME}','{.pmod}','{.parent_pre}')" class="check_option"/>
+     * ********************************************
+     * Layout_father_son.html文件：
+     * 1.toolbar:<a class="add" href="{:U('Person/multiselector_index?pmod='.$Think.MODULE_NAME.'&parent_pre='.$Think.ACTION_NAME.$Think.MODULE_NAME)}" target="dialog" width=580 height=400 mask=true rel="{$Think.ACTION_NAME}{$Think.MODULE_NAME}"><span>添加</span></a>
+     * <a class="delete" onclick="clear_option('{$Think.ACTION_NAME}{$Think.MODULE_NAME}_Son_option_box')"><span>清空</span></a>
+     * 2.<tbody id="{$Think.ACTION_NAME}{$Think.MODULE_NAME}_Son_option_box">
+     * 3. <tr id="{$Think.ACTION_NAME}{$Think.MODULE_NAME}_Son_option_tr_{$vo.son_id}">
+     * 4.<a class="tbutton" title="移除" onclick="del_option('{$Think.ACTION_NAME}{$Think.MODULE_NAME}_Son_option_tr_','{$vo.son_id}')" href="#nogo">移除</a>
+     * 
+     * del_option(pre,key);
+     * save_option(formid);
+     * clear_option(box_id);
+     */
+	
+    /**●●●●●●●●●●●●●●●●部分*用于子列表页面选择●●●●●●●●●●●●●●●●**/
+    function set_multi_option(me,sonmod,parentmod,jdata){
+    	if( typeof(sonmod)=='undefined' || typeof(parentmod)=='undefined') return false;
+    	if( sonmod == '' || parentmod == '') return false;
+    	var is_checked = $(me).attr('checked');
+		var son_mod = sonmod;
+		var parent_mod = parentmod;
+		eval('set'+ parent_mod + '_' + son_mod + '_option(is_checked,parentmod,jdata);');
+    }
+    function setP_S_option(is_checked,jdata,parentmod){
+		var parent_box_id = 'Course_Courseware_option_box';
+		var parent_tr_pre = 'Course_Courseware_option_tr_';
+		if(typeof(parentmod) != 'undefined'){
+	    	var box_id = parentmod + '_Courseware_option_box';
+	    	var tr_pre = parentmod + '_Courseware_option_tr_';
+		}
+    	var tr_key = jdata.id;
+    	var vararr = jdata.a+'|'+jdata.b;
+    	var preStr='<td><input type="hidden" size="2" name="video_id[]" value="@tr_key@"/><input type="text" size="2" name="video_oid[]" value="@tr_key@" /></td>';
+    	var endStr='<td><a class="tbutton" href="{:U('Courseware/show')}?video_id=@tr_key@" target="navTab">预览</a><a class="tbutton" title="删除" onclick="del_option(\''+ tr_pre +'\',\'@tr_key@\')" href="#nogo">移除</a></td>';
+    	set_option(is_checked,parent_box_id,parent_tr_pre,tr_key,vararr,preStr,endStr);
+    }
+	
+	 //***************************good*****************
+    function addProduct_img(box_id, tr_pre){
+        var tr_key = $('#' + box_id + ' tr').length + 2;
+        var vararr = '';
+        var preStr = '<td><input value="" name="img[@tr_key@][path]" class="textInput"/></td><td><input value="" name="img[@tr_key@][intr]" class="textInput"/></td><td><input value="" name="img[@tr_key@][oid]" class="text" size="3"/></td>';
+        var endStr = '<td><a class="tbutton" title="移除" onclick="del_option(\'' + tr_pre + '\',\'@tr_key@\')" href="#nogo">移除</a></td>';
+        set_option(1, box_id, tr_pre, tr_key, vararr, preStr, endStr);
+    }
+	function addProduct_imgs(box_id, tr_pre){
+		var tr_key = $('#' + box_id + ' tr').length + 2;
+        var vararr = '';
+        var preStr = '<td>'
+		+ '<img width="200px" id="Product_img_view_@tr_key@" src="__ROOT__/ServerAdmin/Tpl/default/Public/Images/nopic.jpg">'
+		+ '<input value="" name="img[@tr_key@][path]" id="Product_img_@tr_key@" type="hidden"/>'
+		+ '<br/><input type="button" value="上传" onclick="fupload(\'Product_img_@tr_key@\',\'Product_img_view_@tr_key@\')"/></td>'
+		+ '<td><textarea name="img[@tr_key@][intr]" style="width:200px;height:180px;" class="textInput"></textarea></td><td><input value="" name="img[@tr_key@][oid]" class="text" size="3"/></td>';
+        var endStr = '<td><a class="tbutton" title="移除" onclick="del_option(\'' + tr_pre + '\',\'@tr_key@\')" href="#nogo">移除</a></td>';
+        set_option(1, box_id, tr_pre, tr_key, vararr, preStr, endStr)
+	}
+    function addProduct_attr(box_id, tr_pre){
+        var tr_key = $('#' + box_id + ' tr').length + 2;
+        var vararr = '';
+        var preStr = '<td><input value="" name="attr[@tr_key@][label]" class="textInput"/></td><td><input value="" name="attr[@tr_key@][val]" class="textInput" size="30"/></td><td><input value="" name="attr[@tr_key@][oid]" class="text" size="3"/></td>';
+        var endStr = '<td><a class="tbutton" title="移除" onclick="del_option(\'' + tr_pre + '\',\'@tr_key@\')" href="#nogo">移除</a></td>';
+        set_option(1, box_id, tr_pre, tr_key, vararr, preStr, endStr);
+    }
+	//***************************Set*****************
+    function addSet_val(box_id, tr_pre){
+        var tr_key = $('#' + box_id + ' tr').length + 2;
+        var vararr = '';
+        var preStr = '<td><input value="" name="list[@tr_key@][label]" class="textInput" size="20"/></td><td><input value="" name="list[@tr_key@][value]" class="textInput" size="30"/></td>';
+        var endStr = '<td><a class="tbutton" title="移除" onclick="del_option(\'' + tr_pre + '\',\'@tr_key@\')" href="#nogo">移除</a></td>';
+        set_option(1, box_id, tr_pre, tr_key, vararr, preStr, endStr);
+    }
+</script>

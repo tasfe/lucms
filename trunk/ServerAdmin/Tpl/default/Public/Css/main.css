@@ -1,0 +1,297 @@
+.partinfo {
+    color: red;
+    font-weight: normal;
+    margin-left: 10px;
+}
+.partinfo a {
+    font-weight: bold;
+}
+.clear {
+	float:none;
+	clear:both;
+	display:block;
+}
+
+/*问卷最外层div*/
+.paper_header /*标题*/ {
+	line-height: 20px;
+	text-align: center;
+	width: 96%;
+	padding: 10px 2%;
+	border-bottom: dashed 1px #CCCCCC;
+}
+
+.paper_header h2 {
+	font-size: 18px;
+	font-weight: bold;
+	color: #f53d05;
+	vertical-align: middle;
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+.paper_info {
+	margin:3px 10px;
+	text-align: right;
+	color:#888;
+}
+.paper_detail /*描述*/ {
+	color: #555555;
+	line-height: 20px;
+	text-align: left;
+	margin: 5px 10px;
+	font-size:12px;
+	text-indent:2em;
+}
+.paper_part /*问卷主体*/ {
+	margin: 0;
+	width: 100%;
+	overflow:hidden;
+}
+.paper_part_tit {
+	margin: 3px 0;
+	padding:7px 5px;
+	text-indent:2em;
+	color: #444;
+	font-weight:bolder;
+	border:solid 1px #ddd;
+	background:#FFF;
+}
+.errormsg /*填写问卷错误的样式*/ {
+	color: Red;
+}
+/*
+************问题的总框架*********
+*/
+.paper_part_q {
+	border: 2px solid white;
+	padding: 4px 4px 5px 4px;
+	border-bottom: 1px solid #EFEFEF;
+	clear: both;
+	margin: 2px auto;
+	width: 96%;
+	height: auto;
+}
+.paper_part_q_ans_ct {
+	border:solid 1px #37914A;
+	background:#fff;
+}
+.paper_part_q_ans_ct_t {
+	font-weight:bolder;
+	float:left;
+	padding:3px 20px;
+}
+.paper_part_q_ans_ct_qselect,.paper_part_q_ans_ct_qmultiselect, .paper_part_q_ans_ct_qjudge{
+	display:inline;
+	float:left;
+}
+.paper_part_q_ans_ct_qselect li,.paper_part_q_ans_ct_qmultiselect li,.paper_part_q_ans_ct_qjudge li{
+	list-style:none;
+	float:left;
+	margin-left:10px;
+}
+.paper_part_q_ans_ct_qfill {
+	display:block;
+	clear:both;
+}
+.paper_part_q_ans_ct_qfill li {
+	list-style:none;
+	margin-left:10px;
+	padding:3px 10px;
+}
+.paper_part_q_ans_ct_qessay {
+	display:block;
+	clear:both;
+	margin-left:10px;
+	padding:3px 10px;
+}
+.paper_part_q_ans_ct_qreading {
+	display:block;
+	clear:both;
+	margin-left:10px;
+	padding:3px 10px;
+}
+/*
+************鼠标经过*********
+*/
+.paper_part_q_in {
+	border: 2px solid #fdb553;
+	cursor: pointer;
+	padding: 4px;
+}
+
+/*
+************鼠标离开*********
+*/
+.paper_part_q_out {
+	cursor: pointer;
+}
+
+/*
+************问答题被选中*********
+*/
+.paper_part_q_alive {
+	border-bottom: 1px solid #EFEFEF;
+	background:#EAF5FF;
+	padding: 4px;
+}
+
+.paper_part_q_error {
+	border: 2px solid red;
+	padding: 4px;
+}
+
+.paper_part_q_text {
+	border:1px solid #7F9DB9;
+}
+/*
+************问题里面的标题*********
+*/
+.paper_part_q_tit { /**/
+	padding-top: 2px;
+	font-size: 13px;
+	color: #333;
+	font-weight: bold;
+	height: auto;
+	line-height: 20px;
+}
+.paper_part_q_sub {
+	margin-left:20px;
+	margin-bottom:10px;
+}
+.paper_part_q_tit_num {
+	font-weight: bold;
+	padding-right:10px;
+}
+/*
+************问题容器*********
+*/
+.paper_part_q_ans{
+	clear: both; /*清空题号与标题的Float,另起一行*/
+	padding-top: 5px;
+	padding-left: 20px;
+	padding-bottom: 2px;
+	font-size: 12px;
+	color: #333333;
+	overflow:hidden;
+}
+.paper_part_q_ans ul { /* width:100%;*/
+	margin-top: 4px;
+	clear:both;
+	margin-bottom: 10px;
+}
+
+.paper_part_q_ans li {
+	list-style-type: none;
+	clear:both;
+	padding:3px;
+}
+.paper_part_q_right {
+	margin-top: 4px;
+	margin-left:20px;
+	border:solid 1px #ddd;
+	background:#FEFBD6;
+	line-height:20px;
+	color:#888;
+	display:none;
+}
+.paper_part_q_guide {
+	margin-left:20px;
+	border:solid 1px #ddd;
+	background:#fff;
+	line-height:20px;
+	color:#888;
+	border-top:none;
+	display:none;
+}
+/*
+************问答题标题属性的样式*********
+*/
+.div_title_attr_question {
+	border: 1px solid #cccccc;
+	margin: 5px 10px 10px;
+	padding: 5px;
+	font-size: 12px;
+	background: #cfe7ff;
+}
+
+/*
+************问答题应用按钮的div的样式*********
+*/
+.div_btn_confirm_attr_question {
+	margin: 5px 10px 10px;
+	padding: 5px;
+	font-size: 12px;
+	float: right;
+}
+
+/*
+************问答题类型属性的样式*********
+*/
+.div_type_attr_question {
+	border: 1px solid #6290d2;
+	margin: 5px 10px 10px;
+	padding: 5px;
+	font-size: 12px;
+}
+
+.div_jump_attr_question {
+	border: 1px solid #6290d2;
+	margin: 5px 10px 10px;
+	padding: 5px;
+	font-size: 12px;
+}
+
+/*
+************问答题默认值的样式*********
+*/
+.div_default_attr_question {
+	border: 1px solid #cccccc;
+	margin: 5px 10px 10px;
+	padding: 5px;
+	background: #cfe7ff;
+	font-size: 12px;
+}
+.toolbar {
+	text-align:center;
+}
+/*
+************答题导航*********
+*/
+.paper_part_panel {
+	padding:3px;
+}
+.tbutton,a.tbutton {
+	background:#EBF0F5;
+	border:1px solid #B8D0D6;
+	color:#666;
+	line-height:22px;
+	padding:1px 7px;
+	cursor:pointer;
+	text-decoration:none;
+}
+.answerd, a.answerd{
+	background:#FFBE5D;
+	color:#222;
+}
+.paper_part_panel_tit {
+	display:block;
+	float:left;
+	width:100px;
+	line-height:24px;
+	font-size:14px;
+	font-weight:bold;
+	color:#555;
+}
+.paper_part_panel_end {
+	display:block;
+	float:right;
+	width:200px;
+}
+.paper_part_panel_end ul li{
+	cursor:pointer;
+	float:left;
+	list-style:none outside none;
+	margin:2px;
+	padding:2px 0;
+	position:relative;
+}

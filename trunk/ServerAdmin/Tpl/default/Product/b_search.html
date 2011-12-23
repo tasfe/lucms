@@ -1,0 +1,19 @@
+<td class="dateRange">
+    分类：
+	 <select name="path">
+    	<option value="">全部分类</option>
+        <volist name="pcates" id="vo">
+            <option value="{$vo['cate_id']}"
+                <eq name="_GET['cate_id']" value="$vo['cate_id']">
+                    selected="selected"
+                </eq>>{$vo.str}{$vo['name']}
+            </option>
+        </volist>
+    </select>
+</td>
+<td>
+    商品名称：<input type="text" name="name" value="">
+</td>
+<td>
+   商品编号： <input type="text" name="{$mpk}" value="">
+</td>

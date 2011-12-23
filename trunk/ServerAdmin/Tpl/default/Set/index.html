@@ -1,0 +1,42 @@
+<include file="Public:searchBar" />
+<div class="pageContent">
+    <include file="Public:panelBar" />
+    <table class="table" width="100%" layoutH="112">
+        <thead>
+            <tr>
+                <th>
+                    编号
+                </th>
+                <th>
+                    设置名称
+                </th>
+                <th>
+                    标签
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <volist name="datalist" id="vo">
+                <tr id="list_{$vo[$mpk]}" target="sid_<?=$Think.MODULE_NAME ?>" rel="{$vo[$mpk]}">
+                    <td>
+                        {$vo[$mpk]}
+                    </td>
+                    <td>
+                        {$vo.title}
+                    </td>
+                    <td>
+                        {$vo.name}
+                    </td>
+                    <td>
+                        <a href="{:U('edit?'.$mpk.'='.$vo[$mpk])}" class="tbutton" target="dialog" width="680" height="500" title="修改:{$vo['name']}" rel="{$mdomid}_edit" mask="true">修改</a>
+                        <a href="{:U('del')}" target="ajaxTodo" class="tbutton" title="确定要删除吗?" data="{$mpk}={$vo[$mpk]}" callback="doAjaxDone">删除</a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+    <include file="Public:pageBar" />
+</div>

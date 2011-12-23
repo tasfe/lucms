@@ -1,0 +1,81 @@
+<div class="pageContent">
+    <div class="pageFormContent" layoutH="56">
+        <div class="unit">
+            <label>
+                账号：
+            </label>
+            {$datainfo.name}
+        </div>
+        <div class="unit">
+            <label>
+                所属部门：
+            </label>
+            {$pcates[$datainfo['cate_1']]['name']}>{$pcates[$datainfo['cate_2']]['name']}>{$pcates[$datainfo['cate_3']]['name']}
+        </div>
+        <div class="unit">
+            <label>
+                账号密码：
+            </label>
+            {$datainfo.password}
+        </div>
+        <div class="unit">
+            <label>
+                姓名：
+            </label>
+           {$datainfo.realname}
+        </div>
+        <div class="unit">
+            <label>
+                性别：
+            </label>
+			<eq name="datainfo.sex" value="1">
+                男
+				<else/>女
+            </eq>
+           
+        </div>
+        <div class="unit">
+            <label>
+                证件号码：
+            </label>
+           {$datainfo.idcard}
+        </div>
+        <div class="unit">
+            <label>
+                联系电话：
+            </label>
+            {$datainfo.tel}
+        </div>
+        <div class="unit">
+            <label>
+                学历：
+            </label>
+            {$datainfo.edu}
+        </div>
+        <div class="unit">
+            <label>
+                职业：
+            </label>
+            {$datainfo.job}
+        </div>
+        <div class="unit">
+            <label>
+                简介：
+            </label>
+			{$datainfo.detail}
+        </div>
+    </div>
+    <div class="formBar">
+        <ul>
+            <li>
+                <div class="button">
+                    <div class="buttonContent">
+                        <button type="button" class="close">
+                            关闭
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

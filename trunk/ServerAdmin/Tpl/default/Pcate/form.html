@@ -1,0 +1,38 @@
+<div class="pageFormContent" layoutH="56">
+    <div class="unit">
+        <label>
+            分类名称：
+        </label>
+        <input name="name" type="text" size="30" value='{$datainfo.name}' class="required"/>
+    </div>
+    <div class="unit">
+        <label>
+            上级分类：
+        </label>
+        <span id="{$domid}_Me"><input rel="Pcate.parent.id" name="parent_id" value='{$datainfo.parent_id}' type="hidden">
+            <notempty name="datainfo">
+                <eq name="datainfo['parent_id']" value="0">
+                    <input rel="Pcate.dwz_parent.name" type="text" value="无"/><else/><input rel="Pcate.dwz_parent.name" type="text" value="{$ncates[$datainfo['parent_id']]['name']}"/>
+                </eq><else/><input rel="Pcate.dwz_parent.name" type="text" value="{$ncates[$datainfo['parent_id']]['name']}"/>
+            </notempty>
+        </span><a class="btnLook" href="{:U('Pcate/selector?todom='.$domid.'_Me')}" lookupGroup="Pcate" lookupName="parent" width="500">查找带回</a>
+    </div>
+    <div class="unit">
+        <label>
+            简介：
+        </label>
+        <textarea name="detail" rows="6" cols="60" tools="mini">{$datainfo.detail}</textarea>
+    </div>
+    <div class="unit">
+        <label>
+            顺序：
+        </label>
+        <input name="oid" type="text" size="10" value="{$datainfo.oid}"/>
+    </div>
+	<div class="unit">
+        <label>
+            略缩图：
+        </label>
+		<include file="Layout:b_thumb"/>
+    </div>
+</div>

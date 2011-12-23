@@ -1,0 +1,77 @@
+.cred {
+    color: red;
+}
+
+.cblue {
+    color: blue;
+}
+
+.tbutton, a.tbutton, a.tbutton:hover {
+    background: #EBF0F5;
+    border: 1px solid #B8D0D6;
+    color: #666;
+    line-height: 22px;
+    padding: 1px 7px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+table.list a {
+    color: #666;
+    font-size: 12px;
+    line-height: 22px;
+}
+
+table.list a.tbutton:hover {
+    text-decoration: none;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    height: 10px;
+    margin-top: 4px;
+    border: 1px solid #aaa;
+    background: url(../ProgressBar/images/progressbg_green.gif) -120px -1px no-repeat;
+    text-align: center;
+    color: #666;
+}
+
+.unit_info {
+    color: #112846;
+    float: left;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.unit_text {
+    color: #112846;
+    float: left;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.unit_thumb {
+    clear: both;
+    float: none;
+    margin-left: 130px;
+    position: relative;
+}
+
+.unit_thumb_del {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
+
+.headerNav .version {
+    display: block;
+    float: left;
+	font-size:12px;
+	font-weight:bolder;
+	color:#fff;
+	line-height:50px;
+	margin-left:-20px;
+}

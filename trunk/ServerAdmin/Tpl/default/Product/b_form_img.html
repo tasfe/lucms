@@ -1,0 +1,55 @@
+<div class="panelBar">
+    <ul class="toolBar">
+        <li>
+            <a class="add" onclick="addProduct_imgs('{$domid}_img_box','{$domid}_img_tr_')"><span>上传新增</span></a>
+        </li>
+		<!--
+		<li>
+            <a class="add" onclick="addProduct_img('{$domid}_img_box','{$domid}_img_tr_')"><span>选择原有图片</span></a>
+        </li>
+		 -->
+        <li class="line">
+            line
+        </li>
+    </ul>
+</div>
+<div class="tableList">
+    <table id="{$domid}_img_list" class="list" width="98%">
+        <thead>
+            <tr>
+                <th width="250px">
+                    图片
+                </th>
+                <th width="250px">
+                    说明
+                </th>
+                <th width="20px">
+                    顺序
+                </th>
+                <th width="80px">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody id="{$domid}_img_box">
+            <volist name="datainfo.img" id="vo">
+                <tr id="{$domid}_img_tr_{$i}">
+                    <td>
+                    	{$vo['path']|advstr='200px','',$srcpre,'id:'.'Product_img_view_'.$i}
+                        <input value="{$vo['path']}" id="Product_img_{$i}" name='img[{$i}][path]' type="hidden"/>
+						<br/><input type="button" value="上传" onclick="fupload('Product_img_{$i}','Product_img_view_{$i}')"/>
+                    </td>
+                    <td>
+                        <textarea name="img[{$i}][intr]" style="width:200px;height:180px;" class="textInput">{$vo.intr}</textarea>
+                    </td>
+                    <td>
+                        <input value="{$vo['oid']}" name='img[{$i}][oid]' size="3"/>
+                    </td>
+                    <td>
+                        <a href="#nogo" class="tbutton" onclick="del_option('{$domid}_img_tr_','{$tkey}');">移除</a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+</div>

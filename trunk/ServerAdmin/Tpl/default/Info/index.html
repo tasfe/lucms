@@ -1,0 +1,42 @@
+<include file="Public:searchBar" />
+<div class="pageContent">
+    <include file="Public:panelBar" />
+    <table class="table" width="100%" layoutH="112">
+        <thead>
+            <tr>
+                <th width="60">
+                    编号
+                </th>
+				 <th width="340" orderField="account">
+                   标题
+                </th>
+                <th width="100" orderField="account">
+                    创建时间
+                </th>
+                <th width="180">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <volist name="datalist" id="vo">
+                <tr target="sid_user" rel="{$vo['id']}">
+                    <td>
+                        {$vo[$mpk]}
+                    </td>
+                    <td>
+                        {$vo['name']|msubstr=0,40}
+                    </td>
+                    <td>
+                        {$vo['created']|date="Y-m-d H:i:s",###}
+                    </td>
+                    <td>
+                        <a href="{:U('edit?'.$mpk.'='.$vo[$mpk])}" class="tbutton" target="dialog" width="880" height="590" title="修改:{$vo['name']}" rel="{$mdomid}_edit" mask="true">修改</a>
+                        <a href="{:U('delete')}" target="ajaxTodo" class="tbutton" title="确定要删除吗?" data="{$mpk}={$vo[$mpk]}" callback="doAjaxDone">删除</a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+    <include file="Public:pageBar" />
+</div>

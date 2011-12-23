@@ -1,0 +1,38 @@
+<div class="pageContent">
+    <form method="post" action="{:U('set')}" class="pageForm required-validate" onsubmit="return validateCallback(this, doAjaxDone);">
+        <div class="pageFormContent" layoutH="56" id="access_box">
+            <volist name="datalist" id="vo">
+                <div class="unit">
+                    <label>
+                        {$vo.label}：
+                    </label>
+                    <input type="text" name="set[{$vo['name']}]" class="md md_{$vo['md_id']}" value="<neq name="vo.name" value="syspass">{$vo.val}</neq>" size="30"/>
+                </div>
+                <div class="divider">
+                </div>
+            </volist>
+        </div>
+        <div class="formBar">
+            <ul>
+                <li>
+                    <div class="buttonActive">
+                        <div class="buttonContent">
+                            <button type="submit">
+                                保存
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="button">
+                        <div class="buttonContent">
+                            <button type="button" class="close">
+                                取消
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

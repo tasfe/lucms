@@ -1,0 +1,43 @@
+<div class="pageFormContent" layoutH="56">
+    <div class="unit">
+        <label>
+            称呼：
+        </label>
+        <input name="name" type="text" size="20" value='{$datainfo.name}' class="required"/>
+    </div>
+    <div class="unit">
+        <label>
+           客服类型：
+        </label>
+		<select name="type" id="{$domid}_type">
+			<volist name="sets.kefu_type" id="vo">
+				<option value="{$key}">{$vo}</option>
+			</volist>
+		</select>
+    </div>
+     <div class="unit">
+        <label>
+            客服账号：
+        </label>
+        <input name="user" type="text" size="30" value='{$datainfo.user}' class="required"/>
+    </div>
+	<div class="unit">
+        <label>
+            客服代码：
+        </label>
+        <textarea name="code" rows="5" cols="60">{$datainfo.code}</textarea>
+    </div>
+    <div class="unit">
+        <label>
+          启用：
+        </label>
+        <select name="status" id="{$domid}_status">
+			<option value="0">启用</option>
+			<option value="1">不启用</option>
+		</select>
+    </div>
+</div>
+<script>
+	$('#{$domid}_type').val({$datainfo.type});
+	$('#{$domid}_status').val({$datainfo.status});
+</script>

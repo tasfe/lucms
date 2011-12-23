@@ -1,0 +1,43 @@
+<h3 class="contentTitle">设置</h3>
+<div class="panelBar">
+    <ul class="toolBar">
+         <li>
+            <a class="add" onclick="addSet_val('{$domid}_option_box')"><span>插入新值</span></a>
+        </li>
+        <li class="line">
+            line
+        </li>
+    </ul>
+</div>
+<div class="tableList">
+    <table id="{$domid}_select_list" class="list">
+        <thead>
+            <tr>
+                <th>
+                    标签
+                </th>
+                <th>
+                    值
+                </th>
+                <th width="100px">
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody id="{$domid}_option_box">
+            <volist name="datainfo.list" id="tval" key="tkey">
+                <tr id="{$domid}_option_tr_{$tkey}">
+                    <td>
+                        <input value="{$tval['label']}" name='list[{$tkey}][label]' class="textInput"/>
+                    </td>
+                    <td>
+                        <input value="{$tval['value']}" name='list[{$tkey}][value]' class="textInput"/>
+                    </td>
+                    <td>
+                        <a href="#nogo" class="tbutton" onclick="del_option('{$domid}_option_tr_','{$tkey}');">移除</a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+<include file="Public:searchBar" />
+<div class="pageContent">
+    <include file="Public:panelBar" />
+    <table class="table" width="100%" layouth="112">
+        <thead>
+            <tr>
+                <th>
+                    商品编号
+                </th>
+                <th>
+                    分类
+                </th>
+                <th>
+                    商品名称
+                </th>
+                <th>
+                    时间
+                </th>
+                <th>
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <volist name="datalist" id="vo">
+                <tr id="list_{$vo[$mpk]}" target="sid_<?=$Think.MODULE_NAME ?>" rel="{$vo[$mpk]}">
+                    <td>
+                        {$vo[$mpk]}
+                    </td>
+                    <td>
+                        {$pcates[$vo['cate_id']]['name']}
+                    </td>
+                    <td>
+                        {$vo['name']}
+                    </td>
+                    <td>
+                        {$vo['created']|date="Y-m-d H:i:s",###}
+                    </td>
+                    <td>
+                        <a href="{:U('edit?'.$mpk.'='.$vo[$mpk])}" rel="{$Think.MODULE_NAME}_edit" title="编辑商品:{$vo[$mpk]}" class="tbutton" target="dialog" width="900" height="600" >编辑</a>
+                        <a href="{:U('del')}" target="ajaxTodo" title="确定要删除吗?" data="{$mpk}={$vo[$mpk]}" class="tbutton">删除</a>
+                    </td>
+                </tr>
+            </volist>
+        </tbody>
+    </table>
+    <include file="Public:pageBar" />
+</div>
