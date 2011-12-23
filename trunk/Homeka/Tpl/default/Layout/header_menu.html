@@ -1,0 +1,71 @@
+<div class="top_nav">
+    <div class="map">
+        <a title="Site Map" href="docc/map.php"><img width="86" height="21" src="Images/btn_map.gif"></a>
+    </div>
+    <ul class="dropdown">
+        <li>
+            <a href="#" class="alive"><span>Home</span></a>
+        </li>
+        <li>
+            <a href="#"><span>Products</span></a>
+            <ul class="sub_menu">
+                <li>
+                    <a href="#">Artificial Turf</a>
+                </li>
+                <li>
+                    <a href="#">Batting Cages</a>
+                    <ul>
+                        <li>
+                            <a href="#">Indoor</a>
+                        </li>
+                        <li>
+                            <a href="#">Indoor</a>
+                        </li>
+                        <li>
+                            <a href="#">Indoor</a>
+                        </li>
+                        <li>
+                            <a href="#">Indoor</a>
+                        </li>
+                        <li>
+                            <a href="#">Indoor</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Benches &amp; Bleachers</a>
+                </li>
+                <li>
+                    <a href="#">Communication Devices</a>
+                </li>
+                <li>
+                    <a href="#">Dugouts</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#"><span>About Us</span></a>
+        </li>
+        <li>
+            <a href="#"><span>Quality Guarantee</span></a>
+        </li>
+        <li>
+            <a href="#"><span>Market Area</span></a>
+        </li>
+        <li>
+            <a href="#"><span>Contact Us</span></a>
+        </li>
+    </ul>
+</div>
+<script>
+    $(function(){
+        $("ul.dropdown li").hover(function(){
+            $(this).addClass("hover");
+            $('ul:first', this).css('visibility', 'visible');
+        }, function(){
+            $(this).removeClass("hover");
+            $('ul:first', this).css('visibility', 'hidden');
+        });
+        $("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
+    });
+</script>
