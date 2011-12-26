@@ -1,0 +1,50 @@
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li>
+                <a class="icon" href="{:U('Index/lsimg')}" rel="Index_lsimg" target="navTab"><span>顶级</span></a>
+            </li>
+            <li>
+                <a class="icon" href="{:U('Index/water')}" target="ajaxTodo" title="确定要给{$lspath}所有图片添加水印么吗?" data="file={$lspath}"><span>批量添加水印</span></a>
+            </li>
+            <li class="line">
+                line
+            </li>
+        </ul>
+    </div>
+    <div class="tableList">
+        <table class="list" width="100%" layouth="112">
+            <thead>
+                <tr>
+                    <th>
+                        图片
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="datalist" id="vo">
+                    <tr id="list_{$i}" target="sid_<?=$Think.MODULE_NAME ?>" rel="{$i}">
+                        <td>
+                            <eq name="vo.t" value="dir">
+                                文件夹{$vo['p']}<else/> {$vo['p']|advstr='','',$srcpre,''}
+                            </eq>
+                        </td>
+                        <td>
+                            <eq name="vo.t" value="dir">
+                                <a href="{:U('Index/lsimg?path='.$vo['s'])}" rel="Index_lsimg" title="文件夹:{$vo['p']}" class="tbutton" target="navTab">浏览</a>
+                                <else/>
+                                <neq name="vo.p" value="Images/water.gif">
+                                    <a href="{:U('Index/water')}" target="ajaxTodo" title="确定要添加水印么吗?" data="file={$vo['p']}" class="tbutton">添加水印</a>
+                                </neq>
+                            </eq>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+    </div>
+    <include file="Public:pageBar" />
+</div>

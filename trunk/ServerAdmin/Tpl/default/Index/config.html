@@ -14,6 +14,9 @@
                             <li>
                                 <a href="javascript:;"><span>网站SEO设置</span></a>
                             </li>
+							<li>
+                                <a href="javascript:;"><span>水印设置</span></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -45,6 +48,18 @@
                     <div>
                         <volist name="datalist" id="vo">
                             <eq name="vo.type" value="3">
+                                <div class="unit">
+                                    <label>
+                                        {$vo.label}：
+                                    </label>
+                                    <input type="text" name="config[{$vo['name']}]" value="{$vo.val}" size="30"/>
+                                </div>
+                            </eq>
+                        </volist>
+                    </div>
+					<div>
+                        <volist name="datalist" id="vo">
+                            <eq name="vo.type" value="4">
                                 <div class="unit">
                                     <label>
                                         {$vo.label}：
