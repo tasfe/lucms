@@ -1,0 +1,25 @@
+<div class="pageContent">
+    <div class="pageFormContent" layoutH="56" id="access_box">
+        <div class="unit">
+            <a class="button" onclick="startbackup();" href="#nogo"><span>备份数据库</span></a>
+        </div>
+    </div>
+    <div class="formBar">
+        <ul>
+            <li>
+                <div class="button">
+                    <div class="buttonContent">
+                        <button type="button" class="close">
+                            关闭
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+function startbackup(){
+	window.open('{@wwwroot}/{$Think.APP_PATH}/Common/phpbaksql.php?dbname={$mydbname}&username={$mydbuser}&password={$mydbpwd}');
+}
+</script>

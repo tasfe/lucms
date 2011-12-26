@@ -1,5 +1,11 @@
 <?php
 class IndexAction extends Action {
+	public function _initialize() {
+		$this->obj = D($this->tbname);
+		$srcpre = str_replace('//', '/', $this->getConfig('weburl') . '/' . $this->getConfig('upload_path') . '/');
+		$srcpre = str_replace(':/', '://', $srcpre);
+		$this->assign('srcpre', $srcpre);
+	}
 	public $act = array (
 		'navtab' => array (
 			'id' => 0,
@@ -84,7 +90,7 @@ class IndexAction extends Action {
 			Session :: set('personname', $userinfo['name']);
 			Session :: set('role_id', (int) $userinfo['role_id']);
 			Session :: set('wwwroot', __ROOT__);
-			Session :: set('apppath', dirname(dirname(dirname(dirname(__FILE__)))). '/Uploads/');
+			Session :: set('apppath', dirname(dirname(dirname(dirname(__FILE__)))) . '/Uploads/');
 			$this->success('登录成功', 1);
 		}
 	}
@@ -99,7 +105,7 @@ class IndexAction extends Action {
 		import("ORG.Util.Image");
 		Image :: buildImageVerify();
 	}
-	
+
 	public function set() {
 		$m = M('Config');
 		if ($this->isPost()) {
@@ -139,7 +145,7 @@ class IndexAction extends Action {
 		}
 
 	}
-	public function config(){
+	public function config() {
 		$m = M('Config');
 		if ($this->isPost()) {
 			$sets = isset ($_POST['config']) ? $_POST['config'] : null;
@@ -152,9 +158,9 @@ class IndexAction extends Action {
 			}
 			$this->setClose('dialog', 'Index_config');
 			$this->success('修改成功', 1);
-		}else{
+		} else {
 			$datalist = $m->select();
-			$this->assign('datalist',$datalist);
+			$this->assign('datalist', $datalist);
 			$this->display();
 		}
 	}
@@ -162,17 +168,61 @@ class IndexAction extends Action {
 		$menu = $_GET['id'];
 		$this->display('Layout:b_menu_' . $menu);
 	}
-	public function cache(){
+	public function cache() {
 		if ($this->isPost()) {
 			import("ORG.Io.Dir");
-			//$this->setClose('dialog', 'Index_cache');
+			$apppath = isset ($_POST['type']) ? $_POST['type'] : 'all';
+			$path = array ();
+			if ($apppath == 'all') {
+				$fpath = './ServerAdmin';
+				$path[] = $fpath . '/Runtime/Cache';
+				$path[] = $fpath . '/Runtime/Temp';
+				$path[] = $fpath . '/Runtime/Logs';
+				$path[] = $fpath . '/Runtime/Data';
+				$path[] = $fpath . '/Html/';
+				$fpath = './ServerFront';
+				$path[] = $fpath . '/Runtime/Cache';
+				$path[] = $fpath . '/Runtime/Temp';
+				$path[] = $fpath . '/Runtime/Logs';
+				$path[] = $fpath . '/Runtime/Data';
+				$path[] = $fpath . '/Html/';
+			} else {
+				$fpath = './' . $apppath;
+				$path[] = $fpath . '/Runtime/Cache';
+				$path[] = $fpath . '/Runtime/Temp';
+				$path[] = $fpath . '/Runtime/Logs';
+				$path[] = $fpath . '/Runtime/Data';
+				$path[] = $fpath . '/Html/';
+			}
+			if (is_array($path)) {
+				foreach ($path as $ap) {
+					if (is_dir($ap))
+						@ Dir :: delDir($ap);
+				}
+			}
 			$this->success('操作成功', 1);
-		}else{
+		} else {
 			$this->display();
 		}
-		
+
 	}
-	public function ckfinder(){
+	public function lsimg() {
+		$mimg = D('Bimages');
+		$path = isset ($_GET['path']) ? trim($_GET['path']) : '';
+		$this->assign('lspath', 'Images/' . $path);
+		$files = $mimg->doGet($path);
+		$this->assign('datalist', $files);
+		//dump($files);
+		$this->display();
+	}
+	public function water() {
+		$mimg = D('Bimages');
+		$path = isset ($_POST['file']) ? trim($_POST['file']) : '';
+		$rs = $mimg->doWater($path);
+		$this->success('添加完成', 1);
+		//echo $rs;
+	}
+	public function ckfinder() {
 		$this->display();
 	}
 	public function setClose($type = 'navtab', $id = '') {
@@ -221,6 +271,19 @@ class IndexAction extends Action {
 		} else {
 			// TODO 增加其它格式
 		}
+	}
+	public function bksql() {
+		$this->assign('mydbname', C('DB_NAME'));
+		$this->assign('mydbuser', C('DB_USER'));
+		$this->assign('mydbpwd', C('DB_PWD'));
+		$this->display();
+	}
+	public function getConfig($name = '') {
+		if (empty ($name))
+			return 0;
+		$mset = M('Config');
+		$map['name'] = $name;
+		return $mset->where($map)->getField('val');
 	}
 }
 ?>
