@@ -1,0 +1,11 @@
+<a href="{:U('Index/index')}">Home </a>&gt; 
+<notempty name="datainfo.cate_1">
+    <a href="{:U('Product/index?cate_id='.$datainfo['cate_1'])}">{$product_cates[$datainfo['cate_1']]['name']}</a>&gt;
+</notempty>
+<notempty name="datainfo.cate_2">
+    <a href="{:U('Product/index?cate_id='.$datainfo['cate_2'])}">{$product_cates[$datainfo['cate_2']]['name']}</a>&gt;
+</notempty>
+<notempty name="datainfo.cate_3">
+    <a href="{:U('Product/index?cate_id='.$datainfo['cate_3'])}">{$product_cates[$datainfo['cate_3']]['name']}</a>&gt;
+</notempty>
+<span>{$datainfo.name}</span>

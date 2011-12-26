@@ -7,106 +7,45 @@
     </div>
     <div class="content_r fr w770 mh350">
         <div class="navs">
-            <a href="../index.php.htm">Home </a>&gt; <a href="sub_product_info.php@id=28.htm">Magnet Material </a>&gt;<span>Sintered NdFeB Magnet</span>
-        </div>
-        <h2 class="uc_title">Sintered NdFeB Magnet</h2>
+            <include file="Product:b_nav"/>
+        </div><h2 class="uc_title">{$datainfo.name}</h2>
         <div class="pro_info mh350 mt">
-            <script type="text/javascript">
-                $(function(){
-                    $('#carousel').infiniteCarousel({
-                        transitionSpeed: 500,
-                        displayProgressBar: false,
-                        thumbnailFontSize: 11,
-                        displayProgressBar: false
-                    });
-                    
-                    $('div.thumb').parent().css({ // 'margin': '0 auto',
-                        //'width': '300px'
-                    });
-                });
-            </script>
             <div class="pro_pics fl">
                 <div id="carousel">
                     <ul>
-                        <li>
-                            <img alt="" src="../Public/Images/demo/1.jpg" width="420" height="420" />
-                        </li>
-                        <li>
-                            <img alt="" src="../Public/Images/demo/1.jpg" width="420" height="420" />
-                        </li>
-                        <li>
-                            <img alt="" src="../Public/Images/demo/1.jpg" width="420" height="420" />
-                        </li>
-                        <li>
-                            <img alt="" src="../Public/Images/demo/1.jpg" width="420" height="420" />
-                        </li>
-                        <li>
-                            <img alt="" src="images/img5.jpg" width="420" height="420" />
-                        </li>
-                        <li>
-                            <img alt="" src="images/img6.jpg" width="420" height="420" />
-                        </li>
+                        <volist name="datainfo.img" id="vo">
+                            <li>
+                                {$vo['path']|initMedia='420px','420px',$srcpre,'alt:'.$vo['intr']}
+                            </li>
+                        </volist>
                     </ul>
                 </div>
             </div>
             <div class="pro_attrs fr">
                 <ul class="attr_box">
                     <li>
-                        <strong>Place of Origin:</strong>
-                        Shanghai China (Mainland)
+                        <strong>Attr1:</strong>
+                        {$datainfo.attr_1}
                     </li>
                     <li>
-                        <strong>Brand Name: </strong>
-                        GKP031
+                        <strong>Attr2:</strong>
+                        {$datainfo.attr_2}
                     </li>
                     <li>
-                        <strong>Model Number: </strong>
-                        GKP031
+                        <strong>Attr3:</strong>
+                        {$datainfo.attr_3}
                     </li>
                     <li>
-                        <strong>Certification:</strong>
-                        ISO9001
+                        <strong>Attr4:</strong>
+                        {$datainfo.attr_4}
                     </li>
                     <li>
-                        <strong>Place of Origin:</strong>
-                        Shanghai China (Mainland)
+                        <strong>Attr5:</strong>
+                        {$datainfo.attr_5}
                     </li>
                 </ul>
                 <div class="kf_box mb mt">
-                    <ul>
-                        <li>
-                            Tel:
-                            +86-574-87369417,87026257, 87341731
-                        </li>
-                        <li>
-                            FAX:
-                            +86-574-87344602
-                        </li>
-                        <li>
-                            CELL: 
-                            +86-13567899858
-                        </li>
-                        <li>
-                            MSN:
-                            fubei_0226@hotmail.com
-                        </li>
-                        <li>
-                            Skype:
-                            acemade.juniss
-                        </li>
-                        <li>
-                            <!-- http://www.LiveZilla.net Chat Button Link Code --><a href="javascript:void(window.open('http://online.luluui.com/chat.php','','width=590,height=580,left=0,top=0,resizable=yes,menubar=no,location=no,status=yes,scrollbars=yes'))"><img src="http://online.luluui.com/image.php?id=01" width="120" border="0" alt="LiveZilla Live Help"></a>
-                            <noscript>
-                                <div>
-                                    <a href="http://online.luluui.com/chat.php" target="_blank">Start Live Help Chat</a>
-                                </div>
-                            </noscript>
-                            <!-- http://www.LiveZilla.net Chat Button Link Code -->
-                        </li>
-                        <li>
-                            <a href="msnim_3achat@contact=fubei_0226_40hotmail.com"><img width="76" height="21" class="btn1" src="images/btn_msn.gif"></a><a href="callto_3a/acemade.juniss"><img width="76" height="21" class="btn1" src="images/btn_skype.gif"></a>
-                        </li>
-                    </ul>
+                    <include file="Product:b_contact"/>
                 </div>
                 <div class="pro_pn mt">
                     <span>Pre Product:</span>
@@ -121,70 +60,39 @@
                 Product Details:
             </div>
             <div class="pro_detail w750">
-                <p>
-                    Acemade can make customized Sintered NdFeB Magnet for Liner motor and the motor assembly.
-                </p>
-                <p>
-                    <strong>Grade Available:
-                        <br>
-                    </strong>
-                    N35, N38, N40, N42, N45, N48, N50, N52 working temperature: 80℃
-                    <br>
-                    30M, 33M, 35M, 38M, 40M, 42M, 45M, 50M working temperature: 100℃ 
-                    <br>
-                    30H, 33H, 35H, 38H, 40H, 42H, 45H, 48H working temperature: 120℃
-                    <br>
-                    30SH, 33SH, 35SH, 38SH, 40SH, 42SH, 45SH working temperature: 150℃ 
-                    <br>
-                    28UH, 30UH, 33UH, 35UH, 38UH, 40UH working temperature: 180℃
-                    <br>
-                    28EH, 30EH, 33EH, 35EH, 38EH working temperature: 200℃ 
-                    <br>
-                    30AH,33AH working temperature: 230℃
-                    <br>
-                    <strong>Typical Coat: </strong>Ni, Ni-Cu-Ni, Zn, Tin, Epoxy, Ni-Ag, Ni-Au, etc. 
-                    <br>
-                    <strong>We could manufacture magnets according&nbsp;to customized specific grade, dimention and coat.</strong>
-                </p>
+                {$datainfo.detail}
             </div>
             <div class="pro_nav w750 mt mb">
                 Related Products
             </div>
             <div class="pro_relas w750">
                 <ul>
-                    <li>
-                        <div class="th">
-                            <a href="" target="_blank"><img src="../Public/Images/demo/1.jpg" height="146" width="146" alt="Arc Magnet for Liner Motor"></a>
-                        </div><h3><a href="" target="_blank">Arc Magnet for Liner Motor</a></h3>
-                    </li>
-                    <li>
-                        <div class="th">
-                            <a href="" target="_blank"><img src="../Public/Images/demo/1.jpg" height="146" width="146" alt="Arc Magnet for Liner Motor"></a>
-                        </div><h3><a href="" target="_blank">Arc Magnet for Liner Motor</a></h3>
-                    </li>
-                    <li>
-                        <div class="th">
-                            <a href="" target="_blank"><img src="../Public/Images/demo/1.jpg" height="146" width="146" alt="Arc Magnet for Liner Motor"></a>
-                        </div><h3><a href="" target="_blank">Arc Magnet for Liner Motor</a></h3>
-                    </li>
-                    <li>
-                        <div class="th">
-                            <a href="" target="_blank"><img src="../Public/Images/demo/1.jpg" height="146" width="146" alt="Arc Magnet for Liner Motor"></a>
-                        </div><h3><a href="" target="_blank">Arc Magnet for Liner Motor</a></h3>
-                    </li>
-                    <li>
-                        <div class="th">
-                            <a href="" target="_blank"><img src="../Public/Images/demo/1.jpg" height="146" width="146" alt="Arc Magnet for Liner Motor"></a>
-                        </div><h3><a href="" target="_blank">Arc Magnet for Liner Motor</a></h3>
-                    </li>
-                    <li>
-                        <div class="th">
-                            <a href="" target="_blank"><img src="../Public/Images/demo/1.jpg" height="146" width="146" alt="Arc Magnet for Liner Motor"></a>
-                        </div><h3><a href="" target="_blank">Arc Magnet for Liner Motor</a></h3>
-                    </li>
+                    <volist name="relalist" id="vo">
+                        <li>
+                            <div class="th">
+                                <a href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['thumb']|initMedia='146px','146px',$srcpre,'alt:'.$vo['name']}</a>
+                            </div>
+                            <h3><a href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['name']}</a></h3>
+                        </li>
+                    </volist>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function(){
+        $('#carousel').infiniteCarousel({
+            transitionSpeed: 500,
+            displayProgressBar: false,
+            thumbnailFontSize: 11,
+            displayProgressBar: false,
+            imagePath: '../Public/Images/other/'
+        });
+        
+        $('div.thumb').parent().css({ // 'margin': '0 auto',
+            //'width': '300px'
+        });
+    });
+</script>
 <include file="Layout:footer"/>

@@ -11,7 +11,7 @@ class FbaseAction extends Action {
 		$this->assign('mdomid', MODULE_NAME);
 		$this->assign('adomid', ACTION_NAME);
 		$this->assign('mpk', $this->mpk);
-		if (!empty ($this->tbname) &&  !empty ($this->mpk)){
+		if (!empty ($this->tbname) && !empty ($this->mpk)) {
 			$this->obj = D($this->tbname);
 			//exit ('none ser or obj');
 		}
@@ -24,7 +24,7 @@ class FbaseAction extends Action {
 		$this->getCateTree();
 		$this->getCateTree('product_cate');
 		$webinfo = $this->getConfig();
-		$this->assign('webinfo',$webinfo);
+		$this->assign('webinfo', $webinfo);
 	}
 
 	public function getMap() {
@@ -48,12 +48,13 @@ class FbaseAction extends Action {
 			$page['okey'] = $okey;
 		}
 		$map['q'] = array ();
-		foreach($maparr as $k => $v){
-			if($k != 'p' || $k != 'ps' || $k != 'oby' || $k != 'okey') $map['q'][$k] = $v;
-			if($k == 'cate_id'){
-				unset($map['q'][$k]);
+		foreach ($maparr as $k => $v) {
+			if ($k != 'p' || $k != 'ps' || $k != 'oby' || $k != 'okey')
+				$map['q'][$k] = $v;
+			if ($k == 'cate_id') {
+				unset ($map['q'][$k]);
 				$cmap = $this->getCateMap($v);
-				$map['q'] = array_merge($map['q'],$cmap);
+				$map['q'] = array_merge($map['q'], $cmap);
 			}
 		}
 		$par = $map;
@@ -89,24 +90,54 @@ class FbaseAction extends Action {
 			return false;
 		} else {
 			$this->assign('datainfo', $datainfo);
+			$this->getNeighbor($datainfo);
+			$this->getRelaData();
 			$this->display();
 		}
 	}
-
+	public function getNeighbor($datainfo) {
+		if (isset ($datainfo[$this->mpk])) {
+			$map['q'] = array ();
+			$map['p'] = 0;
+			$map['q'][$this->mpk] = $datainfo[$this->mpk] + 1;
+			$next = $this->obj->doGet($map);
+			$map['q'][$this->mpk] = $datainfo[$this->mpk] -1;
+			$pre = $this->obj->doGet($map);
+			$this->assign('datapre', $pre);
+			$this->assign('datanext', $next);
+		}
+	}
+	public function getRelaData($datainfo) {
+		//$map['q'] = array();
+		//$map['p'] = 1;
+		//$map['ps'] = 8;
+		//$map['q']['cate_1'] = $datainfo['cate_1'];
+		
+		if (!empty ($datainfo['cate_1']))
+			$tmap['cate_1'] = $datainfo['cate_1'];
+		if (!empty ($datainfo['cate_2']))
+			$tmap['cate_2'] = $datainfo['cate_2'];
+		if (!empty ($datainfo['cate_3']))
+			$tmap['cate_3'] = $datainfo['cate_3'];
+		$map['_logic'] = 'or';
+		$rs = $this->obj->where($map)->limit(8)->select();
+		$this->assign('relalist', $rs);
+	}
 	public function getConfig($name = '') {
 		$configs = S('GConfig');
-		if(!$configs){
+		if (!$configs) {
 			$mset = M('Config');
 			$tarr = $mset->select();
-			foreach($tarr as $vo){
+			foreach ($tarr as $vo) {
 				$configs[$vo['name']] = $vo['val'];
 			}
-			S('GConfig',$configs);
+			S('GConfig', $configs);
 		}
-		if ($name == '') return $configs;
-		if(isset($configs[$name])){
+		if ($name == '')
+			return $configs;
+		if (isset ($configs[$name])) {
 			return $configs[$name];
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -136,17 +167,19 @@ class FbaseAction extends Action {
 		$this->assign($cate . 'i', $tarr);
 		return $tcateher;
 	}
-	public function getCateMap($cate_id = 0){
-		$marr = array();
-		if(!$cate_id) return $marr;
+	public function getCateMap($cate_id = 0) {
+		$marr = array ();
+		if (!$cate_id)
+			return $marr;
 		$tree = $this->getCateTree();
-		if(!isset($tree[$cate_id])) return $marr;
+		if (!isset ($tree[$cate_id]))
+			return $marr;
 		$tarr = $tree[$cate_id]['parr'];
 		$i = 1;
-		foreach($tarr as $v){
-			if($v != 0 ) {
-				$marr['cate_'.$i] = $v;
-			}else{
+		foreach ($tarr as $v) {
+			if ($v != 0) {
+				$marr['cate_' . $i] = $v;
+			} else {
 				break;
 			}
 		}
