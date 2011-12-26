@@ -12,141 +12,25 @@
         <h2 class="uc_title">Sintered NdFeB Magnet</h2>
         <div class="pro_list mh350 mt">
             <ul>
-                <li class="pro_item">
-                    <a href="#nogo" class="pro_img"><img src="images/demo/1.jpg" height="146px"></a><h3 class="pro_tit"><a href="#nogo">knitted gloves,magic knitted glove,acrylic gloves</a></h3>
-                    <div class="pro_intr">
-                        knitted gloves,magic glvoes,acrylic gloves,knitted gloves with rubber,fashion gloves,kids gloves,composition:100% acrylic...
-                    </div>
-                    <div class="pro_attr">
-                        <span><strong>Min. Order</strong>: 500 Dozens</span>
-                        <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
-                    </div>
-                    <a class="pro_more" href="#nogo">more</a>
-                </li>
-                <li class="pro_item">
-                    <a href="#nogo" class="pro_img"><img src="images/demo/1.jpg" height="146px"></a><h3 class="pro_tit"><a href="#nogo">knitted gloves,magic knitted glove,acrylic gloves</a></h3>
-                    <div class="pro_intr">
-                        knitted gloves,magic glvoes,acrylic gloves,knitted gloves with rubber,fashion gloves,kids gloves,composition:100% acrylic...
-                    </div>
-                    <div class="pro_attr">
-                        <span><strong>Min. Order</strong>: 500 Dozens</span>
-                        <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
-                    </div>
-                    <a class="pro_more" href="#nogo">more</a>
-                </li>
-                <li class="pro_item">
-                    <a href="#nogo" class="pro_img"><img src="images/demo/1.jpg" height="146px"></a><h3 class="pro_tit"><a href="#nogo">knitted gloves,magic knitted glove,acrylic gloves</a></h3>
-                    <div class="pro_intr">
-                        knitted gloves,magic glvoes,acrylic gloves,knitted gloves with rubber,fashion gloves,kids gloves,composition:100% acrylic...
-                    </div>
-                    <div class="pro_attr">
-                        <span><strong>Min. Order</strong>: 500 Dozens</span>
-                        <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
-                    </div>
-                    <a class="pro_more" href="#nogo">learn more</a>
-                </li>
-                <li class="pro_item">
-                    <a href="#nogo" class="pro_img"><img src="images/demo/1.jpg" height="146px"></a><h3 class="pro_tit"><a href="#nogo">knitted gloves,magic knitted glove,acrylic gloves</a></h3>
-                    <div class="pro_intr">
-                        knitted gloves,magic glvoes,acrylic gloves,knitted gloves with rubber,fashion gloves,kids gloves,composition:100% acrylic...
-                    </div>
-                    <div class="pro_attr">
-                        <span><strong>Min. Order</strong>: 500 Dozens</span>
-                        <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
-                    </div>
-                    <a class="pro_more" href="#nogo">learn more</a>
-                </li>
-                <li class="pro_item">
-                    <a href="#nogo" class="pro_img"><img src="images/demo/1.jpg" height="146px"></a><h3 class="pro_tit"><a href="#nogo">knitted gloves,magic knitted glove,acrylic gloves</a></h3>
-                    <div class="pro_intr">
-                        knitted gloves,magic glvoes,acrylic gloves,knitted gloves with rubber,fashion gloves,kids gloves,composition:100% acrylic...
-                    </div>
-                    <div class="pro_attr">
-                        <span><strong>Min. Order</strong>: 500 Dozens</span>
-                        <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
-                    </div>
-                    <a class="pro_more" href="#nogo">more</a>
-                </li>
-                <li class="pro_item">
-                    <a href="#nogo" class="pro_img"><img src="images/demo/1.jpg" height="146px"></a><h3 class="pro_tit"><a href="#nogo">knitted gloves,magic knitted glove,acrylic gloves</a></h3>
-                    <div class="pro_intr">
-                        knitted gloves,magic glvoes,acrylic gloves,knitted gloves with rubber,fashion gloves,kids gloves,composition:100% acrylic...
-                    </div>
-                    <div class="pro_attr">
-                        <span><strong>Min. Order</strong>: 500 Dozens</span>
-                        <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
-                    </div>
-                    <a class="pro_more" href="#nogo">more</a>
-                </li>
+                <volist name="datalist" id="vo">
+                    <li class="pro_item">
+                        <a class="pro_img" href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['thumb']|initMedia='146px','146px',$srcpre,'alt:'.$vo['name']}</a>
+                        <h3 class="pro_tit"><a  href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['name']}</a></h3>
+                        <div class="pro_intr">
+                           {$vo.summary|msubstr=0,120}
+                        </div>
+                        <div class="pro_attr">
+                            <span><strong>Min. Order</strong>: 500 Dozens</span>
+                            <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
+                        </div>
+                        <a class="pro_more" href="{:U('Product/view?product_id='.$vo['product_id'])}" alt="{$vo['name']}">View Details</a>
+                    </li>
+                </volist>
             </ul>
-        </div>
-        <div class="uc_info">
-            <p>
-                Sintered NdFeB are formed by powder metallurgical processes. The magnetic performance of all grades is optimized by applying a magnetic field during the pressing operation, thus producing a preferred direction of magnetization (anisotropy). Our sintered NdFeB magnets have 4 distinct characteristics: High corrosion resistance and Low temperature coefficient, Large dimensions or Small sizes.&nbsp; The newly developed L-T Sintered NdFeB Series has outstanding corrosion resistance and high working temperature compared to the normal grades.
-            </p>
-            <p>
-                <b><span style="font-size: x-small">Key Benefits</span></b>
-            </p>
-            <p>
-                •&nbsp;The strongest magnets in the world. They can lift up to 1000 times their own weight.
-                <br>
-                •&nbsp;Far better permanent magnetic performance compared with traditional magnets, but the price is relatively low.&nbsp; (by&nbsp;weight about 20times Ferrite magnet, by dollars per BHmax about 1.5 times Ferrite magnet)
-                <br>
-                •&nbsp;Wide range of grades with new ones regularly being developed.
-                <br>
-                • Available from very small sizes to large blocks.
-                <br>
-                •&nbsp;Relatively easy to machine, compare to AlNiCo and Smco magnets
-                <br>
-                •&nbsp;High resistance to demagnetization.
-            </p>
-            <p>
-                <b><span style="font-size: x-small">Key Challenge</span></b>
-            </p>
-            <p>
-                •&nbsp;Brittle and hard.
-                <br>
-                •&nbsp;Properties deteriorate rapidly at temperatures in excess of about 150
-                <sup>
-                    0
-                </sup>C (depending on grade and permeance coefficient magnet is operating at) The highest working temperature can be 230
-                <sup>
-                    0
-                </sup>C (AH grade L-T Series).
-                <br>
-                •&nbsp;Need to be protected against oxidation—by coating or plating the magnets.
-            </p>
-            <p>
-                <span style="font-size: x-small"><b>Quick Facts</b></span>
-            </p>
-            <p>
-                Density: 7.6g/cm
-                <sup>
-                    3
-                </sup>
-                <br>
-                Saturation magnetizing field required: about 25KOe
-                <br>
-                Shape Available: blocks, bars, discs, rings, arc segments, etc.
-                <br>
-                Grade Available:N35 to N53，N,M,H,SH,UH,EH, AH series
-                <br>
-                Size: the largest can be 150mmx150mmx50mm, the smallest can be 2.00mmx1.50mmx0.50mm for the block shape.
-                <br>
-                Machine: Neodymium magnets should be machined by grinding using diamond wheels. However, of the hard magnets materials, neo magnets are the least difficult to machine.
-            </p>
-            <p>
-                <span style="font-size: x-small"><b>Applications</b></span>
-            </p>
-            <p>
-                Voice coil motors in hard disc motor, pick-up in optical disk drives, mobile phones, magnetic resonance imagers, Hi-Fi systems, auto motors, wind-power generators, magnetic separators, lifting equipment, space flight equipment and new energy products. Especially suitable for the development of high-performance, compact and lightweight products.
-            </p>
-            <div class="down">
-                <a href="download.php.htm"><img src="../images/btn_download.gif" alt="Doewnload" height="18" width="172"></a>
-            </div>
-            <div class="sikptop">
-                <a href="#" title="Top"><img src="../images/btn_top.gif" height="13" width="42"></a>
+            <div class="">
+                {$page}
             </div>
         </div>
     </div>
-</div><include file="Layout:footer"/>
+</div>
+<include file="Layout:footer"/>

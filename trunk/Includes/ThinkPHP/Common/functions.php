@@ -132,7 +132,7 @@ function rewriteU($url){
 	$patterns = array();
 	$replacements = array();
 	foreach($rconfig as $ro){
-		$patterns[] = "/".str_replace('/',"\\/",$ro['pattern'])."/i";
+		$patterns[] = "/".str_replace('/',"\\/",$ro['pattern'])."/";
 		$replacements[] = $ro['url_out'];
 	}
 	$url =  preg_replace($patterns, $replacements, $url);

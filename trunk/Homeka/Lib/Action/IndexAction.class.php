@@ -25,6 +25,9 @@ class IndexAction extends FbaseAction {
 	public function sitemap() {
 
 	}
+	public function aboutus(){
+		
+	}
 	public function rw(){
 		$res = C('REWRITE_RULE');
 		foreach($res as $vo){
