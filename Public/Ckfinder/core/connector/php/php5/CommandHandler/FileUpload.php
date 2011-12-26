@@ -55,13 +55,16 @@ class CKFinder_Connector_CommandHandler_FileUpload extends CKFinder_Connector_Co
         }
 
         $sUnsafeFileName = CKFinder_Connector_Utils_FileSystem::convertToFilesystemEncoding(CKFinder_Connector_Utils_Misc::mbBasename($uploadedFile['name']));
-        $sFileName = str_replace(array(":", "*", "?", "|", "/"), "_", $sUnsafeFileName);
+        $sFileName = str_replace(array(":"," ", "*", "?", "|", "/"), "_", $sUnsafeFileName);
         if ($_config->forceAscii()) {
             $sFileName = CKFinder_Connector_Utils_FileSystem::convertToAscii($sFileName);
         }
         if ($sFileName != $sUnsafeFileName) {
+          $sExtension=CKFinder_Connector_Utils_FileSystem::getExtension($sFileName);
+		  $sFileName=date('YmdHis').'.'.$sExtension;
           $iErrorNumber = CKFINDER_CONNECTOR_ERROR_UPLOADED_INVALID_NAME_RENAMED;
         }
+       
         $oRegistry->set("FileUpload_fileName", $sFileName);
 
         $this->checkConnector();

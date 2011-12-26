@@ -30,7 +30,7 @@ function CheckAuthentication() {
 	// forget to add session_start() at the top of this file.
 	return isset ($_SESSION['apppath']);
 }
-echo $_SESSION['apppath'];
+//echo $_SESSION['apppath'];
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
 // fully functional, in demo mode.
 $config['LicenseName'] = '';
@@ -60,7 +60,7 @@ ATTENTION: The trailing slash is required.
 */
 //$baseUrl = '/ckfinder/userFiles/';
 //$baseUrl = '/Uploads/';
-$baseUrl = '';
+$baseUrl = $_SESSION['wwwroot'].'/Uploads/';
 /*
 $baseDir : the path to the local directory (in the server) which points to the
 above $baseUrl URL. This is the path used by CKFinder to handle the Files in
@@ -315,7 +315,9 @@ $config['ForceAscii'] = false;
 
 include_once "plugins/imageresize/plugin.php";
 include_once "plugins/fileeditor/plugin.php";
+//include_once "plugins/watermark/plugin.php";
 
 $config['plugin_imageresize']['smallThumb'] = '90x90';
 $config['plugin_imageresize']['mediumThumb'] = '120x120';
 $config['plugin_imageresize']['largeThumb'] = '180x180';
+
