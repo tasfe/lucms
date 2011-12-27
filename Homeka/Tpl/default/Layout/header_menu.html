@@ -4,10 +4,16 @@
     </div>
     <ul class="dropdown">
         <li>
-            <a href="{:U('Index/index')}" class="alive"><span>Home</span></a>
+            <a href="{:U('Index/index')}"
+                <eq name="domid" value="Index_index">
+                    class="alive"
+                </eq>><span>Home</span></a>
         </li>
         <li>
-            <a href="{:U('Product/index')}"><span>Gloves Category</span></a>
+            <a href="{:U('Product/index')}"
+                <eq name="mdomid" value="Product">
+                    class="alive"
+                </eq>><span>Gloves Category</span></a>
             <ul class="sub_menu">
                 <volist name="product_cates" id="vo">
                     <eq name="vo.parent_id" value="0">
@@ -28,19 +34,34 @@
             </ul>
         </li>
         <li>
-            <a href="{:U('Index/aboutus')}"><span>About Us</span></a>
+            <a href="{:U('Index/aboutus')}"
+                <eq name="domid" value="Index_aboutus">
+                    class="alive"
+                </eq>><span>About Us</span></a>
         </li>
         <li>
-            <a href="{:U('Index/factory')}"><span>Factory View</span></a>
+            <a href="{:U('Index/factory')}"
+                <eq name="domid" value="Index_factory">
+                    class="alive"
+                </eq>><span>Factory View</span></a>
         </li>
         <li>
-            <a href="{:U('Index/market')}"><span>Market In World</span></a>
-        </li>
-		<li>
-            <a href="{:U('Index/articles')}"><span>Articles</span></a>
+            <a href="{:U('Index/market')}"
+                <eq name="domid" value="Index_market">
+                    class="alive"
+                </eq>><span>Market In World</span></a>
         </li>
         <li>
-            <a href="{:U('Index/contact')}"><span>Contact Us</span></a>
+            <a href="{:U('News/index')}"
+                <eq name="mdomid" value="News">
+                    class="alive"
+                </eq>><span>Articles</span></a>
+        </li>
+        <li>
+            <a href="{:U('Index/contact')}"
+                <eq name="domid" value="Index_contact">
+                    class="alive"
+                </eq>><span>Contact Us</span></a>
         </li>
     </ul>
 </div>

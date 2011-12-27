@@ -43,28 +43,51 @@
             </div>
             <div class="unit">
                 <label>
-                    属性1:
+                    材料:
                 </label>
-                <input type="text" name="attr_1" size="50" value="{$datainfo.attr_1}">
+                <select name="attr_7" id="{$domid}_attr_7">
+                	<option value="0">请选择</option>
+                    <volist name="sets.material" id="mvo">
+                        <option value="{$key}">{$mvo}</option>
+                    </volist>
+                </select>
             </div>
             <div class="unit">
                 <label>
-                    属性2:
+                    用途:
                 </label>
-                <input type="text" name="attr_2" size="50" value="{$datainfo.attr_2}">
+                <select name="attr_8" id="{$domid}_attr_8">
+                	<option value="0">请选择</option>
+                    <volist name="sets.usefor" id="mvo">
+                        <option value="{$key}">{$mvo}</option>
+                    </volist>
+                </select>
+            </div><!--
+            <div class="unit">
+            <label>
+            属性1:
+            </label>
+            <input type="text" name="attr_1" size="50" value="{$datainfo.attr_1}">
             </div>
             <div class="unit">
-                <label>
-                    属性3:
-                </label>
-                <input type="text" name="attr_3" size="50" value="{$datainfo.attr_3}">
+            <label>
+            属性2:
+            </label>
+            <input type="text" name="attr_2" size="50" value="{$datainfo.attr_2}">
             </div>
             <div class="unit">
-                <label>
-                    属性4:
-                </label>
-                <input type="text" name="attr_4" size="50" value="{$datainfo.attr_4}">
+            <label>
+            属性3:
+            </label>
+            <input type="text" name="attr_3" size="50" value="{$datainfo.attr_3}">
             </div>
+            <div class="unit">
+            <label>
+            属性4:
+            </label>
+            <input type="text" name="attr_4" size="50" value="{$datainfo.attr_4}">
+            </div>
+            -->
             <div class="unit">
                 <label>
                     keyword：
@@ -72,14 +95,20 @@
                 <input name="keyword" type="text" size="50" value='{$datainfo.keyword}' class="required"/>
             </div>
             <div class="unit">
-                <label>简要描述及优势:</label>
-                <textarea name="summary" rows="6" cols="60">{$datainfo.summary}</textarea>
+                <label>
+                    简要描述及优势:
+                </label>
+                <textarea name="summary" rows="6" cols="60">
+                    {$datainfo.summary}
+                </textarea>
             </div>
             <div class="unit">
                 <label>
                     产品介绍:
                 </label>
-                <textarea name="detail" cols="78" rows="15" class="editor" id="{$domid}_detail" upLinkUrl="{@wwwroot}/Uploads/upload.php" upLinkExt="zip,rar,txt" upImgUrl="{@wwwroot}/Uploads/upload.php" upImgExt="jpg,jpeg,gif,png">{$datainfo.detail}</textarea>
+                <textarea name="detail" cols="78" rows="15" class="editor" id="{$domid}_detail" upLinkUrl="{@wwwroot}/Uploads/upload.php" upLinkExt="zip,rar,txt" upImgUrl="{@wwwroot}/Uploads/upload.php" upImgExt="jpg,jpeg,gif,png">
+                    {$datainfo.detail}
+                </textarea>
             </div>
             <div class="unit">
                 <label>
@@ -87,21 +116,21 @@
                 </label>
                 <input type="text" name="oid" size="30" class="number" value="{$datainfo.oid}">
             </div>
-			<div class="unit">
+            <div class="unit">
                 <label>
-                   推荐级别:
+                    推荐级别:
                 </label>
                 <select name="grade" id="{$domid}_grade">
-                	<option value="0">无推荐</option>
-					<option value="1">推荐到首页</option>
-					<option value="2">推荐到列表页</option>
-					<option value="3">Level3</option>
-					<option value="4">Level4</option>
-					<option value="5">Level5</option>
-					<option value="6">Level6</option>
-					<option value="7">Level7</option>
-					<option value="8">Level8</option>
-					<option value="9">Level9</option>
+                    <option value="0">无推荐</option>
+                    <option value="1">推荐到首页</option>
+                    <option value="2">推荐到列表页</option>
+                    <option value="3">Level3</option>
+                    <option value="4">Level4</option>
+                    <option value="5">Level5</option>
+                    <option value="6">Level6</option>
+                    <option value="7">Level7</option>
+                    <option value="8">Level8</option>
+                    <option value="9">Level9</option>
                 </select>
             </div>
         </div>
@@ -124,5 +153,7 @@
     </div>
 </div>
 <script>
-	$('#{$domid}_grade').val({$datainfo.grade});
+    	$('#{$domid}_grade').val({$datainfo.grade});
+		$('#{$domid}_attr_7').val({$datainfo.attr_7});
+		$('#{$domid}_attr_8').val({$datainfo.attr_8});
 </script>
