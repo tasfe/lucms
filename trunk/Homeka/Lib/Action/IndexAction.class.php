@@ -23,10 +23,19 @@ class IndexAction extends FbaseAction {
 		$this->display();
 	}
 	public function sitemap() {
-
+		$this->display();
 	}
 	public function aboutus(){
-		
+		$this->display();
+	}
+	public function factory(){
+		$this->display();
+	}
+	public function contact(){
+		$this->display();
+	}
+	public function market(){
+		$this->display();
 	}
 	public function rw(){
 		$res = C('REWRITE_RULE');

@@ -5,6 +5,8 @@ class FbaseAction extends Action {
 	public $obj = '';
 	public $mpk = '';
 	public $map = null;
+	public $webinfo = array ();
+	public $catearr = array ();
 	public $seo = array ();
 	public function _initialize() {
 		$this->assign('domid', MODULE_NAME . '_' . ACTION_NAME);
@@ -21,9 +23,12 @@ class FbaseAction extends Action {
 		$mset = D('Set');
 		$sets = $mset->getTree();
 		$this->assign('sets', $sets);
-		$this->getCateTree();
-		$this->getCateTree('product_cate');
+		$this->catearr = $this->getCateTree();
+		if ($this->cate != 'product_cate')
+			$this->getCateTree('product_cate');
 		$webinfo = $this->getConfig();
+		$this->webinfo = $webinfo;
+		$this->setSeo('', $this->webinfo['seokeywords'], $this->webinfo['seodes']);
 		$this->assign('webinfo', $webinfo);
 	}
 
@@ -33,7 +38,7 @@ class FbaseAction extends Action {
 		$ps = isset ($_GET['ps']) ? $_GET['ps'] : 15;
 		$oby = isset ($_GET['oby']) ? $_GET['oby'] : '';
 		$okey = isset ($_GET['okey']) ? $_GET['okey'] : 'desc';
-		$ps = 16;
+		$ps = 10;
 		$page['p'] = $p;
 		$map = array (
 			'p' => $p,
@@ -49,17 +54,20 @@ class FbaseAction extends Action {
 		}
 		$map['q'] = array ();
 		foreach ($maparr as $k => $v) {
-			if ($k != 'p' || $k != 'ps' || $k != 'oby' || $k != 'okey')
+			if ($k != 'p' && $k != 'ps' && $k != 'oby' && $k != 'okey'){
+				//echo $k;
 				$map['q'][$k] = $v;
+			}
+				
 			if ($k == 'cate_id') {
-				unset ($map['q'][$k]);
-				$cmap = $this->getCateMap($v);
-				$map['q'] = array_merge($map['q'], $cmap);
+				//unset ($map['q'][$k]);
+				//$cmap = $this->getCateMap($v);
+				//$map['q'] = array_merge($map['q'], $cmap);
 			}
 		}
 		$par = $map;
 		$this->map = $map;
-		//dump($maparr);
+		//dump($map);
 		$this->assign('urlmap', $map);
 		$this->assign('urlpar', $par);
 		return array (
@@ -75,6 +83,19 @@ class FbaseAction extends Action {
 		$this->assign('datalist', $datalist['list']);
 		$this->assign('pageinfo', $datalist['page']);
 		$this->initPage($datalist['page'], $maparr['page']);
+		$cate_id = isset($_GET['cate_id'])? trim($_GET['cate_id']):0;
+		$this->assign('cateinfo',null);
+		if($cate_id){
+			$cateinfo = $this->catearr[$cate_id];
+			if(empty($cateinfo)){
+				$this->setSeo(MODULE_NAME, $this->webinfo['seokeywords']);
+			}else{
+				$this->assign('cateinfo',$cateinfo);
+				$this->setSeo($cateinfo['name'], $cateinfo['keyword'],$cateinfo['detail']);
+			}
+		}else{
+			$this->setSeo(MODULE_NAME, $this->webinfo['seokeywords']);
+		}
 		$this->display();
 	}
 
@@ -90,8 +111,9 @@ class FbaseAction extends Action {
 			return false;
 		} else {
 			$this->assign('datainfo', $datainfo);
+			$this->setSeo($datainfo['name'], $datainfo['keyword'], $datainfo['summary']);
 			$this->getNeighbor($datainfo);
-			$this->getRelaData();
+			$this->getRelaData($datainfo);
 			$this->display();
 		}
 	}
@@ -101,7 +123,7 @@ class FbaseAction extends Action {
 			$map['p'] = 0;
 			$map['q'][$this->mpk] = $datainfo[$this->mpk] + 1;
 			$next = $this->obj->doGet($map);
-			$map['q'][$this->mpk] = $datainfo[$this->mpk] -1;
+			$map['q'][$this->mpk] = $datainfo[$this->mpk] - 1;
 			$pre = $this->obj->doGet($map);
 			$this->assign('datapre', $pre);
 			$this->assign('datanext', $next);
@@ -112,7 +134,7 @@ class FbaseAction extends Action {
 		//$map['p'] = 1;
 		//$map['ps'] = 8;
 		//$map['q']['cate_1'] = $datainfo['cate_1'];
-		
+
 		if (!empty ($datainfo['cate_1']))
 			$tmap['cate_1'] = $datainfo['cate_1'];
 		if (!empty ($datainfo['cate_2']))
@@ -199,8 +221,12 @@ class FbaseAction extends Action {
 		$this->assign('page', $page);
 		//$this->assign('addpage', $addpage);
 	}
-	public function setSeo($t, $k, $d) {
-		$this->seo['t'] = $t;
+	public function setSeo($t = '', $k = '', $d = '') {
+		if ($t == '') {
+			$this->seo['t'] = $this->webinfo['seotitle'];
+		} else {
+			$this->seo['t'] = $t . '-' . $this->webinfo['seotitle'];
+		}
 		$this->seo['k'] = $k;
 		$this->seo['d'] = $d;
 		$this->assign('seo', $this->seo);
