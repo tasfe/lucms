@@ -7,9 +7,14 @@
     </div>
     <div class="content_r fr w770 mh350">
         <div class="navs">
-            <a href="../index.php.htm">Home </a>&gt; <a href="sub_product_info.php@id=28.htm">Magnet Material </a>&gt;<span>Sintered NdFeB Magnet</span>
+            <include file="Product:b_nav"/>
         </div>
-        <h2 class="uc_title">Sintered NdFeB Magnet</h2>
+		<empty name="cateinfo">
+			<h2 class="uc_title">Gloves</h2>
+			<else/>
+			<h2 class="uc_title">{$cateinfo.name}</h2>
+		</empty>
+        
         <div class="pro_list mh350 mt">
             <ul>
                 <volist name="datalist" id="vo">

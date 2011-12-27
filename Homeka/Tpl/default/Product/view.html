@@ -49,9 +49,20 @@
                 </div>
                 <div class="pro_pn mt">
                     <span>Pre Product:</span>
-                    <h3><a href="">PU/Latex/Nitrile Glovex</a></h3>
-                    <span>Next Product:</span>
-                    <h3><a href="">Glove with Panther print at the bottom</a></h3>
+                    <h3>
+                        <notempty name="datapre">
+                            <a href="{:U('Product/view?product_id='.$datapre['product_id'])}">{$datapre.name}</a>
+                            <else/>
+							none
+                        </notempty>
+                    </h3><span>Next Product:</span>
+                    <h3>
+                        <notempty name="datanext">
+                            <a href="{:U('Product/view?product_id='.$datanext['product_id'])}">{$datanext.name}</a>
+                            <else/>
+							none
+                        </notempty>
+                    </h3>
                 </div>
             </div>
             <div class="clearfix">

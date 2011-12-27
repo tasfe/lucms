@@ -56,8 +56,9 @@
     }
     
     function SetFileField(fileUrl){
-        $('#' + ginputid).val(fileUrl);
-        $('#' + gsrcid).attr('src', '__ROOT__/Uploads/' + fileUrl);
+        $('#' + gsrcid).attr('src', fileUrl);
+		var tval = fileUrl.replace(/\__ROOT__\/Uploads\//,"");
+        $('#' + ginputid).val(tval);
     }
 </script>
 <include file="Layout:b_js_mselector"/>
