@@ -23,19 +23,48 @@ class IndexAction extends FbaseAction {
 		$this->display();
 	}
 	public function sitemap() {
-		$this->display();
+		
 	}
 	public function aboutus(){
-		$this->display();
+		$imap['p'] = 0;
+		$imap['q'] = array(
+			'info_id' => 1
+		);
+		$minfo = D('Info');
+		$rs = $minfo->doGet($imap);
+		$this->assign('datainfo',$rs);
+		$this->display('view');
+	}
+	
+	public function contact(){
+		$imap['p'] = 0;
+		$imap['q'] = array(
+			'info_id' => 2
+		);
+		$minfo = D('Info');
+		$rs = $minfo->doGet($imap);
+		$this->assign('datainfo',$rs);
+		$this->display('view');
 	}
 	public function factory(){
-		$this->display();
-	}
-	public function contact(){
-		$this->display();
+		$imap['p'] = 0;
+		$imap['q'] = array(
+			'info_id' => 5
+		);
+		$minfo = D('Info');
+		$rs = $minfo->doGet($imap);
+		$this->assign('datainfo',$rs);
+		$this->display('view');
 	}
 	public function market(){
-		$this->display();
+		$imap['p'] = 0;
+		$imap['q'] = array(
+			'info_id' => 6
+		);
+		$minfo = D('Info');
+		$rs = $minfo->doGet($imap);
+		$this->assign('datainfo',$rs);
+		$this->display('view');
 	}
 	public function rw(){
 		$res = C('REWRITE_RULE');

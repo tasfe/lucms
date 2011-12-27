@@ -1,6 +1,6 @@
 <div class="search_box mb">
     <div class="left">
-        <form id="form1" name="form1" method="get" action="docc/products_search.php">
+        <form id="form1" name="form1" method="get" action="{:U('Product/index')}">
             <table border="0" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
@@ -8,10 +8,32 @@
                             <strong class="font_black">Products:&nbsp;</strong>
                         </td>
                         <td>
-                            <input name="textfield" class="input1" id="textfield" type="text">&nbsp;&nbsp;
+                            <input name="name" class="btn1" type="text">
                         </td>
                         <td>
-                            <input name="submit" value="Search" height="18" type="submit" width="64">
+                            <strong class="font_black">Material:&nbsp;</strong>
+                        </td>
+                        <td>
+                            <select name="attr_7" id="{$domid}_attr_7" class="btn1">
+                                <option value="">Please select</option>
+                                <volist name="sets.material" id="mvo">
+                                    <option value="{$key}">{$mvo}</option>
+                                </volist>
+                            </select>
+                        </td>
+                        <td>
+                            <strong class="font_black">Use for:&nbsp;</strong>
+                        </td>
+                        <td>
+                            <select name="attr_8" id="{$domid}_attr_8" class="btn1">
+                                <option value="">Please select</option>
+                                <volist name="sets.usefor" id="mvo">
+                                    <option value="{$key}">{$mvo}</option>
+                                </volist>
+                            </select>
+                        </td>
+                        <td>
+                            <input value="Search" height="18" type="submit" width="64">
                         </td>
                     </tr>
                 </tbody>
@@ -26,10 +48,7 @@
                         <strong class="blue">Talk to Us Now:&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                     </td>
                     <td>
-                        <a href="msnim_3achat@contact=fubei_0226_40hotmail.com"><img src="../Public/Images/btn_msn.gif" class="btn1" height="21" width="76"></a><a href="callto_3a/acemade.juniss"><img src="../Public/Images/btn_skype.gif" class="btn1" height="21" width="76"></a>
-                    </td>
-                    <td>
-                        <a href="#" class="phone"><span>+86-574-87369417</span></a>
+                        <a href="{$webinfo.webmsn}"><img src="../Public/Images/btn_msn.gif" class="btn1" height="21" width="76"></a><a href="callto_3a/{$webinfo.webskype}"><img src="../Public/Images/btn_skype.gif" class="btn1" height="21" width="76"></a>
                     </td>
                 </tr>
             </tbody>

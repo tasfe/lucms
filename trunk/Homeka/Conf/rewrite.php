@@ -41,6 +41,7 @@ return array (
 		'url_out' => "article",
 		'pattern' => "News"
 	),
+	
 	//action
 	array (
 		'url_out' => ".html",
@@ -86,7 +87,15 @@ return array (
 	array (
 		'url_out' => "-ok-asc",
 		'pattern' => "/okey/asc"
+	),
+	//其它
+	array (
+		'url_out' => "material-",
+		'pattern' => "attr_7/"
+	),
+	array (
+		'url_out' => "userfor-",
+		'pattern' => "attr_8/"
 	)
-	
 );
 ?>

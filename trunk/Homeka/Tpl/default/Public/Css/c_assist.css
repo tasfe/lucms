@@ -360,7 +360,7 @@ ul.dropdown li:hover > ul {
 
 .search_box .left {
     float: left;
-    width: 379px;
+    width: 579px;
     line-height: 18px;
     margin-left: 20px;
     overflow: hidden;
@@ -375,7 +375,7 @@ ul.dropdown li:hover > ul {
 .search_box .right {
     float: left;
     margin-left: 20px;
-    width: 532px;
+    width: 332px;
     overflow: hidden;
 }
 

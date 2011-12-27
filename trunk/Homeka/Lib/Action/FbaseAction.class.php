@@ -7,6 +7,7 @@ class FbaseAction extends Action {
 	public $map = null;
 	public $webinfo = array ();
 	public $catearr = array ();
+	public $sets = array();
 	public $seo = array ();
 	public function _initialize() {
 		$this->assign('domid', MODULE_NAME . '_' . ACTION_NAME);
@@ -21,8 +22,8 @@ class FbaseAction extends Action {
 		$srcpre = str_replace(':/', '://', $srcpre);
 		$this->assign('srcpre', $srcpre);
 		$mset = D('Set');
-		$sets = $mset->getTree();
-		$this->assign('sets', $sets);
+		$this->sets = $mset->getTree();
+		$this->assign('sets', $this->sets);
 		$this->catearr = $this->getCateTree();
 		if ($this->cate != 'product_cate')
 			$this->getCateTree('product_cate');
@@ -54,16 +55,16 @@ class FbaseAction extends Action {
 		}
 		$map['q'] = array ();
 		foreach ($maparr as $k => $v) {
-			if ($k != 'p' && $k != 'ps' && $k != 'oby' && $k != 'okey'){
+			if ($k != 'p' && $k != 'ps' && $k != 'oby' && $k != 'okey') {
 				//echo $k;
-				$map['q'][$k] = $v;
+				if($v != '') $map['q'][$k] = $v;
 			}
-				
-			if ($k == 'cate_id') {
+			
+			//if ($k == 'cate_id') {
 				//unset ($map['q'][$k]);
 				//$cmap = $this->getCateMap($v);
 				//$map['q'] = array_merge($map['q'], $cmap);
-			}
+			//}
 		}
 		$par = $map;
 		$this->map = $map;
@@ -83,18 +84,22 @@ class FbaseAction extends Action {
 		$this->assign('datalist', $datalist['list']);
 		$this->assign('pageinfo', $datalist['page']);
 		$this->initPage($datalist['page'], $maparr['page']);
-		$cate_id = isset($_GET['cate_id'])? trim($_GET['cate_id']):0;
-		$this->assign('cateinfo',null);
-		if($cate_id){
-			$cateinfo = $this->catearr[$cate_id];
-			if(empty($cateinfo)){
+		$cate_id = isset ($_GET['cate_id']) ? trim($_GET['cate_id']) : 0;
+		$this->assign('cateinfo', null);
+		if (method_exists($this, 'setMySeo')) {
+			$this->setMySeo();
+		} else {
+			if ($cate_id) {
+				$cateinfo = $this->catearr[$cate_id];
+				if (empty ($cateinfo)) {
+					$this->setSeo(MODULE_NAME, $this->webinfo['seokeywords']);
+				} else {
+					$this->assign('cateinfo', $cateinfo);
+					$this->setSeo($cateinfo['name'], $cateinfo['keyword'], $cateinfo['detail']);
+				}
+			} else {
 				$this->setSeo(MODULE_NAME, $this->webinfo['seokeywords']);
-			}else{
-				$this->assign('cateinfo',$cateinfo);
-				$this->setSeo($cateinfo['name'], $cateinfo['keyword'],$cateinfo['detail']);
 			}
-		}else{
-			$this->setSeo(MODULE_NAME, $this->webinfo['seokeywords']);
 		}
 		$this->display();
 	}

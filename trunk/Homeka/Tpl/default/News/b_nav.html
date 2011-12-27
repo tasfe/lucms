@@ -1,0 +1,23 @@
+<eq name="ACTION_NAME" value="index">
+    <a href="{:U('Index/index')}">Home </a>&gt; <a href="{:U('News/index')}">Articles</a>
+    <notempty name="cateinfo">
+        <volist name="cateinfo.parr" id="vo">
+        	<neq name="vo" value="0">
+        		&gt; <a href="{:U('News/index?cate_id='.$vo)}">{$news_cates[$vo]['name']}</a>
+        	</neq>
+        </volist>
+    </notempty>
+</eq>
+<eq name="ACTION_NAME" value="view">
+    <a href="{:U('Index/index')}">Home </a>&gt; 
+    <notempty name="datainfo.cate_1">
+        <a href="{:U('News/index?cate_id='.$datainfo['cate_1'])}">{$news_cates[$datainfo['cate_1']]['name']}</a>&gt;
+    </notempty>
+    <notempty name="datainfo.cate_2">
+        <a href="{:U('News/index?cate_id='.$datainfo['cate_2'])}">{$news_cates[$datainfo['cate_2']]['name']}</a>&gt;
+    </notempty>
+    <notempty name="datainfo.cate_3">
+        <a href="{:U('News/index?cate_id='.$datainfo['cate_3'])}">{$news_cates[$datainfo['cate_3']]['name']}</a>&gt;
+    </notempty>
+    <span>{$datainfo.name}</span>
+</eq>
