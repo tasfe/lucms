@@ -9,24 +9,25 @@
         <div class="navs">
             <include file="Product:b_nav"/>
         </div>
-		<empty name="cateinfo">
-			<h2 class="uc_title">Gloves</h2>
-			<else/>
-			<h2 class="uc_title">{$cateinfo.name}</h2>
-		</empty>
-        
+        <empty name="cateinfo">
+            <h2 class="uc_title">Gloves</h2>
+            <else/><h2 class="uc_title">{$cateinfo.name}</h2>
+        </empty>
         <div class="pro_list mh350 mt">
             <ul>
                 <volist name="datalist" id="vo">
                     <li class="pro_item">
                         <a class="pro_img" href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['thumb']|initMedia='146px','146px',$srcpre,'alt:'.$vo['name']}</a>
-                        <h3 class="pro_tit"><a  href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['name']}</a></h3>
+                        <h3 class="pro_tit"><a href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['name']}</a></h3>
                         <div class="pro_intr">
-                           {$vo.summary|msubstr=0,120}
+                            {$vo.summary|msubstr=0,120}
                         </div>
                         <div class="pro_attr">
-                            <span><strong>Min. Order</strong>: 500 Dozens</span>
-                            <span><strong>FOB Price</strong>: US $0.4-0.5 / Pair</span>
+                            <volist name="vo.attr" id="avo" key="ck">
+                                <lt name="ck" value="4">
+                                    <span><strong>{$avo.label}</strong>:{$avo.val}</span>
+                                </lt>
+                            </volist>
                         </div>
                         <a class="pro_more" href="{:U('Product/view?product_id='.$vo['product_id'])}" alt="{$vo['name']}">View Details</a>
                     </li>

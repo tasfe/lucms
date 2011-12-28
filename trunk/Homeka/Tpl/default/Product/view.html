@@ -23,26 +23,13 @@
             </div>
             <div class="pro_attrs fr">
                 <ul class="attr_box">
-                    <li>
-                        <strong>Attr1:</strong>
-                        {$datainfo.attr_1}
+                	<volist name="datainfo.attr" id="vo">
+                		<li>
+                        <strong>{$vo.label}:</strong>
+                        {$vo.val}
                     </li>
-                    <li>
-                        <strong>Attr2:</strong>
-                        {$datainfo.attr_2}
-                    </li>
-                    <li>
-                        <strong>Attr3:</strong>
-                        {$datainfo.attr_3}
-                    </li>
-                    <li>
-                        <strong>Attr4:</strong>
-                        {$datainfo.attr_4}
-                    </li>
-                    <li>
-                        <strong>Attr5:</strong>
-                        {$datainfo.attr_5}
-                    </li>
+                	</volist>
+                    
                 </ul>
                 <div class="kf_box mb mt">
                     <include file="Product:b_contact"/>
