@@ -20,7 +20,7 @@ $array=array(
 	//'DEFAULT_THEME' => 'dwz',
 	//'URL_MODEL' => 0,
 	//'URL_DISPATCH_ON' => false,
-	'REWRITE_RULE_ON' => true,
+	'REWRITE_RULE_ON' => false,
 	'REWRITE_RULE'    => $rewrite_rule
 );
 return array_merge($config_global,$config_app,$array);
