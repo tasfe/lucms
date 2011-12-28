@@ -1,34 +1,18 @@
 <IfModule mod_rewrite.c> 
 RewriteEngine on
 #RewriteCond %{HTTP_HOST} ^cocodiy.com [NC]
-#RewriteRule ^(.*)$ http://www.cocodiy.com/$1 [L,R=301]
-#RewriteRule (.*)A(.*) $1B$2 [QSA,PT,N]
-#product/p-2ps-3.html product/p/2ps.html  product/p/2ps/3.html product/p/2/ps/3.html
-#product/p-2ps-3o-idok-asc.html product/p/2ps3o-idok-asc.html  product/p/2ps/3o-idok-asc.html product/p/2/ps/3o-idok-asc.html product/p/2/ps/3o-idok-asc.html 
-#product/p-2.html
-#RewriteRule (.*) index.php/$1 [QSA,PT,N]
-
 #Index MOD
-RewriteRule ^aboutus\.html$ index.php/Index/aboutus [QSA,PT,L]
-RewriteRule ^market\.html$ index.php/Index/market [QSA,PT,L]
-RewriteRule ^factory\.html$ index.php/Index/factory [QSA,PT,L]
-RewriteRule ^sitemap\.html$ index.php/Index/sitemap [QSA,PT,L]
-RewriteRule ^contact\.html$ index.php/Index/contact [QSA,PT,L]
-#GB MOD
-RewriteRule (.*)-p-(.*) $1/p/$2 [QSA,PT,N]
-RewriteRule (.*)-ps-(.*) $1/ps/$2 [QSA,PT,N]
-RewriteRule (.*)-o-(.*) $1/oby/$2 [QSA,PT,N]
-RewriteRule (.*)-ps-(.*) $1/ps/$2 [QSA,PT,N]
-RewriteRule (.*)-ok-asc(.*) $1/okey/asc$2 [QSA,PT,N]
-RewriteRule (.*)/cate-(.*) $1/index/cate_id/$2 [QSA,PT,N]
-#PRODUCT
-RewriteRule ^gloves(.*) index.php/Product$1 [QSA,PT,N]
-RewriteRule (.*)Product/id-(.*) $1/Product/view/product_id/$2 [QSA,PT,L]
-RewriteRule (.*)Product/material-(.*) $1/Product/index/attr_7/$2 [QSA,PT,L]
-RewriteRule (.*)Product/userfor-(.*) $1/Product/index/attr_8/$2 [QSA,PT,L]
-#News
-RewriteRule ^article(.*) index.php/News$1 [QSA,PT,N]
-RewriteRule (.*)News/id-(.*) $1/News/view/news_id/$2 [QSA,PT,L]
+RewriteRule ^Index\.html$ h.php/Index/index [QSA,PT,L]
+RewriteRule ^service\.htm$ h.php/Index/service [QSA,PT,L]
+RewriteRule ^contact\.htm$ h.php/Index/contact [QSA,PT,L]
+RewriteRule ^products-lace\ wigs.htm$ h.php/Product/index/cate_id/1 [QSA,PT,L]
+RewriteRule ^products-toupee.htm h.php/Product/index/cate_id/2 [QSA,PT,L]
+RewriteRule ^products-frontal.htm h.php/Product/index/cate_id/3 [QSA,PT,L]
+RewriteRule ^products-weft\ hair.htm h.php/Product/index/cate_id/4 [QSA,PT,L]
+RewriteRule ^products-prebonded\ hair.htm h.php/Product/index/cate_id/5 [QSA,PT,L]
+RewriteRule ^products-color\ chart.htm h.php/Product/index/cate_id/6 [QSA,PT,L]
+RewriteRule ^products-mannequin\.htm h.php/Product/index/cate_id/7 [QSA,PT,L]
 
+RewriteRule ^products.htm$ h.php/Product/index [QSA,PT,L]
 errorDocument 404 /404.html
 </IfModule>
