@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 #header {
-    background: url(../images/header_bg_rp.jpg);
+    background: url(../Images/header_bg_rp.jpg);
 }
 
 .header_bg {
@@ -30,7 +30,7 @@
 .top_nav {
     margin: 0px auto;
     height: 26px;
-    background: url(../images/bg_menu.jpg);
+    background: url(../Images/bg_menu.jpg);
     width: 994px;
     border-bottom: 1px #ccc solid;
     padding: 6px 0px 0px 6px;
@@ -68,12 +68,12 @@ ul.dropdown a span {
 }
 
 ul.dropdown li.hover a, ul.dropdown a.alive, ul.dropdown a:hover {
-    background: url("../images/bg_menu_right.gif") no-repeat right;
+    background: url("../Images/bg_menu_right.gif") no-repeat right;
     color: #FFF;
 }
 
 ul.dropdown li.hover a span, ul.dropdown a.alive span, ul.dropdown a:hover span {
-    background: url(../images/bg_menu_left.gif) no-repeat left;
+    background: url(../Images/bg_menu_left.gif) no-repeat left;
 }
 * html ul.dropdown li a span {
     padding: 0px 16px;
@@ -85,7 +85,7 @@ ul.dropdown a:hover {
 }
 
 ul.dropdown a.alive span {
-    background: url("../images/bg_menu_left.gif") left center no-repeat;
+    background: url("../Images/bg_menu_left.gif") left center no-repeat;
 }
 
 ul.dropdown a:active {
@@ -176,7 +176,7 @@ ul.dropdown li:hover > ul {
 
 /* slide box */
 #slide_box {
-    background: url(../images/bg01.jpg) repeat-x;
+    background: url(../Images/bg01.jpg) repeat-x;
     width: 1000px;
     margin: 0px auto;
     height: 314px;
@@ -346,7 +346,7 @@ ul.dropdown li:hover > ul {
     margin: 0px auto;
     padding: 3px 0px;
     border-bottom: solid 1px #CECECE;
-    background: url("../images/bg_search.jpg") repeat-x;
+    background: url("../Images/bg_search.jpg") repeat-x;
 }
 
 .search_box h1 {
@@ -448,7 +448,7 @@ ul.dropdown li:hover > ul {
 .menu_l .title {
     font-size: 18px;
     color: #FFF;
-    background: url(../images/bg_sidebar.gif);
+    background: url(../Images/bg_sidebar.gif);
     height: 27px;
     padding: 9px 0px 0px 22px
 }
@@ -456,7 +456,7 @@ ul.dropdown li:hover > ul {
 .menu_l .title1 {
     font-size: 18px;
     color: #000;
-    background: url(../images/bk01.jpg) no-repeat center 33px;
+    background: url(../Images/bk01.jpg) no-repeat center 33px;
     height: 27px;
     padding: 3px 0px 5px 12px
 }
@@ -474,12 +474,12 @@ ul.dropdown li:hover > ul {
     padding-left: 26px;
     line-height: 24px;
     color: #000;
-    background: url(../images/ico01.gif) no-repeat 10px 10px;
+    background: url(../Images/ico01.gif) no-repeat 10px 10px;
 }
 
 .menu_l ul li a:hover, .menu_l ul li .on_1 {
     color: #fff;
-    background: url(../images/ico01.gif) no-repeat 10px 10px #758a8f;
+    background: url(../Images/ico01.gif) no-repeat 10px 10px #758a8f;
 }
 
 .menu_l ul li ul {
@@ -498,7 +498,7 @@ ul.dropdown li:hover > ul {
 }
 
 .menu_l ul li ul li a:hover, .menu_l ul li ul li .on {
-    background: url(../images/ico04.gif) no-repeat 160px 10px #758a8f;
+    background: url(../Images/ico04.gif) no-repeat 160px 10px #758a8f;
     border-bottom: 1px #fff dotted;
     font-weight: normal;
     color: #fff;
