@@ -592,7 +592,9 @@ ul.dropdown li:hover > ul {
     top: 110px;
     padding: 2px;
 }
-
+.pro_attr span {
+	margin-right:10px;
+}
 .pro_more {
     position: absolute;
     right: 10px;

@@ -57,7 +57,9 @@
     
     function SetFileField(fileUrl){
         $('#' + gsrcid).attr('src', fileUrl);
-		var tval = fileUrl.replace(/\__ROOT__\/Uploads\//,"");
+		var root = '__ROOT__';
+		var rootp=new RegExp("__ROOT__/Uploads/");
+		var tval = fileUrl.replace(rootp,"");
         $('#' + ginputid).val(tval);
     }
 </script>

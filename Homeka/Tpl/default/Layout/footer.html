@@ -3,15 +3,15 @@
 <div id="footer">
     <p class="link mt">
         <a href="{:U('Index/index')}">Home</a>
-        |<a href="{:U('Product/index')}">Gloves</a>
-		|<a href="{:U('Product/index')}">Gloves</a>
-		|<a href="{:U('Product/index')}">Gloves</a>
-		|<a href="{:U('Product/index')}">Gloves</a>
-		|<a href="{:U('Product/index')}">Gloves</a>
-		|<a href="{:U('Product/index')}">Gloves</a>
-		|<a href="{:U('Product/index')}">Gloves</a>
-		|<a href="{:U('Product/index')}">Gloves</a>
-        |<a href="{:U('Product/index')}">Site Map</a>
+		<volist name="product_cates" id="vo">
+			<eq name="vo.parent" value="0">
+			|<a href="{:U('Product/index?cate_id='.$vo['cate_id'])}">{$vo['name']}</a>
+			</eq>
+		</volist>
+		<volist name="sets.material" id="vo">
+			|<a href="{:U('Product/index?attr_7='.$key)}">{$vo}</a>
+		</volist>
+        |<a href="{:U('Index/contact')}">Contact Us</a>
     </p>
     <p class="copyright">
         <strong>CopyRight © 2003-2012 {$webinfo.webcom}. All rights reserved. ICP:{$webinfo.webicp} .</strong>
