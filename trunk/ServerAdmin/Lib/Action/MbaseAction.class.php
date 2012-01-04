@@ -36,9 +36,10 @@ class MbaseAction extends Action {
 			'ps' => $ps
 		);
 		$map = array_merge ($map,array('q'=>$maparr));
-		foreach($map as $k=>$v){
-			if(trim($v) == '') unset($map[$k]);
+		foreach($map['q'] as $k=>$v){
+			if(trim($v) == '' && !is_array($v)) unset($map['q'][$k]);
 		}
+		//dump($map);
 		return $map;
 	}
 	public $act = array(
