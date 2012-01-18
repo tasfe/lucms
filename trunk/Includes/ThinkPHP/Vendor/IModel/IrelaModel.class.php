@@ -479,6 +479,8 @@ class IrelaModel extends RelationModel {
 						} else {
 							return false;
 						}
+					}else{
+						$this->putRela($cname, $map[$mpk], null, true);
 					}
 			}
 		}
@@ -602,7 +604,7 @@ class IrelaModel extends RelationModel {
 		}
 		if (empty ($data)) {
 			$tdata = $this->getForm(2, true);
-			$data = $tdata[$r];
+			$data = isset($tdata[$r])? $tdata[$r]:null;
 		}
 
 		$rmodelname = ucfirst(strtolower($this->_link[$r]['class_name']));
