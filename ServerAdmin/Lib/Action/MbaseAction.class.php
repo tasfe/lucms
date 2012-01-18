@@ -129,7 +129,9 @@ class MbaseAction extends Action {
 		}
 
 	}
-	
+	public function delete(){
+		$this->del();
+	}
 	public function view() {
 		$mpk_val = isset ($_GET[$this->mpk]) ? $_GET[$this->mpk] : 0;
 		if (!$mpk_val)
