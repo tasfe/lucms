@@ -93,10 +93,6 @@ class NewsModel extends IrelaModel {
 			't' => 'input',
 			'v' => ''
 		),
-		'annex' => array (
-			't' => 'input',
-			'v' => ''
-		),
 		'level' => array (
 			't' => 'select',
 			'v' => 1
@@ -116,11 +112,7 @@ class NewsModel extends IrelaModel {
 		'auth' => array (
 			't' => 'input',
 			'v' => ''
-		),  
-		'is_topic' => array (
-			't' => 'input',
-			'v' => 0
-		),
+		), 
 		'text' => array (
 			't' => 'relation_one',
 			'mpk' => 'id',
