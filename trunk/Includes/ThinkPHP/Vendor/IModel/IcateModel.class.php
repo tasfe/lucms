@@ -236,7 +236,7 @@ class IcateModel extends IbaseModel {
 			$this->error = '无数据';
 			return false;
 		}
-		$cid = parent :: doDelete($par);
+		$cid = parent :: doDel($par);
 		$this->getTree(1);
 		return $cid;
 	}
