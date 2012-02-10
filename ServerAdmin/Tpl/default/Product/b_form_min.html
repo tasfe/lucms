@@ -7,22 +7,23 @@
                 <label>
                     产品编号:
                 </label>
-                <input type="text" name="code" size="50" class="required" value="{$datainfo.code}">
+                <empty name="datainfo">
+                    <input type="text" name="code" size="50" class="required" value="P{:date('mdhis')}"><else/><input type="text" name="code" size="50" class="required" value="{$datainfo.code}">
+                </empty>
             </div>
             <div class="unit">
                 <label>
                     产品名称:
                 </label>
                 <input type="text" name="name" size="50" class="required" value="{$datainfo.name}">
-            </div>
-			<!--
+            </div><!--
             <div class="unit">
-                <label>
-                    EName:
-                </label>
-                <input type="text" name="ename" size="50" class="required" value="{$datainfo.ename}">
+            <label>
+            EName:
+            </label>
+            <input type="text" name="ename" size="50" class="required" value="{$datainfo.ename}">
             </div>
-			 -->
+            -->
             <div class="unit">
                 <label>
                     产品分类:
@@ -31,24 +32,27 @@
                 <div class="clear">
                 </div>
             </div>
+			
             <div class="unit">
                 <label>
                     预览图:
                 </label>
                 <input type="text" size="30" id="{$domid}_img" name="thumb" value="{$datainfo['thumb']}"/><input type="button" value="上传" onclick="fupload('{$domid}_img','{$domid}_img_view')"/>
             </div>
+			
             <div class="unit">
                 <label>
                     预览:
                 </label>
                 {$datainfo['thumb']|advstr='200px','',$srcpre,'id:'.$domid.'_img_view'}
             </div>
+			<!-- 
             <div class="unit">
                 <label>
                     材料:
                 </label>
                 <select name="attr_7" id="{$domid}_attr_7">
-                	<option value="0">请选择</option>
+                    <option value="0">请选择</option>
                     <volist name="sets.material" id="mvo">
                         <option value="{$key}">{$mvo}</option>
                     </volist>
@@ -59,13 +63,12 @@
                     用途:
                 </label>
                 <select name="attr_8" id="{$domid}_attr_8">
-                	<option value="0">请选择</option>
+                    <option value="0">请选择</option>
                     <volist name="sets.usefor" id="mvo">
                         <option value="{$key}">{$mvo}</option>
                     </volist>
                 </select>
             </div>
-			<!--
             <div class="unit">
             <label>
             属性1:
@@ -134,25 +137,9 @@
             </div>
         </div>
     </div>
-    <div class="divider">
-    </div>
-    <div class="panel">
-        <h1>产品自定义属性</h1>
-        <div>
-            <include file="b_form_attr" />
-        </div>
-    </div>
-    <div class="divider">
-    </div>
-    <div class="panel">
-        <h1>产品图片</h1>
-        <div>
-            <include file="b_form_img" />
-        </div>
-    </div>
 </div>
 <script>
-    	$('#{$domid}_grade').val({$datainfo.grade});
-		$('#{$domid}_attr_7').val({$datainfo.attr_7});
-		$('#{$domid}_attr_8').val({$datainfo.attr_8});
+        	$('#{$domid}_grade').val({$datainfo.grade});
+    		$('#{$domid}_attr_7').val({$datainfo.attr_7});
+    		$('#{$domid}_attr_8').val({$datainfo.attr_8});
 </script>
