@@ -178,6 +178,9 @@ class IbaseModel extends Model {
 					$mcate = D(ucfirst(strtolower($ck)));
 					if (method_exists($mcate, 'getPath')) {
 						$catemap = $mcate->getPath($this->qmap['q'][$cvo]);
+						foreach($catemap as $mk=>$mo){
+							if($mo == 0) unset($catemap[$mk]);
+						}
 						unset ($this->qmap['q'][$cvo]);
 						$this->qmap['q'] = array_merge($this->qmap['q'], $catemap);
 					}
