@@ -50,7 +50,7 @@ class IrelaModel extends RelationModel {
 	 +----------------------------------------------------------
 	 */
 	public $fields_set = array (
-		//		'classroom_id' => array (
+	//		'classroom_id' => array (
 	//			't' => 'input',
 	//			'v' => 0
 	//		),
@@ -88,7 +88,7 @@ class IrelaModel extends RelationModel {
 	//			'oid' => 'company_id',
 	//			'mtb' => '',
 	//			'v' => array (
-	//				'school_id' => array (
+	//				'student_id' => array (
 	//					't' => 'input',
 	//					'v' => ''
 	//				),
@@ -184,6 +184,12 @@ class IrelaModel extends RelationModel {
 			}
 		}
 		foreach($this->qmap['q'] as $k => $vo){
+			$pattern = '/^arr/';
+			if(preg_match($pattern,$vo, $matches)){
+				$tcon = explode(':',substr(substr($vo,4),0,-1));
+				//$tcon = json_decode(substr($vo,3),true);
+				$this->qmap['q'][$k] = array($tcon[0],$tcon[1]);
+			}
 			if(!in_array($k,$DbFields)) unset($this->qmap['q'][$k]);
 		}
 	}
@@ -482,8 +488,6 @@ class IrelaModel extends RelationModel {
 						} else {
 							return false;
 						}
-					}else{
-						$this->putRela($cname, $map[$mpk], null, true);
 					}
 			}
 		}
@@ -607,7 +611,7 @@ class IrelaModel extends RelationModel {
 		}
 		if (empty ($data)) {
 			$tdata = $this->getForm(2, true);
-			$data = isset($tdata[$r])? $tdata[$r]:null;
+			$data = $tdata[$r];
 		}
 
 		$rmodelname = ucfirst(strtolower($this->_link[$r]['class_name']));
@@ -623,18 +627,25 @@ class IrelaModel extends RelationModel {
 		
 		if ($this->fields_set[$r]['t'] == 'relation_one') {
 			$data[$main_mpk] = $mpk_val;
-			if (!empty ($data[$sub_mpk])) {
-				$map[$sub_mpk] = $data[$sub_mpk];
-				if (isset ($data[$sub_mpk]))
-					unset ($data[$sub_mpk]);
-				$rs = $subm->where($map)->save($data);
-			} else {
-				if (!$rs = $subm->add($data)) {
-					$this->error = 'error2:' . $subm->getLastSql();
-					$this->rollback();
-					return false;
-				}
+			$map[$main_mpk] = $mpk_val;
+			$subm->where($map)->delete();
+			if (!$rs = $subm->add($data)) {
+				$this->error = 'error2:' . $subm->getLastSql();
+				$this->rollback();
+				return false;
 			}
+//			if (!empty ($data[$sub_mpk])) {
+//				$map[$sub_mpk] = $data[$sub_mpk];
+//				if (isset ($data[$sub_mpk]))
+//					unset ($data[$sub_mpk]);
+//				$rs = $subm->where($map)->save($data);
+//			} else {
+//				if (!$rs = $subm->add($data)) {
+//					$this->error = 'error2:' . $subm->getLastSql();
+//					$this->rollback();
+//					return false;
+//				}
+//			}
 		} else {
 			if ($delmark) {
 				$tsubkeys = array();
