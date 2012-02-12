@@ -132,6 +132,22 @@ class MbaseAction extends Action {
 	public function delete(){
 		$this->del();
 	}
+	public function cp(){
+		$mpk_val = isset ($_POST[$this->mpk]) ? $_POST[$this->mpk] : 0;
+		$data[$this->mpk] = $mpk_val;
+		if (empty($data[$this->mpk])) {
+			$this->error('no mpk', 0);
+			return false;
+		} 
+		$rs = $this->obj->doCopy($data);
+		if (!$rs) {
+			$this->error($this->obj->getError(), 0);
+			return false;
+		} else {
+			$this->setReload('navtab',MODULE_NAME.'_index');
+			$this->success('ok');
+		}
+	}
 	public function view() {
 		$mpk_val = isset ($_GET[$this->mpk]) ? $_GET[$this->mpk] : 0;
 		if (!$mpk_val)
