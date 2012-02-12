@@ -571,6 +571,74 @@ class IrelaModel extends RelationModel {
 		$this->commit();
 		return true;
 	}
+	public function doCopy($qmap = null, $rela = true){
+		$tmap = array ();
+		$mpk = $this->getPk();
+		$tmap[$mpk] = isset ($_POST[$mpk]) ? $_POST[$mpk] : 0;
+		if (empty ($qmap))
+			$qmap = $tmap;
+		if (empty ($qmap)) {
+			$this->error = L('_SELECT_NOT_EXIST_');
+			return false;
+		}
+		$data = array();
+		if($rela){
+			$data = $this->relation($rela)->where($qmap)->find();
+		}else{
+			$data = $this->where($qmap)->find();
+		}
+		if (empty ($data)) {
+			$this->error = '无数据';
+		} else {
+			$data = $this->getData($data, 1, $rela);
+			$data[$mpk] = '';
+			foreach ($this->fields_set as $cname => $cset) {
+				if(isset($data[$cname])){
+					switch ($cset['t']) {
+						case 'relation_one' : 
+							if(isset($this->_link[$cname])){
+								$mt = M($this->_link[$cname]['class_name']);
+								$mtpk = $mt->getPk();
+								if(isset($data[$cname][$mtpk])) $data[$cname][$mtpk] = '';
+							}
+							$data[$cname][$mpk] = '';
+						break;
+						case 'relation_many' : 
+							$mtpk = '';
+							if(isset($this->_link[$cname])){
+								$mt = M($this->_link[$cname]['class_name']);
+								$mtpk = $mt->getPk();
+							}
+							foreach($data[$cname] as $ck => $cvo){
+								$data[$cname][$ck][$mpk] = '';
+								$data[$cname][$ck][$mtpk] = '';
+							}
+							
+						break;
+					}
+				
+				}
+			}
+			
+		}
+
+		if (!$this->create($data)) {
+			if (empty ($this->error))
+				$this->error = '数据类型错误，请检查提交字段';
+			return false;
+		}
+		if ($rela) {
+			$rs = $this->relation($rela)->add($data);
+			if (!$rs)
+				$this->error = $this->getLastSql();
+			return $rs;
+		} else {
+			$rs = $this->add($data);
+			if (!$rs)
+				$this->error = $this->getLastSql();
+			return $rs;
+		}
+	}
 	public function autoInc($mpk_val){
 		if(empty($mpk_val)) return false;
 		$map[$this->getPk()] = $mpk_val;
