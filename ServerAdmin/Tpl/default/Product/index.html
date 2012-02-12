@@ -38,6 +38,7 @@
                     </td>
                     <td>
                         <a href="{:U('edit?'.$mpk.'='.$vo[$mpk])}" rel="{$Think.MODULE_NAME}_edit" title="编辑商品:{$vo[$mpk]}" class="tbutton" target="dialog" width="900" height="600">编辑</a>
+						<a href="{:U('cp')}" target="ajaxTodo" title="确定要复制吗?" data="{$mpk}={$vo[$mpk]}" class="tbutton">复制</a>
                         <a href="{:U('del')}" target="ajaxTodo" title="确定要删除吗?" data="{$mpk}={$vo[$mpk]}" class="tbutton">删除</a>
                     </td>
                 </tr>
