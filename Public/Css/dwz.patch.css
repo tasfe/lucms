@@ -6,22 +6,26 @@
     color: blue;
 }
 
-.tbutton, a.tbutton, a.tbutton:hover {
-    background: #EBF0F5;
-    border: 1px solid #B8D0D6;
+.tbutton,a.tbutton {
+    background: url("../Images/bt.jpg");
     color: #666;
-    line-height: 22px;
-    padding: 1px 7px;
+    padding: 2px 7px;
     cursor: pointer;
+	line-height: 20px;
     text-decoration: none;
     font-size: 12px;
-    text-decoration: none;
+	margin-left:5px;
+	border:1px solid #d5d5d5;
+}
+.tbutton, a.tbutton:hover{
+	 background: url("../Images/bton.jpg") ;
 }
 
 table.list a {
     color: #666;
     font-size: 12px;
-    line-height: 22px;
+    line-height: 20px;
+    text-decoration: none;
 }
 
 table.list a.tbutton:hover {
@@ -69,9 +73,24 @@ table.list a.tbutton:hover {
 .headerNav .version {
     display: block;
     float: left;
-	font-size:12px;
-	font-weight:bolder;
-	color:#fff;
-	line-height:50px;
-	margin-left:-20px;
+    font-size: 12px;
+    font-weight: bolder;
+    color: #fff;
+    line-height: 50px;
+    margin-left: -20px;
+}
+
+table.list .selected {
+    background: #dfdfdf;
+}
+
+ul.rightTools {
+    float: right;
+    display: block;
+}
+
+ul.rightTools li {
+    float: left;
+    display: block;
+    margin-left: 5px
 }
