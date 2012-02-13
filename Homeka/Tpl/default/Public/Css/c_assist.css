@@ -849,12 +849,12 @@ div.ic_myCarousel, div.ic_myCarousel2 {
 }
 .ic_myCarousel .ic_button {
 	float: left;
-	height: 40px;
-	line-height: 40px;
+	height: 28px;
+	line-height: 28px;
 	margin: 0 4px 0 2px;
-	width: 40px;
+	width: 28px;
 	border: 1px solid #eee;
-	background: #ddd;
+	background: #026BAD;
 }
 .ic_thumbnails {
 	display: inline-block;
