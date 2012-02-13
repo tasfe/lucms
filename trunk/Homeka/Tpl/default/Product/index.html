@@ -17,7 +17,7 @@
             <ul>
                 <volist name="datalist" id="vo">
                     <li class="pro_item">
-                        <a class="pro_img" href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['thumb']|initMedia='146px','146px',$srcpre,'alt:'.$vo['name']}</a>
+                        <a class="pro_img" href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['thumb']|initMedia='146px','146px',$srcpre.'_thumb/','alt:'.$vo['name']}</a>
                         <h3 class="pro_tit"><a href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['name']}</a></h3>
                         <div class="pro_intr">
                             {$vo.summary|msubstr=0,120}

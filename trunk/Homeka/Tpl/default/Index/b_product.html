@@ -6,7 +6,7 @@
         <volist name="gdata.product" id="vo">
             <li>
                 <div class="th">
-                    <a href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['thumb']|initMedia='146px','146px',$srcpre,'alt:'.$vo['name']}</a>
+                    <a href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['thumb']|initMedia='146px','146px',$srcpre.'_thumb/','alt:'.$vo['name']}</a>
                 </div>
                 <h3><a href="{:U('Product/view?product_id='.$vo['product_id'])}" target="_blank">{$vo['name']}</a></h3>
             </li>
