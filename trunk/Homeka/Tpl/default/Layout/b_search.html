@@ -14,7 +14,7 @@
                             <strong class="font_black">Material:&nbsp;</strong>
                         </td>
                         <td>
-                            <select name="attr_7" id="{$domid}_attr_7" class="btn1" style="width:160px">
+                            <select name="attr_7" id="{$domid}_attr_7" class="btn1" style="width:95px">
                                 <option value="">Please select</option>
                                 <volist name="sets.material" id="mvo">
                                     <option value="{$key}">{$mvo}</option>
@@ -25,7 +25,7 @@
                             <strong class="font_black">Use for:&nbsp;</strong>
                         </td>
                         <td>
-                            <select name="attr_8" id="{$domid}_attr_8" class="btn1"  style="width:160px">
+                            <select name="attr_8" id="{$domid}_attr_8" class="btn1"  style="width:95px">
                                 <option value="">Please select</option>
                                 <volist name="sets.usefor" id="mvo">
                                     <option value="{$key}">{$mvo}</option>
@@ -48,7 +48,7 @@
                         <strong class="blue">Talk to Us Now:&nbsp;&nbsp;&nbsp;&nbsp;</strong>
                     </td>
                     <td>
-                        <a href="{$webinfo.webmsn}"><img src="../Public/Images/btn_msn.gif" class="btn1" height="21" width="76"></a><a href="callto_3a/{$webinfo.webskype}"><img src="../Public/Images/btn_skype.gif" class="btn1" height="21" width="76"></a>
+                        <a href="msnim:chat?contact={$webinfo.webmsn}"  target="_blank"><img src="../Public/Images/btn_msn.gif" class="btn1" height="21" width="76"></a><a href="callto://{$webinfo.webskype}" target="_blank"><img src="../Public/Images/btn_skype.gif" class="btn1" height="21" width="76"></a>
                     </td>
                 </tr>
             </tbody>
