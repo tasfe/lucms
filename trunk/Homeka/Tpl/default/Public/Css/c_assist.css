@@ -842,3 +842,33 @@ ul.dropdown li:hover > ul {
     text-align: center;
     color: #636363;
 }
+
+div.ic_myCarousel, div.ic_myCarousel2 {
+	margin: 20px auto 0 auto;
+	clear:right;
+}
+.ic_myCarousel .ic_button {
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 4px 0 2px;
+	width: 40px;
+	border: 1px solid #eee;
+	background: #ddd;
+}
+.ic_thumbnails {
+	display: inline-block;
+	font: bold 14px Arial, sans-serif;
+}
+.ic_myCarousel .ic_active  {
+	background: #fff;
+	border: 1px solid #faa;
+}
+.ic_caption {
+	opacity: .6;
+	background: #fff;
+	font-size: 12px;
+	font-family: arial;
+	padding: 4px 8px;
+	width: auto;
+}
