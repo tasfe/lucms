@@ -81,11 +81,21 @@
 <script type="text/javascript">
     $(function(){
         $('#carousel').infiniteCarousel({
-            transitionSpeed: 500,
-            displayProgressBar: false,
-            thumbnailFontSize: 11,
-            displayProgressBar: false,
-            imagePath: '../Public/Images/other/'
+			imagePath: '../Public/Images/product/',
+			transitionSpeed:300,
+			displayTime: 6000,
+			internalThumbnails: false,
+			thumbnailType: 'numbers',
+			customClass: 'myCarousel',
+			progressRingColorOpacity: '0,0,0,.9',
+			progressRingBackgroundOn: false,
+			easeLeft: 'easeOutExpo',
+			easeRight:'easeOutQuart',
+			inView: 1,
+			advance: 1,
+			autoPilot: false,
+			prevNextInternal: false,
+			autoHideCaptions: true
         });
         
         $('div.thumb').parent().css({ // 'margin': '0 auto',
