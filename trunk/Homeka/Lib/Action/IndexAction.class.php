@@ -11,7 +11,7 @@ class IndexAction extends FbaseAction {
 		$gdata['intr2'] = $minfo->doGet($imap);
 		
 		$pmap['p'] = 1;
-		$pmap['ps'] = 4;
+		$pmap['ps'] = 12;
 		$pmap['o'] = array(
 			'oby' => 'grade',
 			'okey' => 'desc'
