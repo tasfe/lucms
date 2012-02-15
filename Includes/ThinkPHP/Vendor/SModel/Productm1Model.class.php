@@ -9,6 +9,9 @@
 // | Author: uuleaf <uuleaf@163.com>
 // +----------------------------------------------------------------------
 class ProductModel extends IrelaModel {
+	public $cate_set = array (
+		'Product_cate' => 'cate_id'
+	);
 	/**
 	 +----------------------------------------------------------
 	 * 关联设置
