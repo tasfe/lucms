@@ -10,7 +10,7 @@
                         class="on" rel="{$vo['cate_id']}"
                     </eq>><strong>{$vo.name}</strong></a>
                 <notempty name="vo.childs">
-                    <ul class=""subcate" rel="{$vo['cate_id']}">
+                    <ul class="subcate" rel="{$vo['cate_id']}">
                         <volist name="vo.childs" id="cvo">
                             <li>
                                 <a href="{:U('Product/index?cate_id='.$cvo)}"

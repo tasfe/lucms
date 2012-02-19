@@ -434,6 +434,9 @@ ul.dropdown li:hover > ul {
 	font-weight: normal;
 	color: #fff;
 }
+.subcate {
+	display: none;
+}
 /* index  */
 .content_l {
 }
