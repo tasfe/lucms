@@ -236,7 +236,7 @@ var pngHandler = new PNGHandler();
 var shoid = 0;
 $(function() {
 	var nowdom = $('#product_cate').find('li.bigcate > a.on');
-	if(shoid.length > 0) {
+	if(nowdom.length > 0) {
 		shoid = $(nowdom).attr('rel');
 		$('#bigcate_' + shoid).find('ul.subcate').show();
 	}
@@ -244,7 +244,7 @@ $(function() {
 		$(this).hover(function() {
 			var nowid = $(this).find('ul.subcate').attr('rel');
 			if(nowid != shoid) {
-				$(this).find('ul.subcate').slideDown();
+				$(this).find('ul.subcate').delay(500).slideDown();
 				$('#bigcate_' + shoid).find('ul.subcate').hide();
 				shoid = nowid;
 			}
