@@ -1,21 +1,21 @@
 <div class="title">
     Gloves Category
 </div>
-<ul>
+<ul id="product_cate">
     <volist name="product_cates" id="vo">
         <eq name="vo.parent_id" value="0">
-            <li>
+            <li class="bigcate" id="bigcate_{$vo['cate_id']}">
                 <a href="{:U('Product/index?cate_id='.$vo['cate_id'])}"
                     <eq name="_GET['cate_id']" value="$vo['cate_id']">
-                        class="on"
+                        class="on" rel="{$vo['cate_id']}"
                     </eq>><strong>{$vo.name}</strong></a>
                 <notempty name="vo.childs">
-                    <ul>
+                    <ul class=""subcate" rel="{$vo['cate_id']}">
                         <volist name="vo.childs" id="cvo">
                             <li>
                                 <a href="{:U('Product/index?cate_id='.$cvo)}"
                                     <eq name="_GET['cate_id']" value="$cvo">
-                                        class="on"
+                                        class="on" rel="{$vo['cate_id']}"
                                     </eq>>{$product_cates[$cvo]['name']}
                                 </a>
                             </li>
