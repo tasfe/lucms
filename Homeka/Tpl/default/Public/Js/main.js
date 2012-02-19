@@ -244,7 +244,7 @@ $(function() {
 		$(this).hover(function() {
 			var nowid = $(this).find('ul.subcate').attr('rel');
 			if(nowid != shoid) {
-				$(this).find('ul.subcate').show();
+				$(this).find('ul.subcate').slideDown();
 				$('#bigcate_' + shoid).find('ul.subcate').hide();
 				shoid = nowid;
 			}
