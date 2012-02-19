@@ -7,7 +7,7 @@ class IndexAction extends FbaseAction {
 		);
 		$minfo = D('Info');
 		$gdata['intr1'] = $minfo->doGet($imap);
-		$imap['q']['info_id'] = 3;
+		$imap['q']['info_id'] = 5;
 		$gdata['intr2'] = $minfo->doGet($imap);
 		
 		$pmap['p'] = 1;
