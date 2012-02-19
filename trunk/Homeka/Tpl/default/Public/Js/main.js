@@ -235,12 +235,12 @@ function PNGHandler() {
 var pngHandler = new PNGHandler();
 var shoid = 0;
 $(function() {
-	var nowdom = $('#product_cate').find('ul.bigcate > a.on');
+	var nowdom = $('#product_cate').find('li.bigcate > a.on');
 	if(shoid.length > 0) {
 		shoid = $(nowdom).attr('rel');
 		$('#bigcate_' + shoid).find('ul.subcate').show();
 	}
-	$('#product_cate').find('ul.bigcate').each(function(i) {
+	$('#product_cate').find('li.bigcate').each(function(i) {
 		$(this).hover(function() {
 			var nowid = $(this).find('ul.subcate').attr('rel');
 			if(nowid != shoid) {
