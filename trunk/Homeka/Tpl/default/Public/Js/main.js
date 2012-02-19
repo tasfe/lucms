@@ -220,3 +220,25 @@ function PNGHandler() {
 // Instantiate and initialize PNG Handler
 
 var pngHandler = new PNGHandler();
+$(function(){
+  var shoid = $('#product_cate').find('ul.bigcate > a.on').attr('rel');
+  if(shoid.length > 0 ){
+  	$('#bigcate_' + shoid).find('ul.subcate').show();
+  }
+  $('#product_cate').find('ul.bigcate').each(function(i){
+  	$(this).hover(
+	  function () {
+	  	var nowid = $(this).find('ul.subcate').attr('rel');
+	  	if( nowid != shoid ){
+	  		$(this).find('ul.subcate').show();
+	  		$('#bigcate_' + shoid).find('ul.subcate').hide();
+	  		shoid = nowid;
+	  	}
+	    
+	  },
+	  function () {
+	    $(this).removeClass("hover");
+	  }
+	);
+  });
+});
