@@ -245,7 +245,7 @@ $(function() {
 			var nowid = $(this).find('ul.subcate').attr('rel');
 			if(nowid != shoid) {
 				$(this).find('ul.subcate').delay(200).slideDown('fast',function(){
-				   $('#bigcate_' + shoid).find('ul.subcate').hide();
+				   //$('#bigcate_' + shoid).find('ul.subcate').hide();
 				   shoid = nowid;
 				});
 			}
