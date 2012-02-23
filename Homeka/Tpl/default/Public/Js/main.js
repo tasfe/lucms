@@ -241,16 +241,19 @@ $(function() {
 		$('#bigcate_' + shoid).find('ul.subcate').show();
 	}
 	$('#product_cate').find('li.bigcate').each(function(i) {
-		$(this).click(function() {
-			var nowid = $(this).find('ul.subcate').attr('rel');
-			if(nowid != shoid) {
-				$(this).find('ul.subcate').delay(200).slideDown('fast',function(){
-				   //$('#bigcate_' + shoid).find('ul.subcate').hide();
-				   shoid = nowid;
-				   return false;
-				});
-			}
-			
-		});
+		if($(this).find('ul.subcate').length > 0) {
+			$(this).click(function() {
+				var nowid = $(this).find('ul.subcate').attr('rel');
+				if(nowid != shoid) {
+					$(this).find('ul.subcate').delay(200).slideDown('fast', function() {
+						//$('#bigcate_' + shoid).find('ul.subcate').hide();
+						shoid = nowid;
+					});
+				}
+
+			});
+			return false;
+		}
+
 	});
 });
