@@ -44,7 +44,6 @@ class FlinkModel extends IbaseModel {
 			't' => 'input',
 			'v' => ''
 		),
-		
 		'oid' => array (
 			't' => 'input',
 			'v' => 0
