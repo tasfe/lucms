@@ -1,23 +1,36 @@
-<div class="hr">
-</div>
+<div class="hr"></div>
 <div id="footer">
     <p class="link mt">
         <a href="{:U('Index/index')}">Home</a>
-		<volist name="product_cates" id="vo">
-			<eq name="vo.parent" value="0">
-			|<a href="{:U('Product/index?cate_id='.$vo['cate_id'])}">{$vo['name']}</a>
-			</eq>
-		</volist>
-		<volist name="sets.material" id="vo">
-			|<a href="{:U('Product/index?attr_7='.$key)}">{$vo}</a>
-		</volist>
+        <volist name="product_cates" id="vo">
+            <eq name="vo.parent" value="0">
+                |<a href="{:U('Product/index?cate_id='.$vo['cate_id'])}">{$vo['name']}</a>
+            </eq>
+        </volist>
+        <volist name="sets.material" id="vo">
+            |<a href="{:U('Product/index?attr_7='.$key)}">{$vo}</a>
+        </volist>
         |<a href="{:U('Index/contact')}">Contact Us</a>
     </p>
     <p class="copyright">
         <strong>CopyRight © 2003-2012 {$webinfo.webcom}. All rights reserved. ICP:{$webinfo.webicp} .</strong>
     </p>
+    <eq name="domid" value="Index_index">
+        <p class="link mt">
+            <strong class="orange">Links：</strong>
+            <php>
+                $counti = count($flinklist);
+            </php>
+            <volist name="flinklist" id="vo">
+                <a href="{$vo.url}">{$vo.name}</a>
+                <neq name="i" value="$counti">
+                    <span>|</span>
+                </neq>
+            </volist>
+        </p>
+    </eq>
     <!--end youqinglink-->
 </div>
 <!--end footer-->
 </body>
-</html>
+</html> 
