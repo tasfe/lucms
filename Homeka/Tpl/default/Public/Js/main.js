@@ -235,9 +235,9 @@ function PNGHandler() {
 var pngHandler = new PNGHandler();
 var shoid = 0;
 $(function() {
-	var nowdom = $('#product_cate').find('li.bigcate > a.on');
+	var nowdom = $('#product_cate').find('li.bigcate a.on');
 	if(nowdom.length > 0) {
-		shoid = $(nowdom).attr('rel');
+		shoid = nowdom.attr('rel');
 		$('#bigcate_' + shoid).find('ul.subcate').show();
 	}
 	$('#product_cate').find('li.bigcate').each(function(i) {
