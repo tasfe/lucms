@@ -20,6 +20,10 @@ class IndexAction extends FbaseAction {
 		$rs = $mproduct->doGet($pmap);
 		$gdata['product'] = $rs['list'];
 		$this->assign('gdata',$gdata);
+		//友情链接
+    	$mflink = M('Flink');
+    	$flinklist = $mflink->order('oid asc')->select();
+    	$this->assign('flinklist',$flinklist);
 		$this->display();
 	}
 	public function sitemap() {

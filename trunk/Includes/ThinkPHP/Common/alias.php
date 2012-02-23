@@ -42,6 +42,7 @@ alias_import(array(
     'BulletinModel'    => THINK_PATH.'/Vendor/SModel/BulletinModel.class.php',
     'InfoModel'    => THINK_PATH.'/Vendor/SModel/InfoModel.class.php',
     'KefuModel'    => THINK_PATH.'/Vendor/SModel/KefuModel.class.php',
+    'FlinkModel'    => THINK_PATH.'/Vendor/SModel/FlinkModel.class.php',
     'News_cateModel'    => THINK_PATH.'/Vendor/SModel/News_cateModel.class.php',
     'NewsModel'    => THINK_PATH.'/Vendor/SModel/NewsModel.class.php',
     'Product_cateModel'    => THINK_PATH.'/Vendor/SModel/Product_cateModel.class.php',
