@@ -1,0 +1,12 @@
+#
+# robots.txt for lucms
+#
+
+User-agent: *
+Disallow: /Config/
+Disallow: /Includes/
+Disallow: /Public/
+Disallow: /Readme/
+Disallow: /ServerAdmin/
+Disallow: /Uploads/
+Disallow: /admin.php
