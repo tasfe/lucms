@@ -1,0 +1,41 @@
+/*
+float left
+.QQbox {
+	Z-INDEX: 9999; LEFT: -262px; WIDTH: 296px; POSITION: absolute
+}
+.OnlineBtn {
+	DISPLAY: inline; BACKGROUND: url(../Images/kefu/bj02.jpg) no-repeat; FLOAT: right; MARGIN: 161px 0px 0px; WIDTH: 34px; HEIGHT: 96px
+}
+.OnlineLeft {
+	DISPLAY: inline; FLOAT: left; OVERFLOW: hidden; WIDTH: 262px; ZOOM: 1
+}
+*/
+.QQbox {
+	Z-INDEX: 9999; RIGHT: 0px; WIDTH: 34px; POSITION: absolute;overflow:hidden;HEIGHT:96px
+}
+.OnlineBtn {
+	DISPLAY: inline; BACKGROUND: url(../Images/kefu/bj02_en_r.jpg) no-repeat; FLOAT: left; MARGIN: 0px 0px 0px; WIDTH: 34px; HEIGHT: 96px
+}
+.OnlineLeft {
+	DISPLAY: inline; FLOAT: right; OVERFLOW: hidden; WIDTH: 232px; ZOOM: 1;BACKGROUND: url(../Images/kefu/b_1.jpg) no-repeat;
+}
+.QQbox .press {
+	LEFT: 0px; WIDTH: 32px; CURSOR: pointer; BORDER-TOP-STYLE: none; PADDING-TOP: 140px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: absolute; HEIGHT: 96px; BORDER-BOTTOM-STYLE: none
+}
+.QQbox .Qlist {
+	DISPLAY: block;  OVERFLOW: hidden; WIDTH: 266px; ZOOM: 1; HEIGHT: auto;
+}
+.QQbox .Qlist .infobox {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: 700; PADDING-BOTTOM: 5px; COLOR: #cccccc; LINE-HEIGHT: 14px; PADDING-TOP: 5px; BACKGROUND-REPEAT: no-repeat; TEXT-ALIGN: center
+}
+
+.QQbox .Qlist .con { margin:0;margin-top:192px; font-size:14px; color:#FFF; font-weight:bold}
+.QQbox .Qlist .con ul { margin:0px; padding:0px;}
+.QQbox .Qlist .con ul li { line-height:33px; list-style:none; height:33px;BACKGROUND: url(../Images/kefu/b_2.jpg) no-repeat; text-align:center;}
+.QQbox .Qlist .con ul li a{ font-size:12px; color:#fff; text-decoration:none;}
+.QQbox .Qlist .con ul li a:hover { color:#Fff}
+.QQbox .Qlist .con_end {
+	BACKGROUND: url(../Images/kefu/b_3.jpg) no-repeat;
+	height:69px;
+	width:100%;
+}

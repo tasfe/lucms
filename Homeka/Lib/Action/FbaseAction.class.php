@@ -30,6 +30,7 @@ class FbaseAction extends Action {
 		$webinfo = $this->getConfig();
 		$this->webinfo = $webinfo;
 		$this->setSeo('', $this->webinfo['seokeywords'], $this->webinfo['seodes']);
+		$this->kefu();
 		$this->assign('webinfo', $webinfo);
 	}
 
@@ -235,6 +236,12 @@ class FbaseAction extends Action {
 		$this->seo['k'] = $k;
 		$this->seo['d'] = $d;
 		$this->assign('seo', $this->seo);
+	}
+	
+	public function kefu(){
+		$m = M('Kefu');
+		$list = $m->select();
+		$this->assign('kefulist',$list);
 	}
 }
 ?>
