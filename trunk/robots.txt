@@ -9,4 +9,5 @@ Disallow: /Public/
 Disallow: /Readme/
 Disallow: /ServerAdmin/
 Disallow: /Uploads/
+Disallow: /Homeka/
 Disallow: /admin.php
