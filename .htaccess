@@ -14,6 +14,12 @@ RewriteRule ^market\.html$ index.php/Index/market [QSA,PT,L]
 RewriteRule ^factory\.html$ index.php/Index/factory [QSA,PT,L]
 RewriteRule ^sitemap\.html$ index.php/Index/sitemap [QSA,PT,L]
 RewriteRule ^contact\.html$ index.php/Index/contact [QSA,PT,L]
+RewriteRule ^service\.html$ index.php/Index/service [QSA,PT,L]
+RewriteRule ^order\.html$ index.php/Index/order [QSA,PT,L]
+RewriteRule ^feedback\.html$ index.php/Index/feedback [QSA,PT,L]
+RewriteRule ^faq\.html$ index.php/Index/faq [QSA,PT,L]
+RewriteRule ^policy\.html$ index.php/Index/policy [QSA,PT,L]
+RewriteRule ^index_(.*)\.html$ index.php/Index/index/lang/$1 [QSA,PT,L]
 #GB MOD
 RewriteRule (.*)-p-(.*) $1/p/$2 [QSA,PT,N]
 RewriteRule (.*)-ps-(.*) $1/ps/$2 [QSA,PT,N]
@@ -22,7 +28,7 @@ RewriteRule (.*)-ps-(.*) $1/ps/$2 [QSA,PT,N]
 RewriteRule (.*)-ok-asc(.*) $1/okey/asc$2 [QSA,PT,N]
 RewriteRule (.*)/cate-(.*) $1/index/cate_id/$2 [QSA,PT,N]
 #PRODUCT
-RewriteRule ^gloves(.*) index.php/Product$1 [QSA,PT,N]
+RewriteRule ^items(.*) index.php/Product$1 [QSA,PT,N]
 RewriteRule (.*)Product/id-(.*) $1/Product/view/product_id/$2 [QSA,PT,L]
 RewriteRule (.*)Product/material-(.*) $1/Product/index/attr_7/$2 [QSA,PT,L]
 RewriteRule (.*)Product/userfor-(.*) $1/Product/index/attr_8/$2 [QSA,PT,L]
@@ -30,5 +36,8 @@ RewriteRule (.*)Product/userfor-(.*) $1/Product/index/attr_8/$2 [QSA,PT,L]
 RewriteRule ^article(.*) index.php/News$1 [QSA,PT,N]
 RewriteRule (.*)News/id-(.*) $1/News/view/news_id/$2 [QSA,PT,L]
 
+#Download
+RewriteRule ^download(.*) index.php/Download$1 [QSA,PT,N]
+RewriteRule (.*)Download/id-(.*) $1/Download/view/download_id/$2 [QSA,PT,L]
 errorDocument 404 /404.html
 </IfModule>

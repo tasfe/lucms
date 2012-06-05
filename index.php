@@ -11,8 +11,10 @@
 // 定义ThinkPHP框架路径
 define('THINK_PATH', 'Includes/ThinkPHP');
 //定义项目名称和路径
-define('APP_NAME', 'Homeka');
-define('APP_PATH', './Homeka');
+//define('APP_NAME', 'DYjiyin');
+//define('APP_PATH', './DYjiyin');
+define('APP_NAME', 'Wigs');
+define('APP_PATH', './Wigs');
 // 加载框架入口文件 
 require(THINK_PATH."/ThinkPHP.php");
 //实例化一个网站应用实例

@@ -11,9 +11,6 @@
                     姓名
                 </th>
                 <th width="100">
-                    状态
-                </th>
-                <th width="100">
                     类型
                 </th>
                 <th width="100">
@@ -32,13 +29,6 @@
                     </td>
                     <td>
                         {$vo.name}
-                    </td>
-					<td>
-						<eq name="vo.status" value="0">
-							未启用
-							<else/>
-							已启用
-						</eq>
                     </td>
                     <td>
                         {$sets['kefu_type'][$vo['type']]} 

@@ -47,7 +47,8 @@ alias_import(array(
     'NewsModel'    => THINK_PATH.'/Vendor/SModel/NewsModel.class.php',
     'Product_cateModel'    => THINK_PATH.'/Vendor/SModel/Product_cateModel.class.php',
     'ProductModel'    => THINK_PATH.'/Vendor/SModel/ProductModel.class.php',
-    'SetModel'    => THINK_PATH.'/Vendor/SModel/SetModel.class.php'
+    'SetModel'    => THINK_PATH.'/Vendor/SModel/SetModel.class.php',
+    'DownloadModel'    => THINK_PATH.'/Vendor/SModel/DownloadModel.class.php'
     //'Model'    => THINK_PATH.'/Vendor/SModel/Model.class.php',
     )
 );

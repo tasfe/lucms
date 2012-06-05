@@ -94,7 +94,7 @@ class IcateModel extends IbaseModel {
 	}
 
 	public function getCatelay() {
-		$allcate = $this->field('cate_id,parent_id')->select();
+		$allcate = $this->field('cate_id,parent_id')->order('oid asc')->select();
 		$this->cateArray = array ();
 		foreach ($allcate as $acate) {
 			$this->setNode($acate[$this->getPk()], $acate['parent_id'], '');

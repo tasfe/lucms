@@ -9,6 +9,7 @@ class IndexAction extends Action
     */
     public function index()
     {
+    	$m = M('Good');
         $this->display(THINK_PATH.'/Tpl/Autoindex/hello.html');
     }
 
