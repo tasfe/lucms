@@ -1,7 +1,6 @@
 #
 # robots.txt for lucms
 #
-
 User-agent: *
 Disallow: /Config/
 Disallow: /Includes/

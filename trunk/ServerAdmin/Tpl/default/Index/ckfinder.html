@@ -1,17 +1,28 @@
-<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Ckfinder/ckfinder.js"></script>
-<script type="text/javascript">
-    function showFileInfo(fileUrl, data){
-        var msg = 'The selected URL is: <a href="' + fileUrl + '">' + fileUrl + '</a><br /><br />';
-        if (fileUrl != data['fileUrl']) 
-            msg += '<b>File url:</b> ' + data['fileUrl'] + '<br />';
-        msg += '<b>File size:</b> ' + data['fileSize'] + 'KB<br />';
-        msg += '<b>Last modified:</b> ' + data['fileDate'];
-        this.openMsgDialog("Selected file", msg);
-    }
-    var finder = new CKFinder();
-    finder.basePath = '__PUBLIC__/Js/Ckfinder/';
-    finder.height = 600;
-    finder.selectActionFunction = showFileInfo;
-    finder.create();
-</script>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=7" />
+        <title>LUCMS企业网站管理平台(PowerBy LULUUI)</title>
+        <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Ckfinder/ckfinder.js">
+        </script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function showFileInfo(fileUrl, data){
+                var msg = 'The selected URL is: <a href="' + fileUrl + '">' + fileUrl + '</a><br /><br />';
+                if (fileUrl != data['fileUrl']) 
+                    msg += '<b>File url:</b> ' + data['fileUrl'] + '<br />';
+                msg += '<b>File size:</b> ' + data['fileSize'] + 'KB<br />';
+                msg += '<b>Last modified:</b> ' + data['fileDate'];
+                this.openMsgDialog("Selected file", msg);
+            }
+            
+            var finder = new CKFinder();
+            finder.basePath = '__PUBLIC__/Js/Ckfinder/';
+            finder.height = 600;
+            finder.selectActionFunction = showFileInfo;
+            finder.create();
+        </script>
+    </body>
+</html>

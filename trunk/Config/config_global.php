@@ -3,7 +3,7 @@ return array(
 	'SYS_VERSION' => 'Preview预览版',
 	//数据库缓存
 	'DB_FIELDS_CACHE'=>false,
-	'DB_LIKE_FIELDS'=>'path|title|detail|content|local',
+	'DB_LIKE_FIELDS'=>'name|path|title|detail|content|local',
 	'TMPL_TEMPLATE_SUFFIX'=>'.html',//模板扩展名
 	
 	'DEFAULT_MODULE'=>'Index',

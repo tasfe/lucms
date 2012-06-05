@@ -28,7 +28,8 @@ class Page extends Think {
     // 分页栏每页显示的页数
     protected $rollPage   ;
 	// 分页显示定制
-    protected $config  =	array('header'=>'条记录','prev'=>'上一页','next'=>'下一页','first'=>'第一页','last'=>'最后一页','theme'=>' %totalRow% %header% %nowPage%/%totalPage% 页 %first% %upPage% %prePage%  %linkPage%  %nextPage%  %downPage%  %end%');
+    //protected $config  =	array('header'=>'条记录','prev'=>'上一页','next'=>'下一页','first'=>'第一页','last'=>'最后一页','theme'=>' %totalRow% %header% %nowPage%/%totalPage% 页 %first% %upPage% %prePage%  %linkPage%  %nextPage%  %downPage%  %end%');
+    protected $config  =	array('header'=>'Records','prev'=>'Pre','next'=>'Next','first'=>'First','last'=>'Last','theme'=>' %totalRow% %header% %nowPage%/%totalPage% Pages %first% %upPage% %prePage%  %linkPage%  %nextPage%  %downPage%  %end%');
 
     /**
      +----------------------------------------------------------
