@@ -1,0 +1,21 @@
+<div class="pageFormContent" layoutH="56">
+    <div class="unit">
+        <label>
+            文件名称：
+        </label>
+        <input name="name" type="text" size="20" value='{$datainfo.name}' class="required"/>
+    </div>
+    <div class="unit">
+        <label>
+            文件路径：
+        </label>
+        <input name="path" type="text" size="20" value='{$datainfo.path}' id="{$domid}_path" class="required"/>
+		<input type="button" value="上传" onclick="fupload('{$domid}_path','{$domid}_view_path')"/>
+    </div>
+	<div class="unit">
+        <label>
+            顺序：
+        </label>
+        <input name="oid" type="text" size="5" value='{$datainfo.oid}'/>
+    </div>
+</div>
