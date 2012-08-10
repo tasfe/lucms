@@ -68,11 +68,11 @@ class Dispatcher extends Think
                 $module = array_pop($array);
                 if(!empty($module)) {
                     $_GET[C('VAR_MODULE')] = $module;
-                    $domainModule   =  true;
+                    $domainModule   =  TRUE;
                 }
                 if(!empty($array)) {
                     $_GET[C('VAR_GROUP')]  = array_pop($array);
-                    $domainGroup =  true;
+                    $domainGroup =  TRUE;
                 }
                 if(isset($rule[1])) { // 传入参数
                     parse_str($rule[1],$parms);
@@ -99,7 +99,7 @@ class Dispatcher extends Think
             }
             $var[C('VAR_ACTION')]  =   array_shift($paths);
             // 解析剩余的URL参数
-            $res = preg_replace('@(\w+)'.$depr.'([^'.$depr.'\/]+)@e', '$var[\'\\1\']="\\2";', implode($depr,$paths));
+            $res = preg_replace('@(\w+)'.$depr.'([^'.$depr.'\/]+)@e', '$var[\'\\1\']=strip_tags(\'\\2\');', implode($depr,$paths));
             $_GET   =  array_merge($var,$_GET);
         }
 
@@ -200,9 +200,9 @@ class Dispatcher extends Think
      */
     static public function routerCheck() {
         $regx = trim($_SERVER['PATH_INFO'],'/');
-        if(empty($regx)) return true;
+        if(empty($regx)) return TRUE;
         // 是否开启路由使用
-        if(!C('URL_ROUTER_ON')) return false;
+        if(!C('URL_ROUTER_ON')) return FALSE;
         // 路由定义文件优先于config中的配置定义
         $routes = C('URL_ROUTE_RULES');
         if(is_array(C('_routes_')))
@@ -227,7 +227,7 @@ class Dispatcher extends Think
                         parse_str($route[3],$params);
                         $_GET   =   array_merge($_GET,$params);
                     }
-                    return true;
+                    return TRUE;
                 }elseif(1 < substr_count($route[0],'/') && preg_match($route[0],$regx,$matches)) {
                     // 路由定义规则：array('正则定义','分组/模块/操作名', '路由对应变量','额外参数'),
                     $var  =  self::parseUrl($route[1]);
@@ -242,11 +242,11 @@ class Dispatcher extends Think
                         parse_str($route[3],$params);
                         $_GET   =   array_merge($_GET,$params);
                     }
-                    return true;
+                    return TRUE;
                 }
             }
         }
-        return false;
+        return FALSE;
     }
 
     static private function parseUrl($route) {
